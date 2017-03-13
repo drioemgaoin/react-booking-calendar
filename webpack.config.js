@@ -10,8 +10,6 @@ module.exports = {
     filename: 'index.js'
   },
 
-  devtool: 'source-map',
-
   externals: {
    'react': 'var React',
    'react/addons': 'var React'

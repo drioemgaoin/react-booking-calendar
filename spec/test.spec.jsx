@@ -1,16 +1,20 @@
 import React from 'react/addons';
-import Test from '../src/Calendar';
+import ReactTestUtils from 'react-addons-test-utils';
+import Calendar from '../src/Calendar';
 
 describe('Calendar', function() {
-  var component;
-
+  var element;
+  
   beforeEach(function() {
-    component = React.addons.TestUtils.renderIntoDocument(
-      <Calendar/>
+    element = React.createElement(
+      Calendar,
+      {}
     );
   });
 
   it('should render', function() {
-    expect(component.getDOMNode().className).toEqual('test');
+    expect(function() {
+      ReactTestUtils.renderIntoDocument(element);
+    }).not.toThrow();
   });
 });

@@ -1,8 +1,8 @@
 {
   "name": "react-booking-calendar",
   "version": "1.0.0",
-  "description": "react-booking-calendar",
-  "main": "lib/ReactCalendar.js",
+  "description": "React Booking Calendar",
+  "main": "lib/Calendar.js",
   "author": "Romain Diegoni",
   "homepage": "https://github.com/drioemgaoin/react-booking-calendar",
   "repository": {
@@ -17,21 +17,19 @@
   },
   "devDependencies": {
     "babel-eslint": "^4.1.3",
+    "cross-env": "^3.2.3",
     "eslint": "^1.6.0",
     "eslint-plugin-react": "^3.5.1",
     "gulp": "^3.9.0",
-    "react": "^0.14.0",
-    "react-component-gulp-tasks": "^0.7.6",
-    "react-dom": "^0.14.0"
-  },
-  "peerDependencies": {
-    "react": "^0.14.0"
+    "react": "^15.4.2",
+    "react-component-gulp-tasks": "^0.7.7",
+    "react-dom": "^15.4.2"
   },
   "browserify-shim": {
     "react": "global:React"
   },
   "scripts": {
-    "build": "gulp clean && NODE_ENV=production gulp build",
+    "build": "gulp clean && cross-env NODE_ENV=production gulp build",
     "examples": "gulp dev:server",
     "lint": "eslint ./; true",
     "publish:site": "NODE_ENV=production gulp publish:examples",

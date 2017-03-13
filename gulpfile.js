@@ -13,7 +13,7 @@ var initGulpTasks = require('react-component-gulp-tasks');
 var taskConfig = {
 
 	component: {
-		name: 'ReactCalendar',
+		name: 'index',
 		dependencies: [
 			'classnames',
 			'react',
@@ -23,8 +23,8 @@ var taskConfig = {
 	},
 
 	example: {
-		src: 'example/src',
-		dist: 'example/dist',
+		src: 'examples/src',
+		dist: 'examples/dist',
 		files: [
 			'index.html',
 			'.gitignore'

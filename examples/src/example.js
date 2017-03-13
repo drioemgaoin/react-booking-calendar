@@ -1,6 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var ReactCalendar = require('react-calendar');
+var ReactCalendar = require('react-booking-calendar');
 
 var App = React.createClass({
 	render () {

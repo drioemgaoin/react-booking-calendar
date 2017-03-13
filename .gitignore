@@ -13,7 +13,10 @@ coverage
 coverage.html
 .cover*
 
-# Dependency directory
+# Npm dependency directory
+node_modules
+
+# Bower dependency directory
 node_modules
 
 # Example build directory
@@ -29,3 +32,6 @@ example/dist
 *.sublime-*
 .idea/
 *.DS_Store
+
+# Ignore dist directory
+dist

@@ -1,3 +1,6 @@
-import Calendar from './Calendar.jsx';
+import React from "react";
+import ReactDOM from "react-dom";
+import Calendar from "./Calendar"
 
-export default Calendar;
+var mainView = React.createElement(Calendar, null);
+ReactDOM.render(mainView, document.getElementById("main"));

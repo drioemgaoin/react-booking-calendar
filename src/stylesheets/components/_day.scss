@@ -1,0 +1,17 @@
+.day {
+  height: 100px;
+
+  .header {
+    text-align: center;
+    padding: 15px;
+
+    span {
+      display: block;
+    }
+  }
+
+  .slot {
+    text-align: center;
+    padding: 15px;
+  }
+}

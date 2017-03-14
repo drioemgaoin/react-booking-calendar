@@ -1,5 +1,6 @@
 /* jshint node: true */
 var path = require('path');
+var combineLoaders = require('webpack-combine-loaders')
 
 module.exports = {
   context: path.join(__dirname),
@@ -23,9 +24,17 @@ module.exports = {
     loaders: [
       {
         test: /\.scss$/,
-        loader: 'style!css!sass?outputStyle=expanded&' +
-          'includePaths[]=' + (path.resolve(__dirname, './bower_components')) + '&' +
-          'includePaths[]=' + (path.resolve(__dirname, './node_modules'))
+        loader: combineLoaders([
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader',
+          },
+          {
+            loader: 'sass-loader'
+          }
+        ])
       },
       {
         test: /(\.js)|(\.jsx)$/,

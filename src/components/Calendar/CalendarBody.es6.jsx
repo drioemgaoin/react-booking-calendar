@@ -2,6 +2,7 @@ import React from 'react';
 
 import Month from "./Month";
 import Day from "./Day";
+import Week from "./Week";
 
 export default class CalendarBody extends React.Component {
   constructor(props) {
@@ -16,6 +17,10 @@ export default class CalendarBody extends React.Component {
     if (this.props.view === 'month') {
       return <Month date={this.props.date} />
     }
+
+    if (this.props.view === 'week') {
+      return <Week date={this.props.date} />
+    }
   }
 
   render() {
@@ -25,5 +30,5 @@ export default class CalendarBody extends React.Component {
 
 CalendarBody.propTypes = {
   view: React.PropTypes.string,
-  date: React.PropTypes.string
+  date: React.PropTypes.object
 };

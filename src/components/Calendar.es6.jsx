@@ -1,8 +1,7 @@
 import React from 'react';
-import moment from 'moment';
 
 import CalendarHeader from "./Calendar/CalendarHeader";
-import Day from "./Calendar/Day";
+import Month from "./Calendar/Month";
 
 export default class Calendar extends React.Component {
   constructor(props) {
@@ -13,7 +12,7 @@ export default class Calendar extends React.Component {
     return (
       <div>
         <CalendarHeader />
-        <Day date={moment()} start="9" end="17:30" slot={30} />
+        <Month />
       </div>
     );
   }

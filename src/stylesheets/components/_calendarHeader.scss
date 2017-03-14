@@ -1,0 +1,24 @@
+.rbc-header {
+  div {
+    display: inline;
+  }
+
+  .rbc-date {
+    button {
+      width: 100px;
+    }
+
+    span {
+      margin: 0px 10px;
+    }
+  }
+
+  .rbc-views {
+    width: 240px;
+    float: right;
+
+    button {
+      width: 80px;
+    }
+  }
+}

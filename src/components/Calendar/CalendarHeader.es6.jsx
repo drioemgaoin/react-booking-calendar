@@ -33,9 +33,9 @@ export default class CalendarHeader extends React.Component {
     return (
       <div className="rbc-header">
         <div className="rbc-date">
-          <button>Previous</button>
+          <button onClick={(evt) => this.props.onDateChanged(evt, "previous")}>Previous</button>
           <span>{this.renderDate()}</span>
-          <button>Next</button>
+          <button onClick={(evt) => this.props.onDateChanged(evt, "next")}>Next</button>
         </div>
 
         <div className="rbc-views">

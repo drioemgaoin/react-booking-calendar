@@ -26,7 +26,3 @@ export default class Calendar extends React.Component {
     );
   }
 }
-
-Calendar.propTypes = {
-  view: React.PropTypes.string
-};

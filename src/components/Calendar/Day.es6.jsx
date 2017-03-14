@@ -15,15 +15,15 @@ export default class Day extends React.Component {
     var slots = [];
     for (var i = 0; i < spread; i += this.props.slot) {
       var slot = start.add(this.props.slot, 'm').format('HH:mm A');
-      slots.push(<Slot time={slot} />)
+      slots.push(<Slot key={slot} time={slot} />)
     }
 
     return (
-      <tr className='day'>
-        <td className='header'>
-          <span>Oct 2015</span>
-          <span>22</span>
-          <span>Tuesday</span>
+      <tr className='rbc-day'>
+        <td className='rbc-header'>
+          <span>{this.props.date.format("MMM YYYY")}</span>
+          <span>{this.props.date.format("DD")}</span>
+          <span>{this.props.date.format("dddd")}</span>
         </td>
         {slots}
       </tr>
@@ -34,5 +34,6 @@ export default class Day extends React.Component {
 Day.propTypes = {
   start: React.PropTypes.string,
   end: React.PropTypes.string,
-  slot: React.PropTypes.number
+  slot: React.PropTypes.number,
+  date: React.PropTypes.object
 };

@@ -1,17 +1,23 @@
-.day {
+.rbc-day {
   height: 100px;
+  vertical-align: middle;
 
-  .header {
+  .rbc-header {
     text-align: center;
     padding: 15px;
+    width: 150px;
 
     span {
       display: block;
     }
   }
 
-  .slot {
+  .rbc-slot {
     text-align: center;
     padding: 15px;
+
+    span {
+      display: block;
+    }
   }
 }

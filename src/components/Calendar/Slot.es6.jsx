@@ -5,8 +5,19 @@ export default class Slot extends React.Component {
       super(props)
   }
 
+  renderBooking() {
+    return this.props.isBooked
+    ? <span>Booked</span>
+    : <a href="#">Book</a>
+  }
+
   render() {
-    return (<td key={this.props.time} className='slot'>{this.props.time}</td>)
+    return (
+      <td className='rbc-slot'>
+        <span>{this.props.time}</span>
+        {this.renderBooking()}
+      </td>
+    )
   }
 }
 

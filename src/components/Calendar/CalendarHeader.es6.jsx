@@ -15,9 +15,9 @@ export default class CalendarHeader extends React.Component {
         </div>
 
         <div className="rbc-views">
-          <button>Day</button>
-          <button>Week</button>
-          <button>Month</button>
+          <button onClick={(evt) => this.props.onViewChanged(evt, "day")}>Day</button>
+          <button onClick={(evt) => this.props.onViewChanged(evt, "week")}>Week</button>
+          <button onClick={(evt) => this.props.onViewChanged(evt, "month")}>Month</button>
         </div>
       </div>
     );
@@ -25,5 +25,7 @@ export default class CalendarHeader extends React.Component {
 }
 
 CalendarHeader.propTypes = {
-  date: React.PropTypes.object
+  date: React.PropTypes.object,
+  view: React.PropTypes.string,
+  onViewChanged: React.PropTypes.func
 };

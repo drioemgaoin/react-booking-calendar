@@ -5,7 +5,7 @@ import Day from "./Day";
 
 export default class Month extends React.Component {
   render() {
-    const daysInMonth = moment().daysInMonth();
+    const daysInMonth = this.props.date.daysInMonth();
 
     var days = [];
     for (var i = moment().format("D"); i <= daysInMonth; i++) {
@@ -16,3 +16,7 @@ export default class Month extends React.Component {
     return (<table>{days}</table>)
   }
 }
+
+Month.propTypes = {
+  date: React.PropTypes.string
+};

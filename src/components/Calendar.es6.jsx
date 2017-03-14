@@ -13,8 +13,7 @@ export default class Calendar extends React.Component {
     this.state = { views: this.props.view }
   }
 
-  onViewChanged(evt, view) {
-    evt.preventDefault();
+  onViewChanged(view) {
     this.setState({ view: view })
   }
 

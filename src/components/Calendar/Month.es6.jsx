@@ -5,18 +5,19 @@ import Day from "./Day";
 
 export default class Month extends React.Component {
   render() {
-    const daysInMonth = this.props.date.daysInMonth();
+    const selectedDate = this.props.date;
+    const daysInMonth = selectedDate.daysInMonth();
 
     var days = [];
-    for (var i = moment().format("D"); i <= daysInMonth; i++) {
-      var date = moment().set('date', i);
+    for (var i = selectedDate.format("D"); i <= daysInMonth; i++) {
+      var date = selectedDate.set('date', i).clone();
       days.push(<Day key={date} date={date} start="9" end="17:30" slot={60} />)
     }
 
-    return (<table>{days}</table>)
+    return (<table><tbody>{days}</tbody></table>)
   }
 }
 
 Month.propTypes = {
-  date: React.PropTypes.string
+  date: React.PropTypes.object
 };

@@ -11,7 +11,7 @@ export default class CalendarBody extends React.Component {
 
   renderContent() {
     if (this.props.view === 'day') {
-      return <Day date={this.props.date} start="9" end="17:30" slot={60} />
+      return <table><tbody><Day date={this.props.date} start="9" end="17:30" slot={60} /></tbody></table>
     }
 
     if (this.props.view === 'month') {

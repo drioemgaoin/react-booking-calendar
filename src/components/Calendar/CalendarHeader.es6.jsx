@@ -3,6 +3,30 @@ import React from 'react';
 export default class CalendarHeader extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = { views: this.props.view }
+  }
+
+  renderDate() {
+    if (this.state.view === 'day') {
+      return this.props.date.format("MMMM DD YYYY")
+    }
+
+    if (this.state.view === 'week') {
+      var startOfWeek = this.props.date.clone().startOf('isoweek');
+      var endOfWeek   = this.props.date.clone().endOf('isoweek');
+      return startOfWeek.format("DD MMM") + " - " + endOfWeek.format("DD MMM")
+    }
+
+    if (this.state.view === 'month') {
+      return this.props.date.format("MMMM YYYY")
+    }
+  }
+
+  onViewChanged(evt, view) {
+    evt.preventDefault();
+    this.setState({ view: view });
+    this.props.onViewChanged(view);
   }
 
   render() {
@@ -10,14 +34,14 @@ export default class CalendarHeader extends React.Component {
       <div className="rbc-header">
         <div className="rbc-date">
           <button>Previous</button>
-          <span>{this.props.date.format("MMMM DD YYYY")}</span>
+          <span>{this.renderDate()}</span>
           <button>Next</button>
         </div>
 
         <div className="rbc-views">
-          <button onClick={(evt) => this.props.onViewChanged(evt, "day")}>Day</button>
-          <button onClick={(evt) => this.props.onViewChanged(evt, "week")}>Week</button>
-          <button onClick={(evt) => this.props.onViewChanged(evt, "month")}>Month</button>
+          <button onClick={(evt) => this.onViewChanged(evt, "day")}>Day</button>
+          <button onClick={(evt) => this.onViewChanged(evt, "week")}>Week</button>
+          <button onClick={(evt) => this.onViewChanged(evt, "month")}>Month</button>
         </div>
       </div>
     );

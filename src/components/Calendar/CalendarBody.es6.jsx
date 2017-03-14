@@ -1,7 +1,6 @@
 import React from 'react';
 
-import CalendarHeader from "./Calendar/CalendarHeader";
-import CalendarBody from "./Calendar/CalendarBody";
+import Month from "./Month";
 
 export default class Calendar extends React.Component {
   constructor(props) {
@@ -11,8 +10,7 @@ export default class Calendar extends React.Component {
   render() {
     return (
       <div>
-        <CalendarHeader />
-        <CalendarBody />
+        <Month />
       </div>
     );
   }

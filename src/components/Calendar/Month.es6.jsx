@@ -10,7 +10,7 @@ export default class Month extends React.Component {
     var days = [];
     for (var i = moment().format("D"); i <= daysInMonth; i++) {
       var date = moment().set('date', i);
-      days.push(<Day key={date} date={date} start="9" end="17:30" slot={30} />)
+      days.push(<Day key={date} date={date} start="9" end="17:30" slot={60} />)
     }
 
     return (<table>{days}</table>)

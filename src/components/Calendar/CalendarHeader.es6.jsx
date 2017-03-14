@@ -4,7 +4,7 @@ export default class CalendarHeader extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { views: this.props.view }
+    this.state = { view: this.props.view }
   }
 
   renderDate() {

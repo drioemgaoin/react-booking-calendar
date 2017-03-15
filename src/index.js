@@ -1,7 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { Provider } from 'react-redux';
 import Calendar from "./components/Calendar"
-import './stylesheets/main.scss';
+import configureStore from './store/configureStore.js';
+import './style/main.scss';
 
-var mainView = React.createElement(Calendar, null);
-ReactDOM.render(mainView, document.getElementById("main"));
+const store = configureStore();
+
+ReactDOM.render(
+  <Provider store={store}>
+    <Calendar />
+  </Provider>,
+  document.getElementById("main")
+);

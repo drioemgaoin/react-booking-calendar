@@ -8,17 +8,10 @@ export default class Calendar extends React.Component {
   constructor(props) {
     super(props);
 
-    this.onViewChanged = this.onViewChanged.bind(this);
     this.onDateChanged = this.onDateChanged.bind(this);
-
     this.state = {
-      view: "month",
       date: moment()
     }
-  }
-
-  onViewChanged(view) {
-    this.setState({ view: view })
   }
 
   onDateChanged(evt, direction) {
@@ -42,12 +35,9 @@ export default class Calendar extends React.Component {
     return (
       <div className="rbc-calendar">
         <CalendarHeader date={this.state.date}
-          view={this.state.view}
-          onViewChanged={this.onViewChanged}
           onDateChanged={this.onDateChanged} />
 
-        <CalendarBody date={this.state.date}
-          view={this.state.view} />
+        <CalendarBody date={this.state.date} />
       </div>
     );
   }

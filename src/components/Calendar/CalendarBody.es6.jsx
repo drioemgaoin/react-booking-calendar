@@ -1,10 +1,17 @@
 import React from 'react';
+import { connect } from 'react-redux'
 
 import Month from "./Month";
 import Day from "./Day";
 import Week from "./Week";
 
-export default class CalendarBody extends React.Component {
+let mapStateToProps = (state) => {
+  return {
+    view: state.calendar.type
+  };
+}
+
+class CalendarBody extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -32,3 +39,5 @@ CalendarBody.propTypes = {
   view: React.PropTypes.string,
   date: React.PropTypes.object
 };
+
+export default connect(mapStateToProps, null)(CalendarBody)

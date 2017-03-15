@@ -1,32 +1,40 @@
 import React from 'react';
+import { connect } from 'react-redux'
+import * as actions from '../../actions/calendar';
 
-export default class CalendarHeader extends React.Component {
+let createHandlers = (dispatch) => {
+  return {
+    handleDayView: () => {
+    	dispatch(actions.dayViewAction());
+    },
+    handleWeekView: () => {
+    	dispatch(actions.weekViewAction());
+    },
+    handleMonthView: () => {
+    	dispatch(actions.monthViewAction());
+    }
+  }
+}
+
+class CalendarHeader extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = { view: this.props.view }
   }
 
   renderDate() {
-    if (this.state.view === 'day') {
+    if (this.props.type === 'day') {
       return this.props.date.format("MMMM DD YYYY")
     }
 
-    if (this.state.view === 'week') {
+    if (this.props.type === 'week') {
       var startOfWeek = this.props.date.clone().startOf('isoweek');
       var endOfWeek   = this.props.date.clone().endOf('isoweek');
       return startOfWeek.format("DD MMM") + " - " + endOfWeek.format("DD MMM")
     }
 
-    if (this.state.view === 'month') {
+    if (this.props.type === 'month') {
       return this.props.date.format("MMMM YYYY")
     }
-  }
-
-  onViewChanged(evt, view) {
-    evt.preventDefault();
-    this.setState({ view: view });
-    this.props.onViewChanged(view);
   }
 
   render() {
@@ -39,9 +47,9 @@ export default class CalendarHeader extends React.Component {
         </div>
 
         <div className="rbc-views">
-          <button onClick={(evt) => this.onViewChanged(evt, "day")}>Day</button>
-          <button onClick={(evt) => this.onViewChanged(evt, "week")}>Week</button>
-          <button onClick={(evt) => this.onViewChanged(evt, "month")}>Month</button>
+          <button onClick={this.props.handleDayView}>Day</button>
+          <button onClick={this.props.handleWeekView}>Week</button>
+          <button onClick={this.props.handleMonthView}>Month</button>
         </div>
       </div>
     );
@@ -49,7 +57,7 @@ export default class CalendarHeader extends React.Component {
 }
 
 CalendarHeader.propTypes = {
-  date: React.PropTypes.object,
-  view: React.PropTypes.string,
-  onViewChanged: React.PropTypes.func
+  date: React.PropTypes.object
 };
+
+export default connect(null, createHandlers)(CalendarHeader)

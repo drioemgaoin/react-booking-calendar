@@ -5,7 +5,7 @@ __COMPONENT DESCRIPTION GOES HERE__
 
 ## Demo & Examples
 
-Live demo: [drioemgaoin.github.io/react-calendar](http://drioemgaoin.github.io/react-calendar/)
+Live demo: [drioemgaoin.github.io/react-booking-calendar](http://drioemgaoin.github.io/react-calendar/)
 
 To build the examples locally, run:
 

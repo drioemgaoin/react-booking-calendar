@@ -12,8 +12,21 @@ let createHandlers = (dispatch) => {
     },
     handleMonthView: () => {
     	dispatch(actions.monthViewAction());
+    },
+    handlerNextDate: () => {
+      dispatch(actions.nextDateAction());
+    },
+    handlerPreviousDate: () => {
+      dispatch(actions.previousDateAction());
     }
   }
+}
+
+let mapStateToProps = (state) => {
+  return {
+    view: state.calendar.view,
+    date: state.calendar.date
+  };
 }
 
 class CalendarHeader extends React.Component {
@@ -22,17 +35,17 @@ class CalendarHeader extends React.Component {
   }
 
   renderDate() {
-    if (this.props.type === 'day') {
+    if (this.props.view === 'day') {
       return this.props.date.format("MMMM DD YYYY")
     }
 
-    if (this.props.type === 'week') {
+    if (this.props.view === 'week') {
       var startOfWeek = this.props.date.clone().startOf('isoweek');
       var endOfWeek   = this.props.date.clone().endOf('isoweek');
       return startOfWeek.format("DD MMM") + " - " + endOfWeek.format("DD MMM")
     }
 
-    if (this.props.type === 'month') {
+    if (this.props.view === 'month') {
       return this.props.date.format("MMMM YYYY")
     }
   }
@@ -41,9 +54,9 @@ class CalendarHeader extends React.Component {
     return (
       <div className="rbc-header">
         <div className="rbc-date">
-          <button onClick={(evt) => this.props.onDateChanged(evt, "previous")}>Previous</button>
+          <button onClick={this.props.handlerPreviousDate}>Previous</button>
           <span>{this.renderDate()}</span>
-          <button onClick={(evt) => this.props.onDateChanged(evt, "next")}>Next</button>
+          <button onClick={this.props.handlerNextDate}>Next</button>
         </div>
 
         <div className="rbc-views">
@@ -56,8 +69,4 @@ class CalendarHeader extends React.Component {
   }
 }
 
-CalendarHeader.propTypes = {
-  date: React.PropTypes.object
-};
-
-export default connect(null, createHandlers)(CalendarHeader)
+export default connect(mapStateToProps, createHandlers)(CalendarHeader)

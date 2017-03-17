@@ -23,8 +23,3 @@ export default class Week extends React.Component {
     return (<table><tbody>{days}</tbody></table>)
   }
 }
-
-Week.propTypes = {
-  view: React.PropTypes.string,
-  date: React.PropTypes.object
-};

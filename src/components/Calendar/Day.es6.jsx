@@ -30,10 +30,3 @@ export default class Day extends React.Component {
     );
   }
 }
-
-Day.propTypes = {
-  start: React.PropTypes.string,
-  end: React.PropTypes.string,
-  slot: React.PropTypes.number,
-  date: React.PropTypes.object
-};

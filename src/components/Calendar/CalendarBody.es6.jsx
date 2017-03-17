@@ -7,7 +7,8 @@ import Week from "./Week";
 
 let mapStateToProps = (state) => {
   return {
-    view: state.calendar.type
+    view: state.calendar.view,
+    date: state.calendar.date
   };
 }
 
@@ -34,10 +35,5 @@ class CalendarBody extends React.Component {
     return (<div>{this.renderContent()}</div>);
   }
 }
-
-CalendarBody.propTypes = {
-  view: React.PropTypes.string,
-  date: React.PropTypes.object
-};
 
 export default connect(mapStateToProps, null)(CalendarBody)

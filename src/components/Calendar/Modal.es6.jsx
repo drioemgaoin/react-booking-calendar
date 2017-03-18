@@ -36,10 +36,9 @@ class Modal extends React.Component {
   }
 
   renderBody() {
-    const bookingComponent = this.props.body ? <this.props.body /> : null;
     return (
       <div className='rc-modal-body'>
-        {bookingComponent}
+        <this.props.body close={this.props.close} />
       </div>
     )
   }

@@ -15,7 +15,7 @@
 
   &.in {
     opacity: 1;
-    background: rgba(149, 165, 169, 0.5); //#95A5A9
+    background: rgba(149, 165, 169, 0.5);
     pointer-events: auto;
   }
 
@@ -29,9 +29,6 @@
     max-width: 100%;
     min-width: 400px;
     max-height: 100%;
-    -webkit-transition: opacity 400ms ease-in;
-    -moz-transition: opacity 400ms ease-in;
-    transition: opacity 400ms ease-in;
 
     .rc-modal-header {
       background: #333A44;
@@ -50,7 +47,7 @@
 
       .rc-modal-button {
         width: 100px;
-        cursor: pointer; 
+        cursor: pointer;
       }
     }
   }

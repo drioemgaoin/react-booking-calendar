@@ -9,7 +9,6 @@ import {
 } from '../actions/calendar';
 
 import moment from 'moment';
-import Booking from '../Components/Calendar/Booking'
 
 const INITIAL_STATE = {
   view: "month",
@@ -46,7 +45,7 @@ export default function state(state = INITIAL_STATE, action) {
     case PREVIOUS_DATE:
       return Object.assign({}, state, { date: computeDate(state, -1) });
     case NEW_BOOKING:
-      return Object.assign({}, state, { showModal: true, title: "New Booking", type: "OkCancel", body: {Booking} });
+      return Object.assign({}, state, { showModal: true, title: "New Booking", type: "OkCancel" });
     case CLOSE_BOOKING:
       return Object.assign({}, state, { showModal: false, title: "" });
     default:

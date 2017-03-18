@@ -7,8 +7,7 @@ let mapStateToProps = (state) => {
   return {
     showModal: state.calendar.showModal,
     title: state.calendar.title,
-    type: state.calendar.type,
-    body: state.calendar.body
+    type: state.calendar.type
   };
 }
 
@@ -37,7 +36,7 @@ class Modal extends React.Component {
   }
 
   renderBody() {
-    const bookingComponent = this.props.body ? <this.props.body.Booking /> : null;
+    const bookingComponent = this.props.body ? <this.props.body /> : null;
     return (
       <div className='rc-modal-body'>
         {bookingComponent}

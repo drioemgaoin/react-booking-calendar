@@ -1,27 +1,35 @@
 import React from 'react';
+import { connect } from 'react-redux'
 
-export default class Slot extends React.Component {
+import * as actions from '../../actions/calendar';
+
+let createHandlers = (dispatch) => {
+  return {
+    handleBooking: () => {
+    	dispatch(actions.newBookingAction());
+    }
+  }
+}
+
+class Slot extends React.Component {
   constructor(props) {
       super(props)
   }
 
-  renderBooking() {
+  renderSlot() {
     return this.props.isBooked
     ? <span>Booked</span>
-    : <a href="#">Book</a>
+    : <a onClick={this.props.handleBooking}>Book</a>
   }
 
   render() {
     return (
       <td className='rbc-slot'>
         <span>{this.props.time}</span>
-        {this.renderBooking()}
+        {this.renderSlot()}
       </td>
     )
   }
 }
 
-Slot.propTypes = {
-  time: React.PropTypes.string,
-  isBooked: React.PropTypes.bool
-};
+export default connect(null, createHandlers)(Slot)

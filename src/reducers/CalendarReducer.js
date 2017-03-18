@@ -3,11 +3,17 @@ import {
   WEEK_VIEW,
   MONTH_VIEW,
   NEXT_DATE,
-  PREVIOUS_DATE
+  PREVIOUS_DATE,
+  NEW_BOOKING,
+  CLOSE_BOOKING
 } from '../actions/calendar';
 import moment from 'moment';
 
-const INITIAL_STATE = { view: "month", date: moment() };
+const INITIAL_STATE = {
+  view: "month",
+  date: moment(),
+  showModal: false
+};
 
 function computeDate(state, number) {
   if (state.view === 'day') {
@@ -37,6 +43,10 @@ export default function state(state = INITIAL_STATE, action) {
       return Object.assign({}, state, { date: computeDate(state, 1) });
     case PREVIOUS_DATE:
       return Object.assign({}, state, { date: computeDate(state, -1) });
+    case NEW_BOOKING:
+      return Object.assign({}, state, { showModal: true, title: "New Booking", type: "OkCancel" });
+    case CLOSE_BOOKING:
+      return Object.assign({}, state, { showModal: false, title: "" });
     default:
       return state;
   }

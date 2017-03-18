@@ -7,6 +7,10 @@ export const MONTH_VIEW = 'MONTH_VIEW';
 export const NEXT_DATE = 'NEXT_DATE';
 export const PREVIOUS_DATE = 'PREVIOUS_DATE';
 
+// Booking
+export const NEW_BOOKING = 'NEW_BOOKING';
+export const CLOSE_BOOKING = 'CLOSE_BOOKING';
+
 export function dayViewAction() {
   return {
     type: DAY_VIEW
@@ -34,5 +38,17 @@ export function nextDateAction() {
 export function previousDateAction() {
   return {
     type: PREVIOUS_DATE
+  };
+}
+
+export function newBookingAction() {
+  return {
+    type: NEW_BOOKING
+  };
+}
+
+export function closeBookingAction() {
+  return {
+    type: CLOSE_BOOKING
   };
 }

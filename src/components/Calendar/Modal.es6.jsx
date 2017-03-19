@@ -27,24 +27,20 @@ class Modal extends React.Component {
     super(props);
   }
 
+  submit() {
+    this.props.close();
+  }
+
   renderFooter() {
     if (this.props.type === 'OkCancel') {
+      //TODO:  onClick - find a way to trigger form submit event
       return (
         <footer className='rc-modal-footer'>
-          <button className='rc-modal-button' onClick={this.props.validate}>Ok</button>
+          <button className='rc-modal-button'>Ok</button>
           <button className='rc-modal-button' onClick={this.props.close}>Cancel</button>
         </footer>
       )
     }
-  }
-
-  renderBody() {
-    const props = {...this.props.body.props, ...{ close: this.props.close }}
-    return (
-      <div className='rc-modal-body'>
-        { React.cloneElement(this.props.body, props) }
-      </div>
-    )
   }
 
   render() {
@@ -53,7 +49,7 @@ class Modal extends React.Component {
       <div className={modalCss}>
         <div className='rc-modal-dialog'>
           <header className='rc-modal-header'>{this.props.title}</header>
-          {this.renderBody()}
+          <div className='rc-modal-body'>{this.props.body}</div>
           {this.renderFooter()}
         </div>
       </div>

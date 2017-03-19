@@ -11,11 +11,6 @@ module.exports = {
     filename: 'index.js'
   },
 
-  externals: {
-   'react': 'var React',
-   'react/addons': 'var React'
-  },
-
   resolve: {
     extensions: ['.js', '.jsx', '.es6.jsx', '.scss']
   },

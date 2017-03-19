@@ -9,7 +9,7 @@ import {
 } from './Actions';
 
 const INITIAL_STATE = {
-  services: null,
+  services: [],
   onClose: null
 };
 

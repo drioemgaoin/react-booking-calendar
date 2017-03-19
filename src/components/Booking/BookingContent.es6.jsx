@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { Provider } from 'react-redux'
+import { Field, reduxForm } from 'redux-form'
 
 import * as actions from './Actions';
 import store from './Store';
@@ -30,52 +30,41 @@ class BookingContent extends React.Component {
     this.props.getServices();
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
-
-    this.props.addBooking();
-    this.props.close();
-  }
-
-  renderServices() {
-    if (!this.props.services) {
-      return null;
-    }
-
-    return (
-      <select>
-        {
-          this.props.services.map((service) => {
-            return <option key={service.data.id} value={service.data.id}>{service.data.name}</option>
-          })
-        }
-      </select>
-    );
-  }
-
   render() {
+    const { handleSubmit, pristine, submitting, addBooking } = this.props
     return (
-      <form onSubmit={(e) => this.handleSubmit(e)}>
+      <form onSubmit={handleSubmit(this.props.addBooking)}>
         <div>
           <label>Start</label>
-          <label>{this.props.start}</label>
+          <div>
+            <Field name="startDate" component="input" type="text" placeholder="Start"/>
+          </div>
         </div>
 
         <div>
           <label>End</label>
-          <label>{this.props.end}</label>
+          <div>
+            <Field name="endDate" component="input" type="text" placeholder="End"/>
+          </div>
         </div>
 
         <div>
           <label>Service</label>
-          {this.renderServices()}
+          <div>
+            <Field name="service" component="select">
+              <option value="">Select a service...</option>
+              {this.props.services.map(service =>
+                <option key={service.data.id} value={service.data.id}>{service.data.name}</option>
+              )}
+            </Field>
+          </div>
         </div>
-
-        <input type="submit" value="Ok" />
-        <input type="button" value="Cancel" onClick={this.props.close} />
       </form>
     );
   }
 }
 
-export default connect(mapStateToProps, createHandlers)(BookingContent)
+BookingContent = connect(mapStateToProps, createHandlers)(BookingContent)
+BookingContent = reduxForm({ form: 'booking' })(BookingContent)
+
+export default BookingContent

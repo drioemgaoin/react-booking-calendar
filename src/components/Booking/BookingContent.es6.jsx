@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 import * as actions from './Actions';
 import store from './Store';
 
-let createHandlers = (dispatch) => {
+let createHandlers = (dispatch, state) => {
   return {
     getServices: () => {
     	dispatch(actions.getServices());
@@ -30,9 +30,10 @@ class BookingContent extends React.Component {
     this.props.getServices();
   }
 
-  valider(evt) {
-    evt.preventDefault();
-    console.log("Validate the booking!");
+  handleSubmit(e) {
+    e.preventDefault();
+
+    this.props.addBooking();
     this.props.close();
   }
 
@@ -54,7 +55,7 @@ class BookingContent extends React.Component {
 
   render() {
     return (
-      <form>
+      <form onSubmit={(e) => this.handleSubmit(e)}>
         <div>
           <label>Start</label>
           <label>{this.props.start}</label>
@@ -70,7 +71,7 @@ class BookingContent extends React.Component {
           {this.renderServices()}
         </div>
 
-        <input type="submit" value="Ok" onClick={(evt) => this.valider(evt)} />
+        <input type="submit" value="Ok" />
         <input type="button" value="Cancel" onClick={this.props.close} />
       </form>
     );

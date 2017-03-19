@@ -24,7 +24,7 @@ export default function state(state = INITIAL_STATE, action) {
     case GET_SERVICES_FAILED:
       return Object.assign({}, state, { error: action.payload });
     case POST_BOOKING_SUCCESSFUL:
-      return Object.assign({}, state, { });
+      return state;
     case POST_BOOKING_FAILED:
       return Object.assign({}, state, { error: action.payload });
     default:

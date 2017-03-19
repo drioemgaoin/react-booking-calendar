@@ -97,16 +97,17 @@ export function postBookingFailedAction(error) {
 export function addBooking() {
   return function(dispatch) {
     dispatch(postBookingAction());
-    return fetch('http://www.reddit.com/user/spilcm/comments/.json')
-      .then(checkStatus)
-      .then(parseJSON)
-      .then(function(data) {
-        console.log('post booking succeeded')
-        dispatch(postBookingSuccessfulAction());
-      })
-      .catch(function(error) {
-        console.log('post booking failed', error)
-        dispatch(postBookingFailedAction(error));
-      });
+    dispatch(postBookingSuccessfulAction());
+    // return fetch('http://www.reddit.com/user/spilcm/comments/.json')
+    //   .then(checkStatus)
+    //   .then(parseJSON)
+    //   .then(function(data) {
+    //     console.log('post booking succeeded')
+    //     dispatch(postBookingSuccessfulAction());
+    //   })
+    //   .catch(function(error) {
+    //     console.log('post booking failed', error)
+    //     dispatch(postBookingFailedAction(error));
+    //   });
   };
 };

@@ -36,9 +36,10 @@ class Modal extends React.Component {
   }
 
   renderBody() {
+    const props = {...this.props.body.props, ...{ close: this.props.close }}
     return (
       <div className='rc-modal-body'>
-        <this.props.body close={this.props.close} />
+        { React.cloneElement(this.props.body, props) }
       </div>
     )
   }

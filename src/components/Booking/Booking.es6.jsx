@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux'
 
+import * as actions from '../../actions/booking';
+
 let createHandlers = (dispatch) => {
   return {
     cancelBooking: () => {
@@ -23,6 +25,16 @@ class Booking extends React.Component {
     this.props.close();
   }
 
+  renderServices() {
+    return (
+      <select>
+        {this.props.services.map((service) => {
+          return <option key={service.id} value={service.id}>{service.name}</option>
+        })}
+      </select>
+    );
+  }
+
   render() {
     return (
       <form>
@@ -34,6 +46,11 @@ class Booking extends React.Component {
         <div>
           <label>End</label>
           <label>{this.props.end}</label>
+        </div>
+
+        <div>
+          <label>Service</label>
+          {this.renderServices()}
         </div>
 
         <input type="submit" value="Ok" onClick={(evt) => this.valider(evt)} />

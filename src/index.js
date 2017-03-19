@@ -8,9 +8,11 @@ import './style/main.scss';
 
 const store = configureStore();
 
+var bookingComponent = <Booking services={[ { "id": 1, "type": "ladies", "name": "Wash and Blow Dry", "slot": 45, "price": 22 }]} />
+
 ReactDOM.render(
   <Provider store={store}>
-    <Calendar booking={Booking} />
+    <Calendar booking={bookingComponent} />
   </Provider>,
   document.getElementById("main")
 );

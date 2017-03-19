@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux'
 
-import * as actions from '../../actions/calendar';
+import * as actions from './Actions';
 
 let mapStateToProps = (state) => {
   return {
-    showModal: state.calendar.showModal,
-    title: state.calendar.title,
-    type: state.calendar.type
+    showModal: state.showModal,
+    title: state.title,
+    type: state.type
   };
 }
 
@@ -15,6 +15,9 @@ let createHandlers = (dispatch) => {
   return {
     close: () => {
     	dispatch(actions.closeBookingAction());
+    },
+    validate: () => {
+      dispatch(actions.validateBookingAction());
     }
   }
 }
@@ -28,7 +31,7 @@ class Modal extends React.Component {
     if (this.props.type === 'OkCancel') {
       return (
         <footer className='rc-modal-footer'>
-          <button className='rc-modal-button'>Ok</button>
+          <button className='rc-modal-button' onClick={this.props.validate}>Ok</button>
           <button className='rc-modal-button' onClick={this.props.close}>Cancel</button>
         </footer>
       )

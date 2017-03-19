@@ -5,8 +5,9 @@ import {
   NEXT_DATE,
   PREVIOUS_DATE,
   NEW_BOOKING,
-  CLOSE_BOOKING
-} from '../actions/calendar';
+  CLOSE_BOOKING,
+  VALIDATE_BOOKING
+} from './Actions';
 
 import moment from 'moment';
 
@@ -47,6 +48,8 @@ export default function state(state = INITIAL_STATE, action) {
     case NEW_BOOKING:
       return Object.assign({}, state, { showModal: true, title: "New Booking" });
     case CLOSE_BOOKING:
+      return Object.assign({}, state, { showModal: false, title: "" });
+    case VALIDATE_BOOKING:
       return Object.assign({}, state, { showModal: false, title: "" });
     default:
       return state;

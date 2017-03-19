@@ -10,6 +10,7 @@ export const PREVIOUS_DATE = 'PREVIOUS_DATE';
 // Booking
 export const NEW_BOOKING = 'NEW_BOOKING';
 export const CLOSE_BOOKING = 'CLOSE_BOOKING';
+export const VALIDATE_BOOKING = 'VALIDATE_BOOKING';
 
 export function dayViewAction() {
   return {
@@ -50,5 +51,11 @@ export function newBookingAction() {
 export function closeBookingAction() {
   return {
     type: CLOSE_BOOKING
+  };
+}
+
+export function validateBookingAction() {
+  return {
+    type: VALIDATE_BOOKING
   };
 }

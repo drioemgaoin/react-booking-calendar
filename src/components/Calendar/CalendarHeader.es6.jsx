@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import * as actions from '../../actions/calendar';
+import * as actions from './Actions';
 
 let createHandlers = (dispatch) => {
   return {
@@ -24,8 +24,8 @@ let createHandlers = (dispatch) => {
 
 let mapStateToProps = (state) => {
   return {
-    view: state.calendar.view,
-    date: state.calendar.date
+    view: state.view,
+    date: state.date
   };
 }
 

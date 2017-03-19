@@ -1,63 +1,21 @@
 import React from 'react';
-import { connect } from 'react-redux'
+import { Provider } from 'react-redux'
 
-import * as actions from '../../actions/booking';
+import BookingContent from "./BookingContent"
+import store from './Store';
 
-let createHandlers = (dispatch) => {
-  return {
-    cancelBooking: () => {
-    	dispatch(actions.cancelBookingAction());
-    },
-    validerBooking: () => {
-    	dispatch(actions.validerBookingAction());
-    }
-  }
-}
-
-class Booking extends React.Component {
+export default class Booking extends React.Component {
   constructor(props) {
     super(props)
-  }
 
-  valider(evt) {
-    evt.preventDefault();
-    console.log("Validate the booking!");
-    this.props.close();
-  }
-
-  renderServices() {
-    return (
-      <select>
-        {this.props.services.map((service) => {
-          return <option key={service.id} value={service.id}>{service.name}</option>
-        })}
-      </select>
-    );
+    this.store = new store();
   }
 
   render() {
     return (
-      <form>
-        <div>
-          <label>Start</label>
-          <label>{this.props.start}</label>
-        </div>
-
-        <div>
-          <label>End</label>
-          <label>{this.props.end}</label>
-        </div>
-
-        <div>
-          <label>Service</label>
-          {this.renderServices()}
-        </div>
-
-        <input type="submit" value="Ok" onClick={(evt) => this.valider(evt)} />
-        <input type="button" value="Cancel" onClick={this.props.close} />
-      </form>
+      <Provider store={this.store}>
+        <BookingContent close={this.props.close} />
+      </Provider>
     );
   }
 }
-
-export default connect(null, createHandlers)(Booking)

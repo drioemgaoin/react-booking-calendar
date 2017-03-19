@@ -7,8 +7,8 @@ import Week from "./Week";
 
 let mapStateToProps = (state) => {
   return {
-    view: state.calendar.view,
-    date: state.calendar.date
+    view: state.view,
+    date: state.date
   };
 }
 

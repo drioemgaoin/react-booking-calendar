@@ -6,7 +6,7 @@
     "test": "eslint lib/ spec/ && karma start karma.conf.js",
     "watch-test": "karma start karma.conf.js --auto-watch --no-single-run",
     "build:dev": "webpack --config webpack.config.dev.js -p",
-    "build:prod": "webpack --config webpack.config.prod.js -p",
+    "build:prod": "NODE_ENV=production webpack --config webpack.config.prod.js -p",
     "start": "webpack-dev-server --inline --hot --config webpack.config.dev.js"
   },
   "author": "Romain Diegoni",

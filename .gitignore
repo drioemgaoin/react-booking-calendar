@@ -34,7 +34,7 @@ example/dist
 *.DS_Store
 
 # Ignore dist directory
-dist
+lib
 
 # Ignore generation npm package
 *.tgz

@@ -1,14 +1,14 @@
-/* jshint node: true */
-var path = require('path');
-var combineLoaders = require('webpack-combine-loaders')
+const path = require('path');
+const CombineLoaders = require('webpack-combine-loaders')
 
 module.exports = {
   context: path.join(__dirname),
-  entry: './src/index.js',
+  entry: './src/components/Calendar/Calendar',
 
   output: {
-    path: path.join(__dirname, 'dist'),
-    filename: 'index.js'
+    path: path.join(__dirname, 'lib'),
+    filename: 'index.js',
+    libraryTarget: 'umd'
   },
 
   resolve: {
@@ -19,7 +19,7 @@ module.exports = {
     loaders: [
       {
         test: /\.scss$/,
-        loader: combineLoaders([
+        loader: CombineLoaders([
           {
             loader: 'style-loader'
           },
@@ -38,5 +38,16 @@ module.exports = {
         query: { presets: ['react', 'es2015', 'stage-0'] }
       }
     ]
-  }
+  },
+
+  externals: [
+    {
+      react: {
+        root: 'React',
+        commonjs2: 'react',
+        commonjs: 'react',
+        amd: 'react'
+      }
+    }
+  ],
 };

@@ -5,10 +5,9 @@
   "scripts": {
     "test": "eslint lib/ spec/ && karma start karma.conf.js",
     "watch-test": "karma start karma.conf.js --auto-watch --no-single-run",
-    "build": "webpack -p",
-    "rename-css-bower-dependencies": "find bower_components -name '*.css' | sed -e 'p;s/.css$/.scss/' | xargs -n2 mv",
-    "start": "webpack-dev-server --inline --hot",
-    "postinstall": "bower install"
+    "build:dev": "webpack --config webpack.config.dev.js -p",
+    "build:prod": "webpack --config webpack.config.prod.js -p",
+    "start": "webpack-dev-server --inline --hot --config webpack.config.dev.js"
   },
   "author": "Romain Diegoni",
   "license": "MIT",
@@ -30,6 +29,7 @@
     "eslint": "^3.17.1",
     "eslint-plugin-babel": "^4.1.1",
     "eslint-plugin-react": "^6.10.0",
+    "html-webpack-plugin": "2.28.0",
     "jasmine": "^2.5.3",
     "jasmine-core": "^2.5.2",
     "karma": "^1.5.0",

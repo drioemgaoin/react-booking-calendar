@@ -36,7 +36,7 @@ class Modal extends React.Component {
       //TODO:  onClick - find a way to trigger form submit event
       return (
         <footer className='rc-modal-footer'>
-          <button className='rc-modal-button'>Ok</button>
+          <button className='rc-modal-button' onClick={this.props.close}>Ok</button>
           <button className='rc-modal-button' onClick={this.props.close}>Cancel</button>
         </footer>
       )
@@ -49,7 +49,7 @@ class Modal extends React.Component {
       <div className={modalCss}>
         <div className='rc-modal-dialog'>
           <header className='rc-modal-header'>{this.props.title}</header>
-          <div className='rc-modal-body'>{this.props.body}</div>
+          <div className='rc-modal-body'>Coming soon</div>
           {this.renderFooter()}
         </div>
       </div>

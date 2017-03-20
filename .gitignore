@@ -35,3 +35,6 @@ example/dist
 
 # Ignore dist directory
 dist
+
+# Ignore generation npm package
+*.tgz

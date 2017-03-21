@@ -2,10 +2,10 @@ import React from 'react';
 import moment from 'moment';
 import { Provider } from 'react-redux';
 
-import store from './Store';
-import CalendarHeader from "./CalendarHeader";
-import CalendarBody from "./CalendarBody";
-import Modal from "./Modal";
+import store from './src/Store';
+import CalendarHeader from "./src/components/CalendarHeader";
+import CalendarBody from "./src/components/CalendarBody";
+import Modal from "./src/components/Modal";
 
 import './style/main.scss';
 

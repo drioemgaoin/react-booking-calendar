@@ -7,6 +7,8 @@ import CalendarHeader from "./CalendarHeader";
 import CalendarBody from "./CalendarBody";
 import Modal from "./Modal";
 
+import './style/main.scss';
+
 export default class Calendar extends React.Component {
   constructor(props) {
     super(props);

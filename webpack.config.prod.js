@@ -19,6 +19,8 @@ module.exports = {
     loaders: [
       {
         test: /\.scss$/,
+        exclude: /node_modules/,
+        include: /src/,
         loader: CombineLoaders([
           {
             loader: 'style-loader'

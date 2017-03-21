@@ -3,7 +3,10 @@ const CombineLoaders = require('webpack-combine-loaders')
 
 module.exports = {
   context: path.join(__dirname),
-  entry: './src/components/Calendar/Calendar',
+
+  devtool: 'cheap-module-source-map',
+
+  entry: './src/components/Calendar/index.js',
 
   output: {
     path: path.join(__dirname, 'lib'),

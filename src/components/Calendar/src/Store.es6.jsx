@@ -1,9 +1,9 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 
-import reducer from './Reducer.es6.jsx';
+import reducer from './Reducer';
 
-export default function configureStore(initialState) {
+export function configureStore(initialState) {
   const finalCreateStore = compose(
     applyMiddleware(thunk),
     window.devToolsExtension ? window.devToolsExtension() : f => f
@@ -17,7 +17,9 @@ export default function configureStore(initialState) {
       store.replaceReducer(nextReducer);
     });
   }
+
   return store;
 }
 
-module.exports = configureStore
+export default configureStore()
+module.export = configureStore()

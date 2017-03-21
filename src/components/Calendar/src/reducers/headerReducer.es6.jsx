@@ -7,7 +7,7 @@ import {
   NEW_BOOKING,
   CLOSE_BOOKING,
   VALIDATE_BOOKING
-} from './Actions';
+} from '../actions/headerActions';
 
 import moment from 'moment';
 

@@ -1,5 +1,5 @@
-import actions from './src/Actions.es6.jsx';
-import reducer from './src/Reducer.es6.jsx'
+import actions from './src/actions/headerActions';
+import reducer from './src/reducers/headerReducer'
 import Calendar from './Calendar.es6.jsx'
 
 export {

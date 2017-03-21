@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 
-import reducer from './Reducer';
+import reducer from './reducers/headerReducer';
 
 export function configureStore(initialState) {
   const finalCreateStore = compose(
@@ -12,8 +12,8 @@ export function configureStore(initialState) {
   const store = finalCreateStore(reducer, initialState);
 
   if (module.hot) {
-    module.hot.accept('./Reducer', () => {
-      const nextReducer = require('./Reducer');
+    module.hot.accept('./reducers/headerReducer', () => {
+      const nextReducer = require('./reducers/headerReducer');
       store.replaceReducer(nextReducer);
     });
   }

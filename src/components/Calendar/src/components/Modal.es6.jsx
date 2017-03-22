@@ -4,11 +4,7 @@ import { connect } from 'react-redux'
 import * as actions from '../actions/headerActions';
 
 let mapStateToProps = (state) => {
-  return {
-    showModal: state.showModal,
-    title: state.title,
-    type: state.type
-  };
+  return state.calendar ? state.calendar : state;
 }
 
 let createHandlers = (dispatch) => {
@@ -33,7 +29,6 @@ class Modal extends React.Component {
 
   renderFooter() {
     if (this.props.type === 'OkCancel') {
-      //TODO:  onClick - find a way to trigger form submit event
       return (
         <footer className='rc-modal-footer'>
           <button className='rc-modal-button' onClick={this.props.close}>Ok</button>
@@ -43,13 +38,21 @@ class Modal extends React.Component {
     }
   }
 
+  renderBody() {
+    if (this.props.children) {
+      return this.props.children;
+    } else {
+      return "Please note: all prices are dependant on consultation within the salon";
+    }
+  }
+
   render() {
     const modalCss = this.props.showModal ? 'rc-modal in' : 'rc-modal';
     return (
       <div className={modalCss}>
         <div className='rc-modal-dialog'>
           <header className='rc-modal-header'>{this.props.title}</header>
-          <div className='rc-modal-body'>Coming soon</div>
+          <div className='rc-modal-body'>{this.renderBody()}</div>
           {this.renderFooter()}
         </div>
       </div>

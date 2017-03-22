@@ -6,10 +6,7 @@ import Day from "./Day";
 import Week from "./Week";
 
 let mapStateToProps = (state) => {
-  return {
-    view: state.view,
-    date: state.date
-  };
+  return state.calendar ? state.calendar : state;
 }
 
 class CalendarBody extends React.Component {

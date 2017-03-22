@@ -23,10 +23,7 @@ let createHandlers = (dispatch) => {
 }
 
 let mapStateToProps = (state) => {
-  return {
-    view: state.view,
-    date: state.date
-  };
+  return state.calendar ? state.calendar : state;
 }
 
 class CalendarHeader extends React.Component {

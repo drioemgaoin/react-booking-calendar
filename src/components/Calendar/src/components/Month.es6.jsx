@@ -11,7 +11,14 @@ export default class Month extends React.Component {
     var days = [];
     for (var i = 1; i <= daysInMonth; i++) {
       var date = selectedDate.set('date', i).clone();
-      days.push(<Day key={date} date={date} start="9" end="17:30" slot={60} />)
+      days.push(
+        <Day onClick={this.props.onClick}
+          key={date}
+          date={date}
+          start="9"
+          end="17:30"
+          slot={60} />
+      )
     }
 
     return (<table><tbody>{days}</tbody></table>)

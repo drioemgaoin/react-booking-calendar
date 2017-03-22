@@ -6,7 +6,10 @@ import Day from "./Day";
 import Week from "./Week";
 
 let mapStateToProps = (state) => {
-  return state.calendar ? state.calendar : state;
+  return {
+    view: state.view,
+    date: state.date
+  };
 }
 
 class CalendarBody extends React.Component {
@@ -15,16 +18,28 @@ class CalendarBody extends React.Component {
   }
 
   renderContent() {
-    if (this.props.view === 'day') {
-      return <table><tbody><Day date={this.props.date} start="9" end="17:30" slot={60} /></tbody></table>
+    if (this.props.view.type === 'day') {
+      return (
+          <table>
+            <tbody>
+              <Day onClick={this.props.onDayClick}
+                date={this.props.date.current}
+                start="9"
+                end="17:30"
+                slot={60} />
+            </tbody>
+          </table>
+      )
     }
 
-    if (this.props.view === 'month') {
-      return <Month date={this.props.date} />
+    if (this.props.view.type === 'month') {
+      return <Month onClick={this.props.onDayClick}
+                date={this.props.date.current} />
     }
 
-    if (this.props.view === 'week') {
-      return <Week date={this.props.date} />
+    if (this.props.view.type === 'week') {
+      return <Week onClick={this.props.onDayClick}
+                date={this.props.date.current} />
     }
   }
 

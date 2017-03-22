@@ -1,19 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux'
 
-import * as actions from '../actions/headerActions';
+import * as actions from '../actions/modalActions';
 
 let mapStateToProps = (state) => {
-  return state.calendar ? state.calendar : state;
+  return state.modal ? state.modal : state;
 }
 
 let createHandlers = (dispatch) => {
   return {
     close: () => {
-    	dispatch(actions.closeBookingAction());
-    },
-    validate: () => {
-      dispatch(actions.validateBookingAction());
+    	dispatch(actions.hideModalAction());
     }
   }
 }
@@ -39,8 +36,8 @@ class Modal extends React.Component {
   }
 
   renderBody() {
-    if (this.props.children) {
-      return this.props.children;
+    if (this.props.body) {
+      return this.props.body;
     } else {
       return "Please note: all prices are dependant on consultation within the salon";
     }

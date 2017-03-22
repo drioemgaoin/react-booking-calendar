@@ -1,5 +1,7 @@
 import actions from './src/actions/headerActions';
-import reducer from './src/reducers/headerReducer'
+import viewReducer from './src/reducers/viewReducer'
+import dateReducer from './src/reducers/viewReducer'
+import modalReducer from './src/reducers/viewReducer'
 import Calendar from './Calendar.es6.jsx'
 
 export {
@@ -7,7 +9,9 @@ export {
   actions,
 
   // Reducer
-  reducer,
+  viewReducer,
+  dateReducer,
+  modalReducer,
 
   // Component
   Calendar

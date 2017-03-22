@@ -15,7 +15,7 @@ export default class Day extends React.Component {
     var slots = [];
     for (var i = 0; i < spread; i += this.props.slot) {
       var slot = start.add(this.props.slot, 'm').format('HH:mm A');
-      slots.push(<Slot key={slot} time={slot} />)
+      slots.push(<Slot onClick={this.props.onClick} key={slot} time={slot} />)
     }
 
     return (

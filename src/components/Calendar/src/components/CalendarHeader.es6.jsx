@@ -1,29 +1,34 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import * as actions from '../actions/headerActions';
+
+import * as viewActions from '../actions/viewActions';
+import * as dateActions from '../actions/dateActions';
 
 let createHandlers = (dispatch) => {
   return {
     handleDayView: () => {
-    	dispatch(actions.dayViewAction());
+    	dispatch(viewActions.dayViewAction());
     },
     handleWeekView: () => {
-    	dispatch(actions.weekViewAction());
+    	dispatch(viewActions.weekViewAction());
     },
     handleMonthView: () => {
-    	dispatch(actions.monthViewAction());
+    	dispatch(viewActions.monthViewAction());
     },
     handlerNextDate: () => {
-      dispatch(actions.nextDateAction());
+      dispatch(dateActions.nextDateAction());
     },
     handlerPreviousDate: () => {
-      dispatch(actions.previousDateAction());
+      dispatch(dateActions.previousDateAction());
     }
   }
 }
 
 let mapStateToProps = (state) => {
-  return state.calendar ? state.calendar : state;
+  return {
+    view: state.view,
+    date: state.date
+  };
 }
 
 class CalendarHeader extends React.Component {
@@ -32,18 +37,18 @@ class CalendarHeader extends React.Component {
   }
 
   renderDate() {
-    if (this.props.view === 'day') {
-      return this.props.date.format("MMMM DD YYYY")
+    if (this.props.view.type === 'day') {
+      return this.props.date.current.format("MMMM DD YYYY")
     }
 
-    if (this.props.view === 'week') {
-      var startOfWeek = this.props.date.clone().startOf('isoweek');
-      var endOfWeek   = this.props.date.clone().endOf('isoweek');
+    if (this.props.view.type === 'week') {
+      var startOfWeek = this.props.date.current.clone().startOf('isoweek');
+      var endOfWeek   = this.props.date.current.clone().endOf('isoweek');
       return startOfWeek.format("DD MMM") + " - " + endOfWeek.format("DD MMM")
     }
 
-    if (this.props.view === 'month') {
-      return this.props.date.format("MMMM YYYY")
+    if (this.props.view.type === 'month') {
+      return this.props.date.current.format("MMMM YYYY")
     }
   }
 

@@ -16,7 +16,14 @@ export default class Week extends React.Component {
     do
     {
       var date = startOfWeek.clone()
-      days.push(<Day key={startOfWeek} date={date} start="9" end="17:30" slot={60} />)
+      days.push(
+        <Day onClick={this.props.onClick}
+          key={startOfWeek}
+          date={date}
+          start="9"
+          end="17:30"
+          slot={60} />
+      )
     }
     while(startOfWeek.add(1, 'days').diff(endOfWeek) < 0)
 

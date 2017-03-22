@@ -1,25 +1,20 @@
 import React from 'react';
-import { connect } from 'react-redux'
 
-import * as actions from '../actions/headerActions';
-
-let createHandlers = (dispatch) => {
-  return {
-    handleBooking: () => {
-    	dispatch(actions.newBookingAction());
-    }
-  }
-}
-
-class Slot extends React.Component {
+export default class Slot extends React.Component {
   constructor(props) {
       super(props)
+  }
+
+  onBookingClick(e) {
+    e.preventDefault();
+
+    this.props.dispatch(actions.showModalAction('New Booking', 'OkCancel'));
   }
 
   renderSlot() {
     return this.props.isBooked
     ? <span>Booked</span>
-    : <a onClick={this.props.handleBooking}>Book</a>
+    : <a onClick={this.props.onClick}>Book</a>
   }
 
   render() {
@@ -31,5 +26,3 @@ class Slot extends React.Component {
     )
   }
 }
-
-export default connect(null, createHandlers)(Slot)

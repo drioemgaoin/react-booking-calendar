@@ -10,11 +10,12 @@ import Modal from "./src/components/Modal";
 
 import './style/main.scss';
 
-let mapStateToProps = (state) => {
+let mapDispatchToProps = (dispatch) => {
   return {
-    view: state.view,
-    date: state.date
-  };
+    openBooking: () => {
+    	dispatch(actions.showModalAction('New Booking', 'OkCancel'));
+    }
+  }
 }
 
 class Calendar extends React.Component {
@@ -22,22 +23,15 @@ class Calendar extends React.Component {
     super(props);
   }
 
-  handleBooking(e) {
-    e.preventDefault();
-
-    const { dispatch } = this.props
-    dispatch(actions.showModalAction('New Booking', 'OkCancel'));
-  }
-
   render() {
     return (
       <div className="rbc-calendar">
         <Modal body={this.props.children} />
         <CalendarHeader />
-        <CalendarBody onDayClick={(e) => this.handleBooking(e)} />
+        <CalendarBody onDayClick={this.props.openBooking} />
       </div>
     );
   }
 }
 
-export default connect(mapStateToProps, null)(Calendar)
+export default connect(null, mapDispatchToProps)(Calendar)

@@ -7,6 +7,8 @@ import CalendarBody from "./src/components/CalendarBody";
 import Modal from "./src/components/Modal";
 import store from './src/Store';
 
+import { addBookingAction } from './src/actions/bookingActions'
+
 import './style/main.scss';
 
 export default class Calendar extends React.Component {
@@ -40,7 +42,9 @@ export default class Calendar extends React.Component {
             onClose={(e) => this.closeModal(e)} />
 
           <CalendarHeader />
-          <CalendarBody onDayClick={(e) => this.openModal(e)} />
+          <CalendarBody timeSlot={this.props.timeSlot}
+                        timeSlice={this.props.timeSlice}
+                        onDayClick={(e) => this.openModal(e)} />
         </div>
       </Provider>
     );

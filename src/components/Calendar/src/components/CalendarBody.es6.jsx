@@ -17,16 +17,22 @@ class CalendarBody extends React.Component {
     super(props);
   }
 
+  getDate(isStart) {
+    const currentDay = this.props.date.current.format('dddd').toLowerCase();
+    return isStart
+      ? this.props.timeSlice[currentDay].start
+      : this.props.timeSlice[currentDay].end;
+  }
+
   renderContent() {
     if (this.props.view.type === 'day') {
       return (
           <table>
             <tbody>
               <Day onClick={this.props.onDayClick}
-                date={this.props.date.current}
-                start="9"
-                end="17:30"
-                slot={60} />
+                   date={this.props.date.current}
+                   timeSlice={this.props.timeSlice}
+                   timeSlot={this.props.timeSlot} />
             </tbody>
           </table>
       )
@@ -34,12 +40,16 @@ class CalendarBody extends React.Component {
 
     if (this.props.view.type === 'month') {
       return <Month onClick={this.props.onDayClick}
-                date={this.props.date.current} />
+                    date={this.props.date.current}
+                    timeSlice={this.props.timeSlice}
+                    timeSlot={this.props.timeSlot} />
     }
 
     if (this.props.view.type === 'week') {
       return <Week onClick={this.props.onDayClick}
-                date={this.props.date.current} />
+                   date={this.props.date.current}
+                   timeSlice={this.props.timeSlice}
+                   timeSlot={this.props.timeSlot}  />
     }
   }
 

@@ -15,7 +15,7 @@ export default class Slot extends React.Component {
     }
   }
 
-  renderSlot() {
+  renderBookingLink() {
     return this.state.isBooked
     ? <span>Booked</span>
     : <a onClick={this.props.onClick}>Book</a>
@@ -24,8 +24,15 @@ export default class Slot extends React.Component {
   render() {
     return (
       <td className='rbc-slot'>
-        <span>{this.props.time}</span>
-        {this.renderSlot()}
+        {
+          this.props.time &&
+          (
+            <div>
+              <span>{this.props.time}</span>
+              { this.renderBookingLink() }
+            </div>
+          )
+        }
       </td>
     )
   }

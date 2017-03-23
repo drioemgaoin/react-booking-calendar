@@ -15,9 +15,8 @@ export default class Month extends React.Component {
         <Day onClick={this.props.onClick}
           key={date}
           date={date}
-          start="9"
-          end="17:30"
-          slot={60} />
+          timeSlice={this.props.timeSlice}
+          timeSlot={this.props.timeSlot} />
       )
     }
 

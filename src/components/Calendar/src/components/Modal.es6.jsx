@@ -1,60 +1,54 @@
 import React from 'react';
-import { connect } from 'react-redux'
 
-import { hideModalAction } from '../actions/modalActions';
-
-let mapStateToProps = (state) => {
-  return state.modal ? state.modal : state;
-}
-
-let createHandlers = (dispatch) => {
-  return {
-    close: () => {
-    	dispatch(hideModalAction());
-    }
-  }
-}
-
-class Modal extends React.Component {
+export default class Modal extends React.Component {
   constructor(props) {
     super(props);
-  }
 
-  submit() {
-    this.props.close();
-  }
-
-  renderFooter() {
-    if (this.props.type === 'OkCancel') {
-      return (
-        <footer className='rc-modal-footer'>
-          <button className='rc-modal-button' onClick={this.props.close}>Ok</button>
-          <button className='rc-modal-button' onClick={this.props.close}>Cancel</button>
-        </footer>
-      )
+    this.state = {
+      show: this.props.show
     }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.state.show !== nextProps.show) {
+      this.setState({ show: nextProps.show })
+    }
+  }
+
+  renerHeader() {
+    return (
+      <header className='rc-modal-header'>{this.props.header}</header>
+    );
   }
 
   renderBody() {
-    if (this.props.body) {
-      return this.props.body;
-    } else {
-      return "Please note: all prices are dependant on consultation within the salon";
-    }
+    return (
+      <div className='rc-modal-body'>{this.props.body}</div>
+    );
+  }
+
+  renderFooter() {
+    return (
+      <footer className='rc-modal-footer'>
+        {
+          this.props.footer
+          ? this.props.footer
+          : (<button className='rc-modal-button' onClick={this.props.onClose}>Ok</button>)
+        }
+      </footer>
+    );
   }
 
   render() {
-    const modalCss = this.props.showModal ? 'rc-modal in' : 'rc-modal';
+    const modalCss = this.state.show ? 'rc-modal in' : 'rc-modal';
     return (
       <div className={modalCss}>
         <div className='rc-modal-dialog'>
-          <header className='rc-modal-header'>{this.props.title}</header>
-          <div className='rc-modal-body'>{this.renderBody()}</div>
+          {this.renerHeader()}
+          {this.renderBody()}
           {this.renderFooter()}
         </div>
       </div>
     )
   }
 }
-
-export default connect(mapStateToProps, createHandlers)(Modal)

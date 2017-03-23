@@ -1,4 +1,3 @@
-// Date navigation
 export const NEXT_DATE = 'NEXT_DATE';
 export const PREVIOUS_DATE = 'PREVIOUS_DATE';
 

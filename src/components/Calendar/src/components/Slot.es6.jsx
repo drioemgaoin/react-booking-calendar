@@ -3,16 +3,20 @@ import React from 'react';
 export default class Slot extends React.Component {
   constructor(props) {
       super(props)
+
+      this.state = {
+        isBooked: this.props.isBooked
+      }
   }
 
-  onBookingClick(e) {
-    e.preventDefault();
-
-    this.props.dispatch(actions.showModalAction('New Booking', 'OkCancel'));
+  componentWillReceiveProps(nextProps) {
+    if (this.state.isBooked !== nextProps.isBooked) {
+      this.setState({ isBooked: nextProps.isBooked })
+    }
   }
 
   renderSlot() {
-    return this.props.isBooked
+    return this.state.isBooked
     ? <span>Booked</span>
     : <a onClick={this.props.onClick}>Book</a>
   }

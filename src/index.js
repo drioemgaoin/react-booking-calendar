@@ -6,7 +6,7 @@ import Calendar from "./components/Calendar/Calendar"
 import Booking from "./components/Booking/Booking"
 import store from './components/Calendar/src/Store';
 
-const booking = null// <Booking />
+const booking = null//<Booking />
 ReactDOM.render(
   <Provider store={store}>
     <Calendar>

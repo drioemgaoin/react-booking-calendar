@@ -1,12 +1,16 @@
-import actions from './src/actions/headerActions';
+import viewActions from './src/actions/viewActions';
+import dateActions from './src/actions/dateActions';
+import modalActions from './src/actions/modalActions';
 import viewReducer from './src/reducers/viewReducer'
-import dateReducer from './src/reducers/viewReducer'
-import modalReducer from './src/reducers/viewReducer'
+import dateReducer from './src/reducers/dateReducer'
+import modalReducer from './src/reducers/modalReducer'
 import Calendar from './Calendar.es6.jsx'
 
 export {
   // Constants
-  actions,
+  viewActions,
+  dateActions,
+  modalActions,
 
   // Reducer
   viewReducer,

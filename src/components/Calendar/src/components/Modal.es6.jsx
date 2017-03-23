@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 
-import * as actions from '../actions/modalActions';
+import { hideModalAction } from '../actions/modalActions';
 
 let mapStateToProps = (state) => {
   return state.modal ? state.modal : state;
@@ -10,7 +10,7 @@ let mapStateToProps = (state) => {
 let createHandlers = (dispatch) => {
   return {
     close: () => {
-    	dispatch(actions.hideModalAction());
+    	dispatch(hideModalAction());
     }
   }
 }

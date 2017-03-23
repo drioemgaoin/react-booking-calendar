@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import { connect } from 'react-redux'
 
-import * as actions from './src/actions/modalActions';
+import { showModalAction } from './src/actions/modalActions';
 
 import CalendarHeader from "./src/components/CalendarHeader";
 import CalendarBody from "./src/components/CalendarBody";
@@ -13,7 +13,7 @@ import './style/main.scss';
 let mapDispatchToProps = (dispatch) => {
   return {
     openBooking: () => {
-    	dispatch(actions.showModalAction('New Booking', 'OkCancel'));
+    	dispatch(showModalAction('New Booking', 'OkCancel'));
     }
   }
 }

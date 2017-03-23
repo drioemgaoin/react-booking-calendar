@@ -1,9 +1,11 @@
 import React from 'react';
 import moment from 'moment';
+import { Provider } from 'react-redux';
 
 import CalendarHeader from "./src/components/CalendarHeader";
 import CalendarBody from "./src/components/CalendarBody";
 import Modal from "./src/components/Modal";
+import store from './src/Store';
 
 import './style/main.scss';
 
@@ -29,6 +31,7 @@ export default class Calendar extends React.Component {
 
   render() {
     return (
+      <Provider store={store}>
         <div className="rbc-calendar">
           <Modal body={this.props.children}
             show={this.state.showModal}
@@ -39,6 +42,7 @@ export default class Calendar extends React.Component {
           <CalendarHeader />
           <CalendarBody onDayClick={(e) => this.openModal(e)} />
         </div>
+      </Provider>
     );
   }
 }

@@ -1,17 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Provider } from 'react-redux';
 
-import Calendar from "./components/Calendar/Calendar"
 import Booking from "./components/Booking/Booking"
-import store from './components/Calendar/src/Store';
+import Calendar from "./components/Calendar/Calendar"
 
 const booking = null//<Booking />
 ReactDOM.render(
-  <Provider store={store}>
-    <Calendar>
-      {booking}
-    </Calendar>
-  </Provider>,
+  <Calendar>
+    {booking}
+  </Calendar>,
   document.getElementById("root")
 );

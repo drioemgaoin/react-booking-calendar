@@ -42,7 +42,8 @@ export default class Calendar extends React.Component {
             onClose={(e) => this.closeModal(e)} />
 
           <CalendarHeader />
-          <CalendarBody timeSlot={this.props.timeSlot}
+          <CalendarBody bookings={this.props.bookings}
+                        timeSlot={this.props.timeSlot}
                         timeSlice={this.props.timeSlice}
                         onDayClick={(e) => this.openModal(e)} />
         </div>

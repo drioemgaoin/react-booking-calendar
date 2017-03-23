@@ -14,11 +14,14 @@ const timeSlice = {
   friday: { start: 9, end: 18 },
   saturday: { start: 10, end: 19 },
   sunday: { start: 9, end: 14 }
-}
+};
+
+const bookings = [];
 
 const booking = null//<Booking />
 ReactDOM.render(
-  <Calendar timeSlot={timeSlot}
+  <Calendar bookings={bookings}
+            timeSlot={timeSlot}
             timeSlice={timeSlice}>
     {booking}
   </Calendar>,

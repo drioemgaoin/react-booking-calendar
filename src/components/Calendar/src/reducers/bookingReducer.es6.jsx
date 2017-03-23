@@ -3,13 +3,14 @@ import {
 } from '../actions/bookingActions';
 
 const INITIAL_STATE = {
-  isBooked: false
+  bookings: []
 };
 
 export default function bookingReducer(state = INITIAL_STATE, action) {
   switch(action.type) {
     case ADD_BOOKING:
-      return Object.assign({}, state, { isBooked: true });
+      const bookings = state.push(action.infos);
+      return Object.assign({}, state, { bookings: bookings });
     default:
       return state;
   }

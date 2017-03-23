@@ -1,25 +1,25 @@
 import React from 'react';
 import { connect } from 'react-redux'
 
-import * as viewActions from '../actions/viewActions';
-import * as dateActions from '../actions/dateActions';
+import { dayViewAction, weekViewAction, monthViewAction } from '../actions/viewActions';
+import { nextDateAction, previousDateAction } from '../actions/dateActions';
 
 let createHandlers = (dispatch) => {
   return {
     handleDayView: () => {
-    	dispatch(viewActions.dayViewAction());
+    	dispatch(dayViewAction());
     },
     handleWeekView: () => {
-    	dispatch(viewActions.weekViewAction());
+    	dispatch(weekViewAction());
     },
     handleMonthView: () => {
-    	dispatch(viewActions.monthViewAction());
+    	dispatch(monthViewAction());
     },
     handlerNextDate: () => {
-      dispatch(dateActions.nextDateAction());
+      dispatch(nextDateAction());
     },
     handlerPreviousDate: () => {
-      dispatch(dateActions.previousDateAction());
+      dispatch(previousDateAction());
     }
   }
 }

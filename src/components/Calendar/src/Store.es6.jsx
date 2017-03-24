@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 
 import modalReducer from './reducers/modalReducer';
@@ -6,13 +6,13 @@ import viewReducer from './reducers/viewReducer';
 import dateReducer from './reducers/dateReducer';
 import bookingReducer from './reducers/bookingReducer';
 
-function combined(state = {}, action) {
-  const view = viewReducer(state.view, action)
+function reducers(state = {}, action) {
+  const view = viewReducer(state.view, action);
   return {
     modal: modalReducer(state.modal, action),
     view,
     date: dateReducer(state.date, action, view.type),
-    booking: bookingReducer(state.booking, action)
+    booking: bookingReducer(state.booking, action),
   };
 }
 
@@ -22,7 +22,7 @@ export function configureStore(initialState) {
     window.devToolsExtension ? window.devToolsExtension() : f => f
   )(createStore);
 
-  const store = finalCreateStore(combined, initialState);
+  const store = finalCreateStore(reducers, initialState);
 
   // if (module.hot) {
   //   module.hot.accept('./reducers', () => {
@@ -32,5 +32,5 @@ export function configureStore(initialState) {
   return store;
 }
 
-export default configureStore()
-module.export = configureStore()
+export default configureStore();
+module.export = configureStore();

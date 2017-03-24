@@ -10,7 +10,7 @@ const INITIAL_STATE = {
 };
 
 function computeDate(view, state, number) {
-  if (view=== 'day') {
+  if (view === 'day') {
     return state.current.clone().add(number, 'd')
   }
 
@@ -26,12 +26,12 @@ function computeDate(view, state, number) {
 }
 
 export default function dateReducer(state = INITIAL_STATE, action, view) {
-  switch(action.type) {
-    case NEXT_DATE:
-      return Object.assign({}, state, { current: computeDate(view, state, 1) });
-    case PREVIOUS_DATE:
-      return Object.assign({}, state, { current: computeDate(view, state, -1) });
-    default:
-      return state;
+  switch (action.type) {
+  case NEXT_DATE:
+    return Object.assign({}, state, { current: computeDate(view, state, 1) });
+  case PREVIOUS_DATE:
+    return Object.assign({}, state, { current: computeDate(view, state, -1) });
+  default:
+    return state;
   }
 }

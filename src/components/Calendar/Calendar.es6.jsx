@@ -23,20 +23,13 @@ export default class Calendar extends React.Component {
     this.setState({ showModal: true })
   }
 
-  closeModal(e) {
-    e.preventDefault();
-
-    this.setState({ showModal: false })
-  }
-
   render() {
     return (
       <Provider store={store}>
         <div className='rbc-calendar'>
           <Modal body={this.props.children}
             show={this.state.showModal}
-            header='New Booking'
-            onClose={(e) => this.closeModal(e)} />
+            header='New Booking' />
 
           <CalendarHeader />
           <CalendarBody bookings={this.props.bookings}

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import BookingContainer from './BookingContainer';
+
 export default class Modal extends React.Component {
   constructor(props) {
     super(props);
@@ -15,7 +17,12 @@ export default class Modal extends React.Component {
     }
   }
 
-  renerHeader() {
+  hideModal(e) {
+    e.preventDefault();
+    this.setState({ show: false })
+  }
+
+  renderHeader() {
     return (
       <header className='rc-modal-header'>{this.props.header}</header>
     );
@@ -23,19 +30,10 @@ export default class Modal extends React.Component {
 
   renderBody() {
     return (
-      <div className='rc-modal-body'>{this.props.body}</div>
-    );
-  }
-
-  renderFooter() {
-    return (
-      <footer className='rc-modal-footer'>
-        {
-          this.props.footer
-          ? this.props.footer
-          : (<button className='rc-modal-button' onClick={this.props.onClose}>Ok</button>)
-        }
-      </footer>
+      <div className='rc-modal-body'>
+        <BookingContainer body={this.props.body}
+                          onClose={(e) => this.hideModal(e)} />
+      </div>
     );
   }
 
@@ -44,9 +42,8 @@ export default class Modal extends React.Component {
     return (
       <div className={modalCss}>
         <div className='rc-modal-dialog'>
-          {this.renerHeader()}
+          {this.renderHeader()}
           {this.renderBody()}
-          {this.renderFooter()}
         </div>
       </div>
     )

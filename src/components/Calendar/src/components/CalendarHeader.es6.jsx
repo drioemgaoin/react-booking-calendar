@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { dayViewAction, weekViewAction, monthViewAction } from '../actions/viewActions';
 import { nextDateAction, previousDateAction } from '../actions/dateActions';
 
-let createHandlers = (dispatch) => {
+let mapDispatchToProps = (dispatch) => {
   return {
     handleDayView: () => {
     	dispatch(dayViewAction());
@@ -71,4 +71,4 @@ class CalendarHeader extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, createHandlers)(CalendarHeader)
+export default connect(mapStateToProps, mapDispatchToProps)(CalendarHeader)

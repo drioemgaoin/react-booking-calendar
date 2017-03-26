@@ -33,7 +33,8 @@ class CalendarBody extends React.Component {
               <Day onClick={this.props.onDayClick}
                    date={this.props.date.current}
                    timeSlice={this.props.timeSlice}
-                   timeSlot={this.props.timeSlot} />
+                   timeSlot={this.props.timeSlot}
+                   bookings={this.props.bookings} />
             </tbody>
           </table>
       )
@@ -43,14 +44,16 @@ class CalendarBody extends React.Component {
       return <Month onClick={this.props.onDayClick}
                     date={this.props.date.current}
                     timeSlice={this.props.timeSlice}
-                    timeSlot={this.props.timeSlot} />
+                    timeSlot={this.props.timeSlot}
+                    bookings={this.props.bookings} />
     }
 
     if (this.props.view.type === 'week') {
       return <Week onClick={this.props.onDayClick}
                    date={this.props.date.current}
                    timeSlice={this.props.timeSlice}
-                   timeSlot={this.props.timeSlot}  />
+                   timeSlot={this.props.timeSlot}
+                   bookings={this.props.bookings} />
     }
   }
 

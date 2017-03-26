@@ -1,33 +1,52 @@
 import React from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
-let mapStateToProps = (state) => {
+import { openBookingAction } from '../actions/bookingActions';
+
+let mapStateToProps = (state, ownProps) => {
+  const booking = state.booking.bookings.find(booking => {
+    return booking.date.format("DD/MM/YYYY HH:mm") === ownProps.startDate.format("DD/MM/YYYY HH:mm");
+  });
+
   return {
-    booking: {
-      isBooked: state.isBooked
+    booking: booking ? booking : {
+      isBooked: false,
+      startDate: ownProps.startDate,
+      endDate: ownProps.endDate
     }
   };
 }
+
+// let mapDispatcherToProps = (dspatch) => {
+//     openBooking: () -> {
+//       dispatch(openBookingAction())
+//     }
+// };
 
 class Slot extends React.Component {
   constructor(props) {
       super(props)
   }
 
+  handleClick(e) {
+    e.preventDefault();
+    this.props.onClick(this.props.booking);
+  }
+
   renderBookingLink() {
     return this.props.isBooked
     ? <span>Booked</span>
-    : <a onClick={this.props.onClick}>Book</a>
+    : <a onClick={(e) => this.handleClick(e)}>Book</a>
   }
 
   render() {
     return (
       <td className='rbc-slot'>
         {
-          this.props.time &&
+          this.props.startDate &&
           (
             <div>
-              <span>{this.props.time}</span>
+              <span>{this.props.startDate.format('HH:mm A')}</span>
               { this.renderBookingLink() }
             </div>
           )

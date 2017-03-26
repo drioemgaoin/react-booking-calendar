@@ -14,25 +14,37 @@ export default class Day extends React.Component {
       : this.props.timeSlice[dayName].end;
   }
 
+  getBooking(date) {
+    const booking = this.bookings.map((booking) => {
+      return booking.date.format(format) === this.props.date.current.format(format);
+    });
+
+    return booking
+      ? booking
+      : { date: date }
+  }
+
   render() {
-    var start = moment(this.props.date).set({ hour: 8, minute: 0 });
-    var end = moment(this.props.date).set({ hour: 20, minute: 0 });
+    var start = moment(this.props.date).set({ hour: 8, minute: 0, second: 0 });
+    var end = moment(this.props.date).set({ hour: 20, minute: 0, second: 0 });
     var spread = moment.duration(end.diff(start)).asMinutes();
 
-    var workStart = moment(this.props.date).set({ hour: this.getDate(true), minute: 0 })
-    var workEnd = moment(this.props.date).set({ hour: this.getDate(false), minute: 0 })
+    var workStart = moment(this.props.date).set({ hour: this.getDate(true), minute: 0, second: 0 })
+    var workEnd = moment(this.props.date).set({ hour: this.getDate(false), minute: 0, second: 0 })
 
     var slots = [];
     for (var i = 0; i < spread; i += this.props.timeSlot) {
 
-      const currentSlot = start.format('HH:mm A');
+      const startDate = start.clone();
+      const endDate = startDate.clone().add(this.props.timeSlot, 'm')
       if (start < workStart || start >= workEnd) {
-        slots.push(<Slot key={currentSlot} />);
+        slots.push(<Slot key={startDate} />);
       } else {
         slots.push(
           <Slot onClick={this.props.onClick}
-                key={currentSlot}
-                time={currentSlot} />
+                key={startDate}
+                startDate={startDate}
+                endDate={endDate} />
         )
       }
 

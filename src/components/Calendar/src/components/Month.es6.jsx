@@ -16,7 +16,8 @@ export default class Month extends React.Component {
           key={date}
           date={date}
           timeSlice={this.props.timeSlice}
-          timeSlot={this.props.timeSlot} />
+          timeSlot={this.props.timeSlot}
+          bookings={this.props.bokings} />
       )
     }
 

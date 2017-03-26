@@ -4,7 +4,6 @@ import { Field, reduxForm } from 'redux-form'
 import moment from 'moment';
 
 import { addBookingAction } from '../actions/bookingActions';
-import TextInput from './Form/TextInput';
 
 let mapDispatchToProps = (dispatch) => {
   return {
@@ -13,6 +12,14 @@ let mapDispatchToProps = (dispatch) => {
     }
   }
 }
+
+// let mapStateToProps = (dispatch) => {
+//   return {
+//     initialValues: {
+//       startDate: "Pouet"
+//     }
+//   }
+// }
 
 class BookingContainer extends React.Component {
   handleSubmit(data) {
@@ -70,7 +77,10 @@ class BookingContainer extends React.Component {
 BookingContainer = connect(null, mapDispatchToProps)(BookingContainer)
 BookingContainer = reduxForm({
   form: 'booking',
-  fields: ['startDate', 'endDate']
+  fields: ['startDate', 'endDate'],
+  initialValues: {
+     startDate: 'Pouet'
+  }
 })(BookingContainer)
 
 export default BookingContainer

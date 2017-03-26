@@ -7,7 +7,8 @@ export default class Modal extends React.Component {
     super(props);
 
     this.state = {
-      show: this.props.show
+      show: this.props.show,
+      booking: this.props.booking
     }
   }
 
@@ -15,13 +16,17 @@ export default class Modal extends React.Component {
     if (this.state.show !== nextProps.show) {
       this.setState({ show: nextProps.show })
     }
+
+    if (this.state.booking !== nextProps.booking) {
+      this.setState({ booking: nextProps.booking })
+    }
   }
 
   hideModal(e) {
     if (e) {
       e.preventDefault();
     }
-    
+
     this.setState({ show: false })
   }
 
@@ -35,6 +40,7 @@ export default class Modal extends React.Component {
     return (
       <div className='rc-modal-body'>
         <BookingContainer body={this.props.body}
+                          booking={this.state.booking}
                           onClose={(e) => this.hideModal(e)} />
       </div>
     );

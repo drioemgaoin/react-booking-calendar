@@ -9,18 +9,25 @@ import store from './src/Store';
 
 import './style/main.scss';
 
+let mapStateToProps = (state) => {
+  return {
+    showModal: state.modal.show,
+    booking: state.booking.booking
+  }
+}
+
 export default class Calendar extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      showModal: false
+      showModal: false,
+      booking: {}
     }
   }
 
-  openModal(e) {
-    e.preventDefault();
-    this.setState({ showModal: true })
+  openModal(booking) {
+    this.setState({ showModal: true, booking: booking });
   }
 
   render() {
@@ -29,15 +36,18 @@ export default class Calendar extends React.Component {
         <div className='rbc-calendar'>
           <Modal body={this.props.children}
             show={this.state.showModal}
+            booking={this.state.booking}
             header='New Booking' />
 
           <CalendarHeader />
           <CalendarBody bookings={this.props.bookings}
                         timeSlot={this.props.timeSlot}
                         timeSlice={this.props.timeSlice}
-                        onDayClick={(e) => this.openModal(e)} />
+                        onDayClick={(booking) => this.openModal(booking)} />
         </div>
       </Provider>
     );
   }
 }
+
+// export default connect(mapStateToProps, null)(Slot)

@@ -25,12 +25,12 @@ function computeDate(view, state, number) {
   return state.current;
 }
 
-export default function dateReducer(state = INITIAL_STATE, action, view) {
+export default function dateReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
   case NEXT_DATE:
-    return Object.assign({}, state, { current: computeDate(view, state, 1) });
+    return Object.assign({}, state, { current: computeDate(action.view, state, 1) });
   case PREVIOUS_DATE:
-    return Object.assign({}, state, { current: computeDate(view, state, -1) });
+    return Object.assign({}, state, { current: computeDate(action.view, state, -1) });
   default:
     return state;
   }

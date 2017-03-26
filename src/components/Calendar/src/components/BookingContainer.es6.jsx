@@ -1,34 +1,42 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
+import moment from 'moment';
 
 import { addBookingAction } from '../actions/bookingActions';
-
+import TextInput from './Form/TextInput';
 
 let mapDispatchToProps = (dispatch) => {
   return {
-    addBooking: () => {
-    	dispatch(addBookingAction());
+    onSubmit: (data) => {
+    	dispatch(addBookingAction(data));
     }
   }
 }
 
 class BookingContainer extends React.Component {
+  handleSubmit(data) {
+    const { dispatch } = this.props;
+    dispatch(addBookingAction(data));
+
+    this.props.onClose();
+  }
 
   renderDefaultBooking() {
+    const { handleSubmit, pristine, reset, submitting } = this.props;
     return (
-      <form onSubmit={this.props.addBooking}>
+      <form onSubmit={handleSubmit((data) => this.handleSubmit(data))}>
         <div>
-          <label>Start</label>
+          <label>Start Date:</label>
           <div>
-            <Field name="startDate" component="input" type="text" placeholder="Start"/>
+            <Field name="startDate" component="input" type="text" placeholder="Start Date" />
           </div>
         </div>
 
         <div>
-          <label>End</label>
+          <label>End Date:</label>
           <div>
-            <Field name="endDate" component="input" type="text" placeholder="End"/>
+            <Field name="endDate" component="input" type="text" placeholder="End Date" />
           </div>
         </div>
 
@@ -60,6 +68,9 @@ class BookingContainer extends React.Component {
 }
 
 BookingContainer = connect(null, mapDispatchToProps)(BookingContainer)
-BookingContainer = reduxForm({ form: 'booking' })(BookingContainer)
+BookingContainer = reduxForm({
+  form: 'booking',
+  fields: ['startDate', 'endDate']
+})(BookingContainer)
 
 export default BookingContainer

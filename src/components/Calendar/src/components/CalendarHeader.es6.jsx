@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { dayViewAction, weekViewAction, monthViewAction } from '../actions/viewActions';
 import { nextDateAction, previousDateAction } from '../actions/dateActions';
 
-let mapDispatchToProps = (dispatch) => {
+let mapDispatchToProps = (dispatch, ownProps) => {
   return {
     handleDayView: () => {
     	dispatch(dayViewAction());
@@ -15,11 +15,11 @@ let mapDispatchToProps = (dispatch) => {
     handleMonthView: () => {
     	dispatch(monthViewAction());
     },
-    handlerNextDate: () => {
-      dispatch(nextDateAction());
+    handlerNextDate: (view) => {
+      dispatch(nextDateAction(view));
     },
-    handlerPreviousDate: () => {
-      dispatch(previousDateAction());
+    handlerPreviousDate: (view) => {
+      dispatch(previousDateAction(view));
     }
   }
 }
@@ -56,9 +56,9 @@ class CalendarHeader extends React.Component {
     return (
       <div className="rbc-header">
         <div className="rbc-date">
-          <button onClick={this.props.handlerPreviousDate}>Previous</button>
+          <button onClick={() => this.props.handlerPreviousDate(this.props.view.type)}>Previous</button>
           <span>{this.renderDate()}</span>
-          <button onClick={this.props.handlerNextDate}>Next</button>
+          <button onClick={() => this.props.handlerNextDate(this.props.view.type)}>Next</button>
         </div>
 
         <div className="rbc-views">

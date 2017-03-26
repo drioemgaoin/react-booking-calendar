@@ -18,7 +18,10 @@ export default class Modal extends React.Component {
   }
 
   hideModal(e) {
-    e.preventDefault();
+    if (e) {
+      e.preventDefault();
+    }
+    
     this.setState({ show: false })
   }
 

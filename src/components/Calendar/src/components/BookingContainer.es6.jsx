@@ -24,19 +24,30 @@ class BookingContainer extends React.Component {
 
   renderDefaultBooking() {
     const { handleSubmit, pristine, reset, submitting } = this.props;
+    console.log(this.props);
     return (
       <form onSubmit={handleSubmit((data) => this.handleSubmit(data))}>
         <div>
           <label>Start Date:</label>
           <div>
-            <Field name="startDate" component="input" type="text" placeholder="Start Date" />
+            <Field disabled="true"
+              name="startDate"
+              component="input"
+              type="text"
+              placeholder="Start Date"
+              format={value => value.format("DD/MM/YYYY HH:mm A")} />
           </div>
         </div>
 
         <div>
           <label>End Date:</label>
           <div>
-            <Field name="endDate" component="input" type="text" placeholder="End Date" />
+            <Field disabled="true"
+              name="endDate"
+              component="input"
+              type="text"
+              placeholder="End Date"
+              format={value => value.format("DD/MM/YYYY HH:mm A")} />
           </div>
         </div>
 

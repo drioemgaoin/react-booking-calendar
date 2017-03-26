@@ -40,7 +40,7 @@ export default class Modal extends React.Component {
     return (
       <div className='rc-modal-body'>
         <BookingContainer body={this.props.body}
-                          booking={this.state.booking}
+                          initialValues={this.state.booking}
                           onClose={(e) => this.hideModal(e)} />
       </div>
     );
@@ -50,10 +50,14 @@ export default class Modal extends React.Component {
     const modalCss = this.state.show ? 'rc-modal in' : 'rc-modal';
     return (
       <div className={modalCss}>
-        <div className='rc-modal-dialog'>
-          {this.renderHeader()}
-          {this.renderBody()}
-        </div>
+        {
+          this.state.show && (
+            <div className='rc-modal-dialog'>
+              {this.renderHeader()}
+              {this.renderBody()}
+            </div>
+          )
+        }
       </div>
     )
   }

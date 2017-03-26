@@ -13,15 +13,8 @@ let mapDispatchToProps = (dispatch) => {
   }
 }
 
-// let mapStateToProps = (dispatch) => {
-//   return {
-//     initialValues: {
-//       startDate: "Pouet"
-//     }
-//   }
-// }
-
 class BookingContainer extends React.Component {
+
   handleSubmit(data) {
     const { dispatch } = this.props;
     dispatch(addBookingAction(data));
@@ -77,10 +70,7 @@ class BookingContainer extends React.Component {
 BookingContainer = connect(null, mapDispatchToProps)(BookingContainer)
 BookingContainer = reduxForm({
   form: 'booking',
-  fields: ['startDate', 'endDate'],
-  initialValues: {
-     startDate: 'Pouet'
-  }
+  fields: ['startDate', 'endDate']
 })(BookingContainer)
 
 export default BookingContainer

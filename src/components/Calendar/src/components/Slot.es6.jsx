@@ -17,12 +17,6 @@ let mapStateToProps = (state, ownProps) => {
   };
 }
 
-// let mapDispatcherToProps = (dspatch) => {
-//     openBooking: () -> {
-//       dispatch(openBookingAction())
-//     }
-// };
-
 class Slot extends React.Component {
   constructor(props) {
       super(props)

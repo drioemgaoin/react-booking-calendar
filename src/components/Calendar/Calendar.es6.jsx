@@ -9,13 +9,6 @@ import store from './src/Store';
 
 import './style/main.scss';
 
-let mapStateToProps = (state) => {
-  return {
-    showModal: state.modal.show,
-    booking: state.booking.booking
-  }
-}
-
 export default class Calendar extends React.Component {
   constructor(props) {
     super(props);
@@ -49,5 +42,3 @@ export default class Calendar extends React.Component {
     );
   }
 }
-
-// export default connect(mapStateToProps, null)(Slot)

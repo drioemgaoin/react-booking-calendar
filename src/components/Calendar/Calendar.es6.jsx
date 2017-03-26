@@ -1,15 +1,16 @@
 import React from 'react';
 import moment from 'moment';
-import { Provider } from 'react-redux';
+import { connect } from 'react-redux';
 
 import CalendarHeader from './src/components/CalendarHeader';
 import CalendarBody from './src/components/CalendarBody';
 import Modal from './src/components/Modal';
-import store from './src/Store';
+
+import { initBookingsAction } from './src/actions/bookingActions';
 
 import './style/main.scss';
 
-export default class Calendar extends React.Component {
+class Calendar extends React.Component {
   constructor(props) {
     super(props);
 
@@ -19,13 +20,17 @@ export default class Calendar extends React.Component {
     }
   }
 
+  componentWillMount() {
+    const { dispatch } = this.props;
+    dispatch(initBookingsAction(this.props.bookings));
+  }
+
   openModal(booking) {
     this.setState({ showModal: true, booking: booking });
   }
 
   render() {
     return (
-      <Provider store={store}>
         <div className='rbc-calendar'>
           <Modal body={this.props.children}
             show={this.state.showModal}
@@ -38,7 +43,8 @@ export default class Calendar extends React.Component {
                         timeSlice={this.props.timeSlice}
                         onDayClick={(booking) => this.openModal(booking)} />
         </div>
-      </Provider>
     );
   }
 }
+
+export default connect()(Calendar);

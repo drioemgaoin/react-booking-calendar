@@ -6,7 +6,7 @@ import {
 import moment from 'moment';
 
 const INITIAL_STATE = {
-  current: moment()
+  current: moment().seconds(0).milliseconds(0)
 };
 
 function computeDate(view, state, number) {

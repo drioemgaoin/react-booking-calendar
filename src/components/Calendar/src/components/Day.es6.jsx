@@ -14,16 +14,6 @@ export default class Day extends React.Component {
       : this.props.timeSlice[dayName].end;
   }
 
-  getBooking(date) {
-    const booking = this.bookings.map((booking) => {
-      return booking.date.format(format) === this.props.date.current.format(format);
-    });
-
-    return booking
-      ? booking
-      : { date: date }
-  }
-
   render() {
     var start = moment(this.props.date).set({ hour: 8, minute: 0, second: 0 });
     var end = moment(this.props.date).set({ hour: 20, minute: 0, second: 0 });

@@ -24,7 +24,6 @@ class BookingContainer extends React.Component {
 
   renderDefaultBooking() {
     const { handleSubmit, pristine, reset, submitting } = this.props;
-    console.log(this.props);
     return (
       <form onSubmit={handleSubmit((data) => this.handleSubmit(data))}>
         <div>

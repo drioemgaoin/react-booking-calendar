@@ -5,14 +5,21 @@ import { openBookingAction } from '../actions/bookingActions';
 
 let mapStateToProps = (state, ownProps) => {
   const booking = state.booking.bookings.find(booking => {
-    return booking.date.format("DD/MM/YYYY HH:mm") === ownProps.startDate.format("DD/MM/YYYY HH:mm");
+    if (booking.startDate && ownProps.startDate)
+    {
+        return booking.startDate.isSame(ownProps.startDate) ? booking : null;
+    }
+
+    return null;
   });
 
-  return {
-    booking: booking ? booking : {
-      isBooked: false,
-      startDate: ownProps.startDate,
-      endDate: ownProps.endDate
+  return booking
+    ? booking
+    : {
+      booking: {
+        isBooked: false,
+        startDate: ownProps.startDate,
+        endDate: ownProps.endDate
     }
   };
 }

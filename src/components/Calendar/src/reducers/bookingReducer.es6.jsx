@@ -11,20 +11,15 @@ const INITIAL_STATE = {
 export default function bookingReducer(state = INITIAL_STATE, action) {
   switch(action.type) {
     case ADD_BOOKING:
-      const newBooking = {
-        ...action.data,
-        isBooked: true
-      };
-
-      const bookings = state.bookings.push(newBooking);
-      return Object.assign({}, state, { bookings: bookings });
+      action.data.isBooked = true;
+      return Object.assign({}, state, { bookings: [...state.bookings, action.data] });
     case OPEN_BOOKING:
-      const booking = {
+      const initBooking = {
         startDate: action.data.startDate,
         endDate: action.data.endDate,
         isBooked: false
       };
-      return Object.assign({}, state, { booking: booking });
+      return Object.assign({}, state, { booking: initBooking });
     default:
       return state;
   }

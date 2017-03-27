@@ -10,7 +10,8 @@ export default class Root extends React.Component {
       <Provider store={store}>
         <Calendar bookings={this.props.bookings}
                   timeSlot={this.props.timeSlot}
-                  timeSlice={this.props.timeSlice} />
+                  timeSlice={this.props.timeSlice}
+                  body={this.props.children} />
       </Provider>
     );
   }

@@ -15,6 +15,7 @@ export default function bookingReducer(state = INITIAL_STATE, action) {
       return Object.assign({}, state, { bookings: action.data });
     case ADD_BOOKING:
       action.data.isBooked = true;
+      console.log(action.data);
       return Object.assign({}, state, { bookings: [...state.bookings, action.data] });
     case OPEN_BOOKING:
       const initBooking = {

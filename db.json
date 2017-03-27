@@ -1,0 +1,20 @@
+{
+  "services": [
+    {
+      "id": 1,
+      "name": "Gent Wash and Haircut",
+      "category": "gents",
+      "minimmum": 30,
+      "maximum": 30,
+      "price": 24
+    },
+    {
+      "id": 2,
+      "name": "Wash and Blow Dry",
+      "category": "ladies",
+      "minimum": 45,
+      "maxmium": 60,
+      "price": 22
+    }
+  ]
+}

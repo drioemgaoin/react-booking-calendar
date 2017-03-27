@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import moment from "moment";
 
-import Booking from "./components/Booking/Booking"
+import Booking from "./components/Booking"
 import Root from "./components/Calendar/Root"
 
 const timeSlot = 30;
@@ -26,16 +26,15 @@ const bookings = [
   {
     isBooked: true,
     startDate: moment().seconds(0).milliseconds(0).hours(12).minutes(0),
-    endDate: moment().seconds(0).milliseconds(0).hours(12).minutes(30)
   }
 ];
 
-const booking = null//<Booking />
+const booking = <Booking />
 ReactDOM.render(
   <Root bookings={bookings}
         timeSlot={timeSlot}
         timeSlice={timeSlice}>
-    {booking}
+        {booking}
   </Root>,
   document.getElementById("root")
 );

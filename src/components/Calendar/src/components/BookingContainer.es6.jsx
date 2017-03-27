@@ -59,13 +59,16 @@ class BookingContainer extends React.Component {
   }
 
   renderBooking() {
-    <form onSubmit={this.props.addBooking}>
-      { this.props.body }
-      <div>
-        <input type="submit" value="Ok" />
-        <input type="button" value="Cancel" onClick={this.props.onClose} />
-      </div>
-    </form>
+    const { handleSubmit, pristine, reset, submitting } = this.props;
+    return (
+      <form onSubmit={handleSubmit((data) => this.handleSubmit(data))}>
+        { this.props.body }
+        <div>
+          <input type="submit" value="Ok" />
+          <input type="button" value="Cancel" onClick={this.props.onClose} />
+        </div>
+      </form>
+    );
   }
 
   render() {

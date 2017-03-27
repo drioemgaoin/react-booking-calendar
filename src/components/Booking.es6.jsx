@@ -58,42 +58,47 @@ class Booking extends React.Component {
       })
       .value();
 
+    const styles = { padding: '10px 0px' }
     return (
-      <div>
-        <div>
-          <label>First Name:</label>
-          <div>
+      <div style={styles}>
+        <div className='form-group row'>
+          <label className='col-sm-2 col-form-label'>First Name:</label>
+          <div className="col-sm-10">
             <Field name="firstName"
+              className='form-control'
               component="input"
               type="text"
               placeholder="First Name" />
           </div>
         </div>
 
-        <div>
-          <label>Last Name:</label>
-          <div>
+        <div className='form-group row'>
+          <label className='col-sm-2 col-form-label'>Last Name:</label>
+          <div className="col-sm-10">
             <Field name="lastName"
+              className='form-control'
               component="input"
               type="text"
               placeholder="Last Name" />
           </div>
         </div>
 
-        <div>
-          <label>Email:</label>
-          <div>
+        <div className='form-group row'>
+          <label className='col-sm-2 col-form-label'>Email:</label>
+          <div className="col-sm-10">
             <Field name="email"
+              className='form-control'
               component="input"
               type="text"
               placeholder="Email" />
           </div>
         </div>
 
-        <div>
-          <label>Phone Number:</label>
-          <div>
+        <div className='form-group row'>
+          <label className='col-sm-2 col-form-label'>Phone Number:</label>
+          <div className="col-sm-10">
             <Field name="phone"
+              className='form-control'
               component="input"
               type="text"
               placeholder="Phone Number" />
@@ -101,7 +106,6 @@ class Booking extends React.Component {
         </div>
 
         <Accordion>{panels}</Accordion>
-
       </div>
     );
   }

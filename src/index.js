@@ -5,6 +5,8 @@ import moment from "moment";
 import Booking from "./components/Booking"
 import Root from "./components/Calendar/Root"
 
+import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
+
 const timeSlot = 30;
 
 const timeSlice = {

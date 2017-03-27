@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import { Accordion, Panel } from 'react-bootstrap'
+import { required } from './BookingValidations'
 import axios from 'axios';
 import _ from 'lodash';
 
@@ -34,9 +35,9 @@ class Booking extends React.Component {
       .catch(function(error) {
       });
 
-      this.refs.firstName
-      .getRenderedComponent()
-      .focus();
+      // this.refs.firstName
+      // .getRenderedComponent()
+      // .focus();
   }
 
   renderPanel(category, services) {
@@ -53,6 +54,19 @@ class Booking extends React.Component {
     )
   }
 
+  renderField(fields) {
+    const { input, label, type, className, meta: { touched, error, warning } } = fields;
+    return (
+      <div className='form-group row'>
+        <label className='col-sm-2 col-form-label'>{label}</label>
+        <div className="col-sm-10">
+          <input {...input} placeholder={label} type={type} className={className} />
+          {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
+        </div>
+      </div>
+    );
+  }
+
   render() {
     const panels = _.chain(this.state.services)
       .groupBy('category')
@@ -65,51 +79,33 @@ class Booking extends React.Component {
     const styles = { padding: '10px 0px' }
     return (
       <div style={styles}>
-        <div className='form-group row'>
-          <label className='col-sm-2 col-form-label'>First Name:</label>
-          <div className="col-sm-10">
-            <Field name="firstName"
-              className='form-control'
-              component="input"
-              type="text"
-              placeholder="First Name"
-              ref='firstName'
-              withRef />
-          </div>
-        </div>
+        <Field name="firstName"
+          className='form-control'
+          component={this.renderField}
+          type="text"
+          label="First Name"
+          validate={required} />
 
-        <div className='form-group row'>
-          <label className='col-sm-2 col-form-label'>Last Name:</label>
-          <div className="col-sm-10">
-            <Field name="lastName"
-              className='form-control'
-              component="input"
-              type="text"
-              placeholder="Last Name" />
-          </div>
-        </div>
+        <Field name="lastName"
+            className='form-control'
+            component={this.renderField}
+            type="text"
+            label="Last Name"
+            validate={required} />
 
-        <div className='form-group row'>
-          <label className='col-sm-2 col-form-label'>Email:</label>
-          <div className="col-sm-10">
-            <Field name="email"
-              className='form-control'
-              component="input"
-              type="email"
-              placeholder="Email" />
-          </div>
-        </div>
+        <Field name="email"
+            className='form-control'
+            component={this.renderField}
+            type="email"
+            label="Email"
+            validate={required} />
 
-        <div className='form-group row'>
-          <label className='col-sm-2 col-form-label'>Phone Number:</label>
-          <div className="col-sm-10">
-            <Field name="phone"
-              className='form-control'
-              component="input"
-              type="text"
-              placeholder="Phone Number" />
-          </div>
-        </div>
+          <Field name="phone"
+            className='form-control'
+            component={this.renderField}
+            type="input"
+            label="Phone Number"
+            validate={required} />
 
         <Accordion>{panels}</Accordion>
       </div>

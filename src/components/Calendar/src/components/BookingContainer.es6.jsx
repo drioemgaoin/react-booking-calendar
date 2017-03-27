@@ -64,8 +64,8 @@ class BookingContainer extends React.Component {
       <form className='container' onSubmit={handleSubmit((data) => this.handleSubmit(data))}>
         { this.props.body }
         <div className='col-md-4 text-center'>
-          <input className='btn btn-primary' type="submit" value="Ok" />
-          <input className='btn btn-primary' type="button" value="Cancel" onClick={this.props.onClose} />
+          <input className='btn btn-primary' type="submit" value="Ok" disabled={submitting} />
+          <input className='btn btn-primary' type="button" value="Cancel" disabled={pristine || submitting} onClick={this.props.onClose} />
         </div>
       </form>
     );
@@ -82,8 +82,7 @@ class BookingContainer extends React.Component {
 
 BookingContainer = connect(null, mapDispatchToProps)(BookingContainer)
 BookingContainer = reduxForm({
-  form: 'booking',
-  fields: ['startDate', 'endDate']
+  form: 'booking'
 })(BookingContainer)
 
 export default BookingContainer

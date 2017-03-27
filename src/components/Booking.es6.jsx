@@ -33,6 +33,10 @@ class Booking extends React.Component {
       })
       .catch(function(error) {
       });
+
+      this.refs.firstName
+      .getRenderedComponent()
+      .focus();
   }
 
   renderPanel(category, services) {
@@ -68,7 +72,9 @@ class Booking extends React.Component {
               className='form-control'
               component="input"
               type="text"
-              placeholder="First Name" />
+              placeholder="First Name"
+              ref='firstName'
+              withRef />
           </div>
         </div>
 

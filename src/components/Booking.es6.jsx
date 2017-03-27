@@ -89,7 +89,7 @@ class Booking extends React.Component {
             <Field name="email"
               className='form-control'
               component="input"
-              type="text"
+              type="email"
               placeholder="Email" />
           </div>
         </div>

@@ -8,7 +8,7 @@ import { addBookingAction } from '../actions/bookingActions';
 let mapDispatchToProps = (dispatch) => {
   return {
     onSubmit: (data) => {
-    	dispatch(addBookingAction(data));
+       dispatch(addBookingAction(data));
     }
   }
 }
@@ -29,30 +29,30 @@ class BookingContainer extends React.Component {
         <div>
           <label>Start Date:</label>
           <div>
-            <Field disabled="true"
-              name="startDate"
-              component="input"
-              type="text"
-              placeholder="Start Date"
-              format={value => value.format("DD/MM/YYYY HH:mm A")} />
+            <Field disabled='true'
+              name='startDate'
+              component='input'
+              type='text'
+              placeholder='Start Date'
+              format={value => value.format('DD/MM/YYYY HH:mm A')} />
           </div>
         </div>
 
         <div>
           <label>End Date:</label>
           <div>
-            <Field disabled="true"
-              name="endDate"
-              component="input"
-              type="text"
-              placeholder="End Date"
-              format={value => value.format("DD/MM/YYYY HH:mm A")} />
+            <Field disabled='true'
+              name='endDate'
+              component='input'
+              type='text'
+              placeholder='End Date'
+              format={value => value.format('DD/MM/YYYY HH:mm A')} />
           </div>
         </div>
 
         <div>
-          <input type="submit" value="Ok" />
-          <input type="button" value="Cancel" onClick={this.props.onClose} />
+          <input type='submit' value='Ok' />
+          <input type='button' value='Cancel' onClick={this.props.onClose} />
         </div>
       </form>
     )
@@ -64,8 +64,8 @@ class BookingContainer extends React.Component {
       <form className='container' onSubmit={handleSubmit((data) => this.handleSubmit(data))}>
         { this.props.body }
         <div className='col-md-4 text-center'>
-          <input className='btn btn-primary' type="submit" value="Ok" disabled={submitting} />
-          <input className='btn btn-primary' type="button" value="Cancel" disabled={pristine || submitting} onClick={this.props.onClose} />
+          <input className='btn btn-primary' type='submit' value='Ok' disabled={submitting} />
+          <input className='btn btn-primary' type='button' value='Cancel' onClick={this.props.onClose} />
         </div>
       </form>
     );

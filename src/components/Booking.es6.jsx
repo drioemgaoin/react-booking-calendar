@@ -1,7 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux'
-import { Field, reduxForm } from 'redux-form'
-import { Accordion, Panel } from 'react-bootstrap'
+import { Field } from 'redux-form'
+import { Accordion, Panel, ListGroup, ListGroupItem } from 'react-bootstrap'
 import { required } from './BookingValidations'
 import axios from 'axios';
 import _ from 'lodash';
@@ -21,7 +20,8 @@ class Booking extends React.Component {
     super(props);
 
     this.state = {
-      services: []
+      services: [],
+      service: -1
     };
   }
 
@@ -40,16 +40,33 @@ class Booking extends React.Component {
       // .focus();
   }
 
+  selectService(e, id) {
+      e.preventDefault();
+      this.setState({ service: id });
+  }
+
+  renderTime(service) {
+      if (service.minimum === service.maximum) {
+          return service.minimum + ' min(s)';
+      }
+
+      return service.minimum + ' - ' + service.maximum + ' min(s)';
+  }
+
   renderPanel(category, services) {
     return (
       <Panel key={category} header={category + ' Services'} eventKey={category}>
-        <ul>
+        <ListGroup>
         {
           services.map((service) => {
-            return <li key={service.id}>{service.name}</li>
+            return <ListGroupItem key={service.id} id={service.id} onClick={(e) => this.selectService(e, service.id)}>
+                <div>
+                    {service.name} {this.renderTime(service)} {service.price + '£'}
+                </div>
+            </ListGroupItem>
           })
         }
-        </ul>
+        </ListGroup>
       </Panel>
     )
   }
@@ -59,7 +76,7 @@ class Booking extends React.Component {
     return (
       <div className='form-group row'>
         <label className='col-sm-2 col-form-label'>{label}</label>
-        <div className="col-sm-10">
+        <div className='col-sm-10'>
           <input {...input} placeholder={label} type={type} className={className} />
           {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
         </div>
@@ -79,35 +96,37 @@ class Booking extends React.Component {
     const styles = { padding: '10px 0px' }
     return (
       <div style={styles}>
-        <Field name="firstName"
+        <Field name='firstName'
           className='form-control'
           component={this.renderField}
-          type="text"
-          label="First Name"
+          type='text'
+          label='First Name'
           validate={required} />
 
-        <Field name="lastName"
+        <Field name='lastName'
             className='form-control'
             component={this.renderField}
-            type="text"
-            label="Last Name"
+            type='text'
+            label='Last Name'
             validate={required} />
 
-        <Field name="email"
+        <Field name='email'
             className='form-control'
             component={this.renderField}
-            type="email"
-            label="Email"
+            type='email'
+            label='Email'
             validate={required} />
 
-          <Field name="phone"
-            className='form-control'
-            component={this.renderField}
-            type="input"
-            label="Phone Number"
-            validate={required} />
+        <Field name='phone'
+          className='form-control'
+          component={this.renderField}
+          type='text'
+          label='Phone Number'
+          validate={required} />
 
-        <Accordion>{panels}</Accordion>
+        <Accordion>
+            {panels}
+        </Accordion>
       </div>
     );
   }

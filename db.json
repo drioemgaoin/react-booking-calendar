@@ -5,7 +5,7 @@
       "name": "Wash and Blow Dry",
       "category": "lady",
       "minimum": 45,
-      "maxmium": 60,
+      "maximum": 60,
       "price": 22
     },
     {
@@ -13,7 +13,7 @@
       "name": "Wash, Trim and Blow Dry",
       "category": "lady",
       "minimum": 60,
-      "maxmium": 60,
+      "maximum": 60,
       "price": 39
     },
     {
@@ -21,7 +21,7 @@
       "name": "Reshape, Haircut and Blow Dry",
       "category": "lady",
       "minimum": 60,
-      "maxmium": 60,
+      "maximum": 60,
       "price": 46
     },
     {
@@ -29,7 +29,7 @@
       "name": "Wash and Cut",
       "category": "lady",
       "minimum": 30,
-      "maxmium": 60,
+      "maximum": 60,
       "price": 24
     },
     {
@@ -37,14 +37,14 @@
       "name": "Make Treatment",
       "category": "lady",
       "minimum": 5,
-      "maxmium": 5,
+      "maximum": 5,
       "price": 8
     },
     {
       "id": 6,
       "name": "T-Section Highlights & Finish",
       "category": "both",
-      "minimmum": 85,
+      "minimum": 85,
       "maximum": 135,
       "price": 59
     },
@@ -52,7 +52,7 @@
       "id": 7,
       "name": "Half Head Highlights & Finish",
       "category": "both",
-      "minimmum": 100,
+      "minimum": 100,
       "maximum": 150,
       "price": 69
     },
@@ -60,7 +60,7 @@
       "id": 8,
       "name": "Full Head Highlights & Finish",
       "category": "both",
-      "minimmum": 115,
+      "minimum": 115,
       "maximum": 165,
       "price": 84
     },
@@ -68,7 +68,7 @@
       "id": 9,
       "name": "Full Head Tint & Finish",
       "category": "both",
-      "minimmum": 70,
+      "minimum": 70,
       "maximum": 120,
       "price": 51
     },
@@ -76,7 +76,7 @@
       "id": 10,
       "name": "Roots Tint & Finish",
       "category": "both",
-      "minimmum": 40,
+      "minimum": 40,
       "maximum": 90,
       "price": 41
     },
@@ -84,7 +84,7 @@
       "id": 11,
       "name": "Toner",
       "category": "both",
-      "minimmum": 15,
+      "minimum": 15,
       "maximum": 15,
       "price": 25
     },
@@ -92,7 +92,7 @@
       "id": 12,
       "name": "Color Correction & Finish",
       "category": "both",
-      "minimmum": 190,
+      "minimum": 190,
       "maximum": 240,
       "price": 99
     },
@@ -100,7 +100,7 @@
       "id": 13,
       "name": "Gent Wash and Haircut",
       "category": "gent",
-      "minimmum": 30,
+      "minimum": 30,
       "maximum": 30,
       "price": 24
     },
@@ -108,7 +108,7 @@
       "id": 14,
       "name": "Wash, Full Haircut and Trim Beard",
       "category": "gent",
-      "minimmum": 45,
+      "minimum": 45,
       "maximum": 45,
       "price": 29
     },
@@ -116,7 +116,7 @@
       "id": 15,
       "name": "Sides and back Trim Haircut",
       "category": "gent",
-      "minimmum": 15,
+      "minimum": 15,
       "maximum": 15,
       "price": 15
     }

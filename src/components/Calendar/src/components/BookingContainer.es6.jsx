@@ -51,7 +51,7 @@ class BookingContainer extends React.Component {
         </div>
 
         <div>
-          <input type='submit' value='Ok' />
+          <input type='submit' value='Ok' disabled={submitting} />
           <input type='button' value='Cancel' onClick={this.props.onClose} />
         </div>
       </form>

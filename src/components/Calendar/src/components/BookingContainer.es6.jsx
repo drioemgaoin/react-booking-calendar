@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { Field, reduxForm } from 'redux-form'
+import { Field, reduxForm, formValueSelector } from 'redux-form'
 import moment from 'moment';
 
 import { addBookingAction } from '../actions/bookingActions';
@@ -14,7 +14,6 @@ let mapDispatchToProps = (dispatch) => {
 }
 
 class BookingContainer extends React.Component {
-
   handleSubmit(data) {
     const { dispatch } = this.props;
     dispatch(addBookingAction(data));
@@ -23,9 +22,9 @@ class BookingContainer extends React.Component {
   }
 
   renderDefaultBooking() {
-    const { handleSubmit, pristine, reset, submitting } = this.props;
+    const { handleSubmit, submitting } = this.props;
     return (
-      <form onSubmit={handleSubmit((data) => this.handleSubmit(data))}>
+      <form id='booking' onSubmit={handleSubmit((data) => this.handleSubmit(data))}>
         <div>
           <label>Start Date:</label>
           <div>
@@ -59,9 +58,9 @@ class BookingContainer extends React.Component {
   }
 
   renderBooking() {
-    const { handleSubmit, pristine, reset, submitting } = this.props;
+    const { handleSubmit, submitting } = this.props;
     return (
-      <form className='container' onSubmit={handleSubmit((data) => this.handleSubmit(data))}>
+      <form id='booking' className='container' onSubmit={handleSubmit((data) => this.handleSubmit(data))}>
         { this.props.body }
         <div className='col-md-4 text-center'>
           <input className='btn btn-primary' type='submit' value='Ok' disabled={submitting} />

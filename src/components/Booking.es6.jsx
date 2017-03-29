@@ -52,9 +52,7 @@ class Booking extends React.Component {
       .catch(function(error) {
       });
 
-      // this.refs.firstName
-      // .getRenderedComponent()
-      // .focus();
+      document.getElementsByName('firstName')[0].focus();
   }
 
   selectService(e, id) {

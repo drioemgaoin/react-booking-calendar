@@ -34,6 +34,7 @@ class Calendar extends React.Component {
         <div className='rbc-calendar'>
           <Modal body={this.props.body}
             show={this.state.showModal}
+            bookings={this.props.bookings}
             booking={this.state.booking}
             header='New Booking' />
 

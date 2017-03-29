@@ -1,7 +1,8 @@
 import React from 'react';
-import { connect } from 'react-redux'
-import { Field, reduxForm, formValueSelector } from 'redux-form'
+import { connect } from 'react-redux';
+import { Field, reduxForm, formValueSelector } from 'redux-form';
 import moment from 'moment';
+import { validate } from './BookingValidation';
 
 import { addBookingAction } from '../actions/bookingActions';
 
@@ -81,7 +82,8 @@ class BookingContainer extends React.Component {
 
 BookingContainer = connect(null, mapDispatchToProps)(BookingContainer)
 BookingContainer = reduxForm({
-  form: 'booking'
+  form: 'booking',
+  validate
 })(BookingContainer)
 
 export default BookingContainer

@@ -40,6 +40,7 @@ export default class Modal extends React.Component {
     return (
       <div className='rc-modal-body'>
         <BookingContainer body={this.props.body}
+                          bookings={this.props.bookings}
                           initialValues={this.state.booking}
                           onClose={(e) => this.hideModal(e)} />
       </div>

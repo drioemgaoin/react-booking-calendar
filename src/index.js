@@ -28,6 +28,7 @@ const bookings = [
   {
     isBooked: true,
     startDate: moment().seconds(0).milliseconds(0).hours(12).minutes(0),
+    endDate: moment().seconds(0).milliseconds(0).hours(13).minutes(30)
   }
 ];
 

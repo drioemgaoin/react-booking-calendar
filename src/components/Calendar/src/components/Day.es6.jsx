@@ -15,19 +15,30 @@ export default class Day extends React.Component {
   }
 
   render() {
-    var start = moment(this.props.date).set({ hour: 8, minute: 0, second: 0 });
-    var end = moment(this.props.date).set({ hour: 20, minute: 0, second: 0 });
-    var spread = moment.duration(end.diff(start)).asMinutes();
+    const start = moment(this.props.date).set({ hour: 8, minute: 0, second: 0 });
+    const end = moment(this.props.date).set({ hour: 20, minute: 0, second: 0 });
+    const spread = moment.duration(end.diff(start)).asMinutes();
 
-    var workStart = moment(this.props.date).set({ hour: this.getDate(true), minute: 0, second: 0 })
-    var workEnd = moment(this.props.date).set({ hour: this.getDate(false), minute: 0, second: 0 })
+    const workStart = moment(this.props.date).set({ hour: this.getDate(true), minute: 0, second: 0 })
+    const workEnd = moment(this.props.date).set({ hour: this.getDate(false), minute: 0, second: 0 })
 
-    var slots = [];
-    for (var i = 0; i < spread; i += this.props.timeSlot) {
+    const bookings = this.props.bookings.filter(booking => {
+        return booking.startDate.format('L') === this.props.date.format('L');
+    });
 
-      const startDate = start.clone();
-      const endDate = startDate.clone().add(this.props.timeSlot, 'm')
-      if (start < workStart || start >= workEnd) {
+    let slots = [];
+    for (var i = 0; i < spread;) {
+
+      const startDate = start.clone().add(i, 'm');
+      const booking = bookings.find(booking => {
+          return booking.startDate.isSame(startDate);
+      });
+
+      const endDate = booking
+        ? booking.endDate
+        : startDate.clone().add(this.props.timeSlot, 'm');
+
+      if (startDate < workStart || startDate >= workEnd) {
         slots.push(<Slot key={startDate} />);
       } else {
         slots.push(
@@ -38,7 +49,9 @@ export default class Day extends React.Component {
         )
       }
 
-      start = start.add(this.props.timeSlot, 'm');
+      i += booking
+        ? moment.duration(booking.endDate.diff(booking.startDate)).asMinutes()
+        : this.props.timeSlot;
     }
 
     return (

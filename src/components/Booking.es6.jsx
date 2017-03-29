@@ -5,6 +5,7 @@ import { Accordion, Panel, ListGroup, ListGroupItem } from 'react-bootstrap'
 import { required } from './BookingValidations'
 import axios from 'axios';
 import _ from 'lodash';
+import moment from 'moment';
 
 function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
@@ -22,6 +23,13 @@ let mapDispatchToProps = (dispatch) => {
      dispatch(change('booking', field, value))
    }
   }
+}
+
+let mapStateToProps = (state, ownProps) => {
+    return {
+        ...ownProps,
+        form: state.form.booking
+    }
 }
 
 class Booking extends React.Component {
@@ -51,7 +59,16 @@ class Booking extends React.Component {
 
   selectService(e, id) {
       e.preventDefault();
+
       this.props.changeFieldValue('service', id);
+
+      const service = this.state.services.find(item => {
+          return item.id === id;
+      });
+
+      const endDate = new moment(this.props.form.initial.startDate);
+      endDate.add(moment.duration(service.maximum, 'minutes'));
+      this.props.changeFieldValue('endDate', endDate);
   }
 
   renderTime(service) {
@@ -145,4 +162,4 @@ class Booking extends React.Component {
   }
 }
 
-export default connect(null, mapDispatchToProps)(Booking)
+export default connect(mapStateToProps, mapDispatchToProps)(Booking)

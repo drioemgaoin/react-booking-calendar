@@ -1,5 +1,6 @@
 import React from 'react';
-import { Field } from 'redux-form'
+import { connect } from 'react-redux'
+import { Field, change } from 'redux-form'
 import { Accordion, Panel, ListGroup, ListGroupItem } from 'react-bootstrap'
 import { required } from './BookingValidations'
 import axios from 'axios';
@@ -14,6 +15,14 @@ function checkStatus(response) {
     throw error
   }
 };
+
+let mapDispatchToProps = (dispatch) => {
+  return {
+   changeFieldValue: function(field, value) {
+     dispatch(change('booking', field, value))
+   }
+  }
+}
 
 class Booking extends React.Component {
   constructor(props) {
@@ -42,7 +51,7 @@ class Booking extends React.Component {
 
   selectService(e, id) {
       e.preventDefault();
-      this.setState({ service: id });
+      this.props.changeFieldValue('service', id);
   }
 
   renderTime(service) {
@@ -124,6 +133,10 @@ class Booking extends React.Component {
           label='Phone Number'
           validate={required} />
 
+        <Field name='service'
+          component={this.renderField}
+          type='hidden' />
+
         <Accordion>
             {panels}
         </Accordion>
@@ -132,4 +145,4 @@ class Booking extends React.Component {
   }
 }
 
-export default Booking
+export default connect(null, mapDispatchToProps)(Booking)

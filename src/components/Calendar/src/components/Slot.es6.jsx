@@ -44,8 +44,13 @@ class Slot extends React.Component {
   render() {
     const inactiveClassName = this.props.startDate ? '' : 'inactive';
     const bookedClassName = this.props.isBooked ? 'booked' : '';
+
+    const style = {
+        minWidth: this.props.numberOfSlot * 100 + 'px'
+    };
     return (
       <td className={'rbc-slot ' + inactiveClassName + ' ' + bookedClassName}
+          style={style}
           colSpan={this.props.numberOfSlot}
           onClick={(e) => !this.props.isBooked && this.handleClick(e)}>
         {this.props.startDate && (

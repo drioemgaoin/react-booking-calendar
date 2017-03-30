@@ -1,24 +1,79 @@
 .rbc-header {
-  div {
+  height: 100px;
+
+  > div {
     display: inline;
+    position: relative;
+    top: calc(100% - 70px);
+
+    &:first-child {
+      padding-left: 150px;
+    }
+
+    &:last-child {
+      padding-right: 10px;
+    }
   }
 
   .rbc-date {
     button {
-      width: 100px;
+      border-radius: 5px;
+      box-shadow: 0 5px 10px -5px black;
+      border: none;
+      background: #F8DD70;
+      height: 40px;
+      width: 150px;
+
+      &:hover {
+        background: #FECD04;
+      }
+
+      &:focus {
+        outline:0;
+      }
+
+      &:active {
+        background: #FECD04;
+      }
+
+      &:not(:first-child) {
+        margin-left: 10px;
+      }
     }
 
-    span {
-      margin: 0px 10px;
+    > span {
+      padding: 0px 60px;
+      font-size: 20px;
+      font-weight: bold;
     }
   }
 
   .rbc-views {
-    width: 240px;
-    float: right;
-
+    margin-left: 200px;
     button {
-      width: 80px;
+      border-radius: 5px;
+      box-shadow: 0 5px 10px -5px black;
+      border: none;
+      background: #F8DD70;
+      height: 40px;
+      width: 150px;
+
+      &:hover {
+        background: #FECD04;
+      }
+
+      &:focus {
+        outline:0;
+        background: #FECD04;
+      }
+
+      &:active {
+        background: #FECD04;
+      }
+
+      &:not(:first-child) {
+        margin-left: 10px;
+      }
     }
   }
 }

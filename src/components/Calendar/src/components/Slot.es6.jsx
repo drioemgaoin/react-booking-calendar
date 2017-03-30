@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import moment from 'moment';
 
 import { openBookingAction } from '../actions/bookingActions';
 
@@ -25,9 +26,9 @@ let mapStateToProps = (state, ownProps) => {
 }
 
 class Slot extends React.Component {
-  constructor(props) {
-      super(props)
-  }
+  static defaultProps: any = {
+    numberOfSlot: 1
+  };
 
   handleClick(e) {
     e.preventDefault();
@@ -42,13 +43,15 @@ class Slot extends React.Component {
 
   render() {
     return (
-      <td className='rbc-slot'>
+      <td className='rbc-slot' colSpan={this.props.numberOfSlot}>
         {
           this.props.startDate &&
           (
             <div>
               <span>{this.props.startDate.format('HH:mm A')}</span>
-              { this.renderBookingLink() }
+              <div>
+                  { this.renderBookingLink() }
+              </div>
             </div>
           )
         }

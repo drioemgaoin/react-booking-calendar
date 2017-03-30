@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import Slot from "./Slot";
+import Slot from './Slot';
 
 export default class Day extends React.Component {
   constructor(props) {
@@ -41,11 +41,13 @@ export default class Day extends React.Component {
       if (startDate < workStart || startDate >= workEnd) {
         slots.push(<Slot key={startDate} />);
       } else {
+        const numberOfSlot = endDate.diff(startDate, 'minutes') / this.props.timeSlot;
         slots.push(
           <Slot onClick={this.props.onClick}
                 key={startDate}
                 startDate={startDate}
-                endDate={endDate} />
+                endDate={endDate}
+                numberOfSlot={numberOfSlot} />
         )
       }
 
@@ -57,9 +59,9 @@ export default class Day extends React.Component {
     return (
       <tr className='rbc-day'>
         <td className='rbc-header'>
-          <span>{this.props.date.format("MMM YYYY")}</span>
-          <span>{this.props.date.format("DD")}</span>
-          <span>{this.props.date.format("dddd")}</span>
+          <span>{this.props.date.format('MMM YYYY')}</span>
+          <span>{this.props.date.format('DD')}</span>
+          <span>{this.props.date.format('dddd')}</span>
         </td>
         {slots}
       </tr>

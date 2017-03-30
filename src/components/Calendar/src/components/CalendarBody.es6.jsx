@@ -9,7 +9,7 @@ let mapStateToProps = (state) => {
   return {
     view: state.view,
     date: state.date,
-    booking: state.booking
+    bookings: state.booking.bookings
   };
 }
 

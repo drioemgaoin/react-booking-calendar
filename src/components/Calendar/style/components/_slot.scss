@@ -3,10 +3,12 @@
 
     &.inactive {
         background: lightgrey;
+        outline: 1px solid black;
     }
 
     &:not(.inactive) {
-        border: 1px solid black;
+        box-sizing: border-box;
+        outline: 1px solid black;
     }
 
     &:not(.booked):not(.inactive) {

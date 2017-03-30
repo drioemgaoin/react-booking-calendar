@@ -42,13 +42,13 @@ class Slot extends React.Component {
   }
 
   renderEmptySlot() {
-      const style = { minWidth: this.props.numberOfSlot * 100 + 'px' };
+      const style = { minWidth: this.props.numberOfSlot * 150 + 'px' };
       return (<div style={style} className={'rbc-slot inactive'}></div>)
   }
 
   renderSlot() {
       const bookedClassName = this.props.isBooked ? 'booked' : '';
-      const style = { minWidth: this.props.numberOfSlot * 100 + 'px' };
+      const style = { minWidth: this.props.numberOfSlot * 150 + 'px' };
       return (
         <div className={'rbc-slot ' + bookedClassName}
             style={style}

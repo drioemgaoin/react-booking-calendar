@@ -57,13 +57,16 @@ export default class Day extends React.Component {
           const difference = booking.endDate.diff(endDate, 'minutes') % this.props.timeSlot;
           const timeSlot = difference / this.props.timeSlot;
           const nextEndDate = booking.endDate.clone().add(difference, 'm');
-          slots.push(
-            <Slot onClick={this.props.onClick}
-                  key={slots.length}
-                  startDate={booking.endDate}
-                  endDate={nextEndDate}
-                  numberOfSlot={timeSlot} />
-          );
+
+          if (!nextEndDate.isSame(booking.endDate)) {
+            slots.push(
+              <Slot onClick={this.props.onClick}
+                    key={slots.length}
+                    startDate={booking.endDate}
+                    endDate={nextEndDate}
+                    numberOfSlot={timeSlot} />
+            );
+          }
 
           endDate = nextEndDate;
         } else {

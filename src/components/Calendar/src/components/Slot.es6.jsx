@@ -41,28 +41,29 @@ class Slot extends React.Component {
     : <span>Book</span>
   }
 
-  render() {
-    const inactiveClassName = this.props.startDate ? '' : 'inactive';
-    const bookedClassName = this.props.isBooked ? 'booked' : '';
+  renderEmptySlot() {
+      const style = { minWidth: this.props.numberOfSlot * 100 + 'px' };
+      return (<div style={style} className={'rbc-slot inactive'}></div>)
+  }
 
-    const style = {
-        minWidth: this.props.numberOfSlot * 100 + 'px'
-    };
-    return (
-      <td className={'rbc-slot ' + inactiveClassName + ' ' + bookedClassName}
-          style={style}
-          colSpan={this.props.numberOfSlot}
-          onClick={(e) => !this.props.isBooked && this.handleClick(e)}>
-        {this.props.startDate && (
-            <div>
-              <span>{this.props.startDate.format('HH:mm A')}</span>
-              <div>
-                  { this.renderBookingLink() }
-              </div>
-            </div>
-        )}
-      </td>
-    )
+  renderSlot() {
+      const bookedClassName = this.props.isBooked ? 'booked' : '';
+      const style = { minWidth: this.props.numberOfSlot * 100 + 'px' };
+      return (
+        <div className={'rbc-slot ' + bookedClassName}
+            style={style}
+            colSpan={this.props.numberOfSlot}
+            onClick={(e) => !this.props.isBooked && this.handleClick(e)}>
+            <span>{this.props.startDate.format('HH:mm A')}</span>
+            <div>{this.renderBookingLink()}</div>
+        </div>
+      )
+  }
+
+  render() {
+    return this.props.startDate
+        ? this.renderSlot()
+        : this.renderEmptySlot();
   }
 }
 

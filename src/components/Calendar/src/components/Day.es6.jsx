@@ -3,9 +3,9 @@ import moment from 'moment';
 import Slot from './Slot';
 
 export default class Day extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+  static defaultProps: any = {
+    display: 'block'
+  };
 
   getDate(isStart) {
     const dayName = this.props.date.format('dddd').toLowerCase();
@@ -93,7 +93,7 @@ export default class Day extends React.Component {
     }
 
     return (
-      <div className='rbc-day'>
+      <div className={'rbc-day ' + this.props.display }>
         <div className='rbc-header'>
           <span>{this.props.date.format('MMM YYYY')}</span>
           <span>{this.props.date.format('DD')}</span>

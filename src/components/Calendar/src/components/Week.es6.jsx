@@ -22,7 +22,8 @@ export default class Week extends React.Component {
           date={date}
           timeSlice={this.props.timeSlice}
           timeSlot={this.props.timeSlot}
-          bookings={this.props.bookings} />
+          bookings={this.props.bookings}
+          display='inline' />
       )
     }
     while(startOfWeek.add(1, 'days').diff(endOfWeek) < 0)

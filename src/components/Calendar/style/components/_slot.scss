@@ -11,6 +11,15 @@
 
     &:not(.booked):not(.inactive) {
         cursor: pointer;
+        background: #81C784;
+
+        &:hover {
+          background: #4CAF50;
+        }
+    }
+
+    &.booked {
+      background: #E57373;
     }
 
 }

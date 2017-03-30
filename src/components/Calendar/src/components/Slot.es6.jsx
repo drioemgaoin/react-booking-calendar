@@ -38,23 +38,24 @@ class Slot extends React.Component {
   renderBookingLink() {
     return this.props.isBooked
     ? <span>Booked</span>
-    : <a onClick={(e) => this.handleClick(e)}>Book</a>
+    : <span>Book</span>
   }
 
   render() {
+    const inactiveClassName = this.props.startDate ? '' : 'inactive';
+    const bookedClassName = this.props.isBooked ? 'booked' : '';
     return (
-      <td className='rbc-slot' colSpan={this.props.numberOfSlot}>
-        {
-          this.props.startDate &&
-          (
+      <td className={'rbc-slot ' + inactiveClassName + ' ' + bookedClassName}
+          colSpan={this.props.numberOfSlot}
+          onClick={(e) => !this.props.isBooked && this.handleClick(e)}>
+        {this.props.startDate && (
             <div>
               <span>{this.props.startDate.format('HH:mm A')}</span>
               <div>
                   { this.renderBookingLink() }
               </div>
             </div>
-          )
-        }
+        )}
       </td>
     )
   }

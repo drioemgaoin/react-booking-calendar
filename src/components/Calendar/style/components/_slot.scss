@@ -1,0 +1,17 @@
+.rbc-slot {
+    height: 100px;
+    min-width: 100px;
+
+    &.inactive {
+        background: lightgrey;
+    }
+
+    &:not(.inactive) {
+        border: 1px solid black;
+    }
+
+    &:not(.booked):not(.inactive) {
+        cursor: pointer;
+    }
+
+}

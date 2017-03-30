@@ -21,6 +21,6 @@ export default class Month extends React.Component {
       )
     }
 
-    return (<table><tbody>{days}</tbody></table>)
+    return (<div>{days}</div>)
   }
 }

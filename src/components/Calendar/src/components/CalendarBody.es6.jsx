@@ -28,15 +28,13 @@ class CalendarBody extends React.Component {
   renderContent() {
     if (this.props.view.type === 'day') {
       return (
-          <table>
-            <tbody>
-              <Day onClick={this.props.onDayClick}
-                   date={this.props.date.current}
-                   timeSlice={this.props.timeSlice}
-                   timeSlot={this.props.timeSlot}
-                   bookings={this.props.bookings} />
-            </tbody>
-          </table>
+        <div>
+          <Day onClick={this.props.onDayClick}
+               date={this.props.date.current}
+               timeSlice={this.props.timeSlice}
+               timeSlot={this.props.timeSlot}
+               bookings={this.props.bookings} />
+        </div>
       )
     }
 

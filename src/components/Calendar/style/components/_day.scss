@@ -1,11 +1,12 @@
 .rbc-day {
-  height: 100px;
-  vertical-align: middle;
+  margin: auto 0;
+  white-space : nowrap;
 
   .rbc-header {
+    display: inline-block;
     text-align: center;
-    padding: 15px;
     width: 150px;
+    vertical-align: middle;
 
     span {
       display: block;
@@ -13,8 +14,10 @@
   }
 
   .rbc-slot {
+    position: relative;
+    display: inline-block;
     text-align: center;
-    padding: 15px;
+    vertical-align: middle;
 
     span {
       display: block;

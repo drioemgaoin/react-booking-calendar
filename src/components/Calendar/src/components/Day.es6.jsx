@@ -57,14 +57,14 @@ export default class Day extends React.Component {
     }
 
     return (
-      <tr className='rbc-day'>
-        <td className='rbc-header'>
+      <div className='rbc-day'>
+        <div className='rbc-header'>
           <span>{this.props.date.format('MMM YYYY')}</span>
           <span>{this.props.date.format('DD')}</span>
           <span>{this.props.date.format('dddd')}</span>
-        </td>
+        </div>
         {slots}
-      </tr>
+      </div>
     );
   }
 }

@@ -27,6 +27,6 @@ export default class Week extends React.Component {
     }
     while(startOfWeek.add(1, 'days').diff(endOfWeek) < 0)
 
-    return (<table><tbody>{days}</tbody></table>)
+    return (<div>{days}</div>)
   }
 }

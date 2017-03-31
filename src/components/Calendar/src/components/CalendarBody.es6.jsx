@@ -56,7 +56,7 @@ class CalendarBody extends React.Component {
   }
 
   render() {
-    return (<div className="rbc-body">{this.renderContent()}</div>);
+    return (<div className='rbc-body'>{this.renderContent()}</div>);
   }
 }
 

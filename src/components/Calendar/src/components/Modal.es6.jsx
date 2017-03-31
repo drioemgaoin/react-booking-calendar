@@ -32,13 +32,13 @@ export default class Modal extends React.Component {
 
   renderHeader() {
     return (
-      <header className='rc-modal-header'>{this.props.header}</header>
+      <header className='rbc-modal-header'>{this.props.header}</header>
     );
   }
 
   renderBody() {
     return (
-      <div className='rc-modal-body'>
+      <div className='rbc-modal-body'>
         <BookingContainer body={this.props.body}
                           bookings={this.props.bookings}
                           timeSlice={this.props.timeSlice}
@@ -49,12 +49,12 @@ export default class Modal extends React.Component {
   }
 
   render() {
-    const modalCss = this.state.show ? 'rc-modal in' : 'rc-modal';
+    const modalCss = this.state.show ? 'rbc-modal in' : 'rbc-modal';
     return (
       <div className={modalCss}>
         {
           this.state.show && (
-            <div className='rc-modal-dialog'>
+            <div className='rbc-modal-dialog'>
               {this.renderHeader()}
               {this.renderBody()}
             </div>

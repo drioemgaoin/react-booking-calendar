@@ -1,4 +1,4 @@
-.rc-modal {
+.rbc-modal {
   position: fixed;
   top: 0;
   right: 0;
@@ -19,36 +19,121 @@
     pointer-events: auto;
   }
 
-  .rc-modal-dialog {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    z-index: 99999;
-    transform: translate(-50%, -50%);
-    background: rgba(255, 255, 255, 1);
-    max-width: 100%;
-    min-width: 400px;
-    max-height: 100%;
+  .rbc-modal-dialog {
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      z-index: 99999;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 255, 255, 1);
 
-    .rc-modal-header {
-      background: #333A44;
-      color: #ffffff;
-      height: 60px;
-      text-align: center;
-      line-height: 60px;
-    }
-
-    .rc-modal-body {
-    }
-
-    .rc-modal-footer {
-      height: 40px;
-      text-align: center;
-
-      .rc-modal-button {
-        width: 100px;
-        cursor: pointer;
+      .rbc-modal-header {
+          background: #333A44;
+          color: #ffffff;
+          text-align: center;
       }
-    }
   }
+
+  // .rc-modal-dialog {
+  //   position: fixed;
+  //   top: 50%;
+  //   left: 50%;
+  //   z-index: 99999;
+  //   transform: translate(-50%, -50%);
+  //   background: rgba(255, 255, 255, 1);
+  //   max-width: 100%;
+  //   min-width: 400px;
+  //   max-height: 100%;
+  //
+  //   .rc-modal-header {
+  //     background: #333A44;
+  //     color: #ffffff;
+  //     height: 60px;
+  //     text-align: center;
+  //     line-height: 60px;
+  //   }
+  //
+  //   .rc-modal-body {
+  //   }
+  //
+  //   .rc-modal-footer {
+  //     height: 40px;
+  //     text-align: center;
+  //
+  //     .rc-modal-button {
+  //       width: 100px;
+  //       cursor: pointer;
+  //     }
+  //   }
+  // }
+}
+
+@media (max-width: 320px) {
+    .rbc-modal {
+        .rbc-modal-dialog {
+            width: 100%;
+            margin: 10px 0px 10px 0px;
+
+            .rbc-modal-header {
+                height: 40px;
+                line-height: 40px;
+            }
+
+            .rbc-modal-body {
+                padding: 10px;
+
+                input:not(:first-child) {
+                    margin-top: 10px;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 320px) and (max-width: 720px) {
+    .rbc-modal {
+        .rbc-modal-dialog {
+            width: 100%;
+            margin: 10px 0px 10px 0px;
+
+            .rbc-modal-header {
+                height: 40px;
+                line-height: 40px;
+            }
+
+            .rbc-modal-body {
+                padding: 10px;
+
+                input:not(:first-child) {
+                    margin-left: 10px;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 720px) {
+    .rbc-modal {
+        .rbc-modal-dialog {
+            width: 500px;
+            margin: 10px 0px 10px 0px;
+
+            .rbc-modal-header {
+                height: 60px;
+                line-height: 60px;
+            }
+
+            .rbc-modal-body {
+                padding: 10px;
+
+                input {
+                    display: inline-block;
+
+                    &:not(:first-child) {
+                        margin-left: 10px;
+                    }
+                }
+            }
+        }
+    }
 }

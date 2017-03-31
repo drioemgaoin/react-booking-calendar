@@ -1,6 +1,27 @@
-// -----------------------------------------------------------------------------
-// This file contains all styles related to the button component.
-// -----------------------------------------------------------------------------
 a {
   cursor: pointer;
+}
+
+.btn {
+    border-radius: 5px;
+    box-shadow: 0 5px 10px -5px black;
+    border: none;
+    height: 40px;
+    width: 150px;
+
+    &.primary {
+        background: #F8DD70;
+
+        &:hover {
+          background: #FECD04;
+        }
+
+        &:active {
+          background: #FECD04;
+        }
+    }
+
+    &:focus {
+      outline:0;
+    }
 }

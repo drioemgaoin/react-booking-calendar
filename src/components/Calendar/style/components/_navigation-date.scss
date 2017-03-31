@@ -1,0 +1,55 @@
+.rbc-date {
+    vertical-align: middle;
+    text-align: center;
+
+    span {
+        line-height: 40px;
+        font-size: 20px;
+        font-weight: bold;
+    }
+}
+
+@media (max-width: 320px) {
+    .rbc-date {
+        text-align: center;
+
+        .btn {
+            display: block;
+            width: 100%;
+            height: 40px;
+        }
+    }
+}
+
+@media (min-width: 320px) and (max-width: 1024px) {
+    .rbc-date {
+        .btn {
+            height: 40px;
+            width: 100px;
+
+            &:first-child {
+                float: left;
+            }
+
+            &:last-child {
+                float: right;
+            }
+        }
+    }
+}
+
+@media (min-width: 1024px) {
+    .rbc-date {
+        display: inline-block;
+        margin-left: 150px;
+
+        .btn {
+            height: 40px;
+            width: 100px;
+        }
+
+        span {
+            margin: 0px 100px;
+        }
+    }
+}

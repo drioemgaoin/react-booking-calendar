@@ -38,33 +38,33 @@ class CalendarHeader extends React.Component {
 
   renderDate() {
     if (this.props.view.type === 'day') {
-      return this.props.date.current.format("MMMM DD YYYY")
+      return this.props.date.current.format('MMMM DD YYYY')
     }
 
     if (this.props.view.type === 'week') {
       var startOfWeek = this.props.date.current.clone().startOf('isoweek');
       var endOfWeek   = this.props.date.current.clone().endOf('isoweek');
-      return startOfWeek.format("DD MMM") + " - " + endOfWeek.format("DD MMM")
+      return startOfWeek.format('DD MMM') + ' - ' + endOfWeek.format('DD MMM')
     }
 
     if (this.props.view.type === 'month') {
-      return this.props.date.current.format("MMMM YYYY")
+      return this.props.date.current.format('MMMM YYYY')
     }
   }
 
   render() {
     return (
-      <div className="rbc-header">
-        <div className="rbc-date">
-          <button onClick={() => this.props.handlerPreviousDate(this.props.view.type)}>Previous</button>
+      <div className='rbc-header'>
+        <div className='rbc-date'>
+          <button className='btn primary' onClick={() => this.props.handlerPreviousDate(this.props.view.type)}>Previous</button>
           <span>{this.renderDate()}</span>
-          <button onClick={() => this.props.handlerNextDate(this.props.view.type)}>Next</button>
+          <button className='btn primary' onClick={() => this.props.handlerNextDate(this.props.view.type)}>Next</button>
         </div>
 
-        <div className="rbc-views">
-          <button onClick={this.props.handleDayView}>Day</button>
-          <button onClick={this.props.handleWeekView}>Week</button>
-          <button onClick={this.props.handleMonthView}>Month</button>
+        <div className='rbc-view'>
+          <button className='btn primary' onClick={this.props.handleDayView}>Day</button>
+          <button className='btn primary' onClick={this.props.handleWeekView}>Week</button>
+          <button className='btn primary' onClick={this.props.handleMonthView}>Month</button>
         </div>
       </div>
     );

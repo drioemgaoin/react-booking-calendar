@@ -25,3 +25,18 @@
     }
 
 }
+
+@media (max-width: 1024px) {
+    .rbc-slot {
+
+    }
+}
+
+@media (min-width: 1024px) {
+    .rbc-slot {
+        position: relative;
+        display: inline-block;
+        text-align: center;
+        vertical-align: middle;
+    }
+}

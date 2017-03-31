@@ -94,7 +94,7 @@ export default class Day extends React.Component {
 
     return (
       <div className={'rbc-day ' + this.props.display }>
-        <div className='rbc-header'>
+        <div>
           <span>{this.props.date.format('MMM YYYY')}</span>
           <span>{this.props.date.format('DD')}</span>
           <span>{this.props.date.format('dddd')}</span>

@@ -1,16 +1,18 @@
 const path = require('path');
+const webpack = require('webpack')
 const CombineLoaders = require('webpack-combine-loaders')
 
 module.exports = {
   context: path.join(__dirname),
 
-  devtool: 'cheap-module-source-map',
+  devtool: 'source-map',
 
   entry: './src/index.js',
 
   output: {
-    path: path.join(__dirname, 'lib'),
-    filename: 'index.js'
+    path: path.join(__dirname, 'public'),
+    filename: 'index.js',
+    publicPath: '/public/'
   },
 
   resolve: {
@@ -77,6 +79,18 @@ module.exports = {
         template: path.join(__dirname, '/index.html'),
         filename: 'index.html',
         inject: 'body'
+    }),
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      minimize: true,
+      compress: {
+        warnings: false
+      }
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
     })
   ],
 

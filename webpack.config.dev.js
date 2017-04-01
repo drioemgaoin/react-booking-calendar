@@ -1,14 +1,22 @@
 const path = require('path');
+const webpack = require('webpack')
 const CombineLoaders = require('webpack-combine-loaders')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+  devtool: 'eval',
+
   context: path.join(__dirname),
-  entry: './src/index.js',
+
+  entry: [
+    'webpack-hot-middleware/client',
+    './src/index.js'
+  ],
 
   output: {
-    path: path.join(__dirname, 'examples'),
-    filename: 'index.js'
+    path: path.join(__dirname, 'public'),
+    filename: 'index.js',
+    publicPath: '/public/'
   },
 
   resolve: {
@@ -75,6 +83,8 @@ module.exports = {
         template: path.join(__dirname, '/index.html'),
         filename: 'index.html',
         inject: 'body'
-    })
+    }),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin()
   ],
 };

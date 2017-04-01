@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack')
 const CombineLoaders = require('webpack-combine-loaders')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   context: path.join(__dirname),

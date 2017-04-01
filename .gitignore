@@ -38,3 +38,6 @@ lib
 
 # Ignore generation npm package
 *.tgz
+
+# Ignore output directory
+public

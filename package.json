@@ -10,7 +10,7 @@
     "build": "webpack --config webpack.config.prod.js -p",
     "start": "node ./src/app.js",
     "api": "json-server --watch db.json --port 3004",
-    "postinstall": "webpack -p --config ./webpack.prod.config.js --progress"
+    "postinstall": "webpack -p --config ./webpack.config.prod.js --progress"
   },
   "author": "Romain Diegoni",
   "license": "MIT",

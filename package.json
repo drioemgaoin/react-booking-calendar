@@ -8,7 +8,8 @@
     "build:dev": "webpack --config webpack.config.dev.js -p",
     "build:npm": "webpack --config webpack.config.prod.js -p",
     "start": "webpack-dev-server --inline --hot --config webpack.config.dev.js",
-    "api": "json-server --watch db.json --port 3004"
+    "api": "json-server --watch db.json --port 3004",
+    "postinstall": "webpack -p --config ./webpack.prod.config.js --progress"
   },
   "author": "Romain Diegoni",
   "license": "MIT",

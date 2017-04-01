@@ -7,7 +7,7 @@
     "watch-test": "karma start karma.conf.js --auto-watch --no-single-run",
     "build:dev": "webpack -d -w --config webpack.config.dev.js --progress",
     "build:npm": "webpack --config webpack.config.npm.js --progress",
-    "build": "webpack --config webpack.config.prod.js --progress",
+    "build": "NODE_ENV=production webpack --config webpack.config.prod.js --progress  --colors",
     "start": "node ./src/app.js",
     "api": "json-server --watch db.json --port 3004",
     "postinstall": "npm run build"

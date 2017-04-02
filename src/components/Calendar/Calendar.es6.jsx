@@ -27,7 +27,9 @@ class Calendar extends React.Component {
 
   openModal(booking) {
     this.setState({ showModal: true, booking: booking });
-    document.body.style.overflow = 'hidden';
+
+    const initial = document.body.className;
+    document.body.className = initial + (initial ? ' ' : '') + 'modal-open';
   }
 
   render() {

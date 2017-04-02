@@ -28,7 +28,7 @@ export default class Modal extends React.Component {
     }
 
     this.setState({ show: false });
-    document.body.style.overflow = 'auto';
+    document.body.className = document.body.className.replace(/ ?modal-open/, '');
   }
 
   renderHeader() {

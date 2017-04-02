@@ -33,45 +33,12 @@
           text-align: center;
       }
   }
-
-  // .rc-modal-dialog {
-  //   position: fixed;
-  //   top: 50%;
-  //   left: 50%;
-  //   z-index: 99999;
-  //   transform: translate(-50%, -50%);
-  //   background: rgba(255, 255, 255, 1);
-  //   max-width: 100%;
-  //   min-width: 400px;
-  //   max-height: 100%;
-  //
-  //   .rc-modal-header {
-  //     background: #333A44;
-  //     color: #ffffff;
-  //     height: 60px;
-  //     text-align: center;
-  //     line-height: 60px;
-  //   }
-  //
-  //   .rc-modal-body {
-  //   }
-  //
-  //   .rc-modal-footer {
-  //     height: 40px;
-  //     text-align: center;
-  //
-  //     .rc-modal-button {
-  //       width: 100px;
-  //       cursor: pointer;
-  //     }
-  //   }
-  // }
 }
 
 @media (max-width: 320px) {
     .rbc-modal {
         .rbc-modal-dialog {
-            width: 100%;
+            width: 95%;
             margin: 10px 0px 10px 0px;
 
             .rbc-modal-header {
@@ -93,7 +60,7 @@
 @media (min-width: 320px) and (max-width: 720px) {
     .rbc-modal {
         .rbc-modal-dialog {
-            width: 100%;
+            width: 95%;
             margin: 10px 0px 10px 0px;
 
             .rbc-modal-header {

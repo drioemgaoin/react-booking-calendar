@@ -27,7 +27,8 @@ export default class Modal extends React.Component {
       e.preventDefault();
     }
 
-    this.setState({ show: false })
+    this.setState({ show: false });
+    document.body.style.overflow = 'auto';
   }
 
   renderHeader() {

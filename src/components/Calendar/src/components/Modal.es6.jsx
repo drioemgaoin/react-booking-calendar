@@ -27,7 +27,7 @@ export default class Modal extends React.Component {
       e.preventDefault();
     }
 
-    this.setState({ show: false });
+    this.setState({ show: false, booking: undefined });
     document.body.className = document.body.className.replace(/ ?modal-open/, '');
   }
 
@@ -50,18 +50,21 @@ export default class Modal extends React.Component {
   }
 
   render() {
-    const modalCss = this.state.show ? 'rbc-modal in' : 'rbc-modal';
-    return (
-      <div className={modalCss}>
-        {
-          this.state.show && (
-            <div className='rbc-modal-dialog'>
-              {this.renderHeader()}
-              {this.renderBody()}
-            </div>
-          )
-        }
-      </div>
-    )
+    if (this.state.show) {
+      return (
+        <div className='rbc-modal in'>
+          {
+            this.state.show && (
+              <div className='rbc-modal-dialog'>
+                {this.renderHeader()}
+                {this.renderBody()}
+              </div>
+            )
+          }
+        </div>
+      )
+    }
+
+    return null
   }
 }

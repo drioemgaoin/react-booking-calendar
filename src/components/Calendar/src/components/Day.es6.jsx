@@ -3,10 +3,6 @@ import moment from 'moment';
 import Slot from './Slot';
 
 export default class Day extends React.Component {
-  static defaultProps: any = {
-    display: 'block'
-  };
-
   getDate(isStart) {
     const dayName = this.props.date.format('dddd').toLowerCase();
     return isStart
@@ -75,7 +71,7 @@ export default class Day extends React.Component {
 
       } else {
         if (startDate < workStart || startDate >= workEnd) {
-          slots.push(<Slot key={slots.length} />);
+          slots.push(<Slot key={slots.length}>{this.props.children}</Slot>);
         } else {
           const numberOfSlot = endDate.diff(startDate, 'minutes') / this.props.timeSlot;
           slots.push(
@@ -83,7 +79,9 @@ export default class Day extends React.Component {
                   key={slots.length}
                   startDate={startDate}
                   endDate={endDate}
-                  numberOfSlot={numberOfSlot} />
+                  numberOfSlot={numberOfSlot}>
+                  {this.props.children}
+            </Slot>
           );
         }
 
@@ -93,12 +91,14 @@ export default class Day extends React.Component {
     }
 
     return (
-      <div className={'rbc-day ' + this.props.display }>
-        <div>
-          <span>{this.props.date.format('MMM YYYY')}</span>
-          <span>{this.props.date.format('DD')}</span>
-          <span>{this.props.date.format('dddd')}</span>
-        </div>
+      <div className='rbc-day'>
+        {this.props.header ? (<div>{this.props.header}</div>) : (
+          <div>
+            <span>{this.props.date.format('MMM YYYY')}</span>
+            <span>{this.props.date.format('DD')}</span>
+            <span>{this.props.date.format('dddd')}</span>
+          </div>
+        )}
         {slots}
       </div>
     );

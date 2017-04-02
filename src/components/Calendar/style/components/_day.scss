@@ -1,48 +1,15 @@
 .rbc-day {
   margin: auto 0;
   white-space : nowrap;
-  text-align: center;
+  height: 100px;
 
-  div:first-child > span {
-    font-weight: bold;
-    display: block;
+  > div:first-child {
+    padding: 15px;
+
+    > span {
+      display: block;
+      text-align: center;
+      font-weight: bold;
+    }
   }
-}
-
-@media (max-width: 1024px) {
-    .rbc-day {
-        div:first-child > span {
-            margin: 5px 0px 5px 0px;
-            font-size: 18px;
-        }
-    }
-}
-
-@media (min-width: 1024px) {
-    .rbc-day {
-
-        &.block {
-            > * {
-                display: block;
-            }
-
-            div:first-child > span {
-              margin: 10px 0px 20px 0px;
-              font-size: 24px;
-              font-weight: bold;
-            }
-        }
-
-        &.inline {
-            > * {
-                display: inline-block;
-            }
-
-            > :first-child {
-                text-align: center;
-                width: 150px;
-                vertical-align: middle;
-            }
-        }
-    }
 }

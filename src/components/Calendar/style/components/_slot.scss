@@ -1,5 +1,7 @@
 .rbc-slot {
-    height: 100px;
+  padding: 5px;
+    height: 100%;
+    text-align: center;
 
     &.inactive {
         background: lightgrey;
@@ -23,20 +25,31 @@
     &.booked {
       background: #E57373;
     }
-
 }
 
 @media (max-width: 1024px) {
     .rbc-slot {
         min-width: 100%!important;
+
+        & > span:first-child,
+        div:first-child > span {
+            margin: 5px 0px 5px 0px;
+            font-size: 16px;
+            font-weight: bold;
+        }
     }
 }
 
 @media (min-width: 1024px) {
     .rbc-slot {
-        position: relative;
-        display: inline-block;
         text-align: center;
         vertical-align: middle;
+
+        & > span:first-child,
+        div:first-child > span {
+          margin: 10px 0px 20px 0px;
+          font-size: 20px;
+          font-weight: bold;
+        }
     }
 }

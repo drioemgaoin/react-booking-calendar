@@ -44,7 +44,7 @@ class CalendarHeader extends React.Component {
     if (this.props.view.type === 'week') {
       var startOfWeek = this.props.date.current.clone().startOf('isoweek');
       var endOfWeek   = this.props.date.current.clone().endOf('isoweek');
-      return startOfWeek.format('DD MMM') + ' - ' + endOfWeek.format('DD MMM')
+      return startOfWeek.format('DD MMM YYYY') + ' - ' + endOfWeek.format('DD MMM YYYY')
     }
 
     if (this.props.view.type === 'month') {

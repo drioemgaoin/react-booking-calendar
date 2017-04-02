@@ -1,0 +1,38 @@
+@media (max-width: 1024px) {
+  .rbc-month {
+    height: 50px;
+
+    > div {
+      float: left;
+      width: calc(100% / 7);
+
+      &:nth-child(7n + 1) {
+        clear: left;
+      }
+
+      .rbc-slot {
+        > span {
+          line-height: 50px;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .rbc-month {
+    height: 100px;
+
+    .rbc-day {
+      > * {
+          display: inline-block;
+      }
+
+      > :first-child {
+          text-align: center;
+          width: 150px;
+          vertical-align: middle;
+      }
+    }
+  }
+}

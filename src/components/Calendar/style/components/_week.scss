@@ -1,0 +1,26 @@
+@media (max-width: 1024px) {
+  .rbc-week {
+    > div {
+      width: calc(100% / 7);
+      vertical-align: top;
+      display: inline-block;
+      height: 100%;
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .rbc-week {
+    .rbc-day {
+      > * {
+          display: inline-block;
+      }
+
+      > :first-child {
+          text-align: center;
+          width: 150px;
+          vertical-align: middle;
+      }
+    }
+  }
+}

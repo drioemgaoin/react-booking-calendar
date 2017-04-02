@@ -6,6 +6,7 @@ import { required } from './BookingValidations'
 import axios from 'axios';
 import _ from 'lodash';
 import moment from 'moment';
+// import db from '../../db.json';
 
 function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
@@ -44,15 +45,20 @@ class Booking extends React.Component {
 
   componentDidMount() {
     const self = this;
-    axios.get('http://localhost:3004/services')
+    const isDevelopment = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
+    const url = isDevelopment
+      ?  'http://localhost:3004/services'
+      : 'http://localhost:8080/services';
+
+    axios.get(url)
       .then(checkStatus)
       .then(function(response) {
-        self.setState({ services: response.data })
+        self.setState({ services: isDevelopment ? response.data : response.data.services })
       })
       .catch(function(error) {
       });
 
-      document.getElementsByName('firstName')[0].focus();
+    document.getElementsByName('firstName')[0].focus();
   }
 
   selectService(e, id) {

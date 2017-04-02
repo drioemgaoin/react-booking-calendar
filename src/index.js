@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import moment from "moment";
 
-import Booking from "./components/Booking"
+import Booking from "./consumer/Booking"
 import Root from "./components/Calendar/Root"
 
 import Bootstrap from 'bootstrap/dist/css/bootstrap.css';

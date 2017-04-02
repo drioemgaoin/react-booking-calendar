@@ -42,16 +42,14 @@ class Slot extends React.Component {
   }
 
   renderEmptySlot() {
-      const style = { minWidth: this.props.numberOfSlot * 150 + 'px' };
-      return (<div style={style} className={'rbc-slot inactive'}><div></div></div>)
+      return (<div style={this.props.style} className={'rbc-slot inactive'}><div></div></div>)
   }
 
   renderDefaultContentSlot() {
     const bookedClassName = this.props.isBooked ? 'booked' : '';
-    const style = { minWidth: this.props.numberOfSlot * 150 + 'px' };
     return (
       <div className={'rbc-slot ' + bookedClassName}
-          style={style}
+          style={this.props.style}
           colSpan={this.props.numberOfSlot}
           onClick={(e) => !this.props.isBooked && this.handleClick(e)}>
         <span>{this.props.startDate.format('HH:mm')}</span>
@@ -62,10 +60,9 @@ class Slot extends React.Component {
 
   renderCustomContentSlot() {
     const bookedClassName = this.props.isBooked ? 'booked' : '';
-    const style = { minWidth: this.props.numberOfSlot * 150 + 'px' };
     return (
       <div className={'rbc-slot ' + bookedClassName}
-          style={style}
+          style={this.props.style}
           colSpan={this.props.numberOfSlot}
           onClick={(e) => !this.props.isBooked && this.handleClick(e)}>
         {this.props.children}

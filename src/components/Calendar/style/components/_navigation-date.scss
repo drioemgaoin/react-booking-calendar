@@ -12,15 +12,11 @@
 @media (max-width: 320px) {
     .rbc-date {
         text-align: center;
-        color: blue;
+
         > button {
             display: block;
             width: 100%;
             height: 40px;
-        }
-
-        > span {
-            font-size: 16px;
         }
     }
 }
@@ -29,7 +25,7 @@
     .rbc-date {
         > button {
             height: 40px;
-            width: 100px;
+            width: 90px;
 
             &:first-child {
                 float: left;

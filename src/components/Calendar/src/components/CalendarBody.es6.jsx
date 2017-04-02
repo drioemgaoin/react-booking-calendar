@@ -33,7 +33,8 @@ class CalendarBody extends React.Component {
                date={this.props.date.current}
                timeSlice={this.props.timeSlice}
                timeSlot={this.props.timeSlot}
-               bookings={this.props.bookings} />
+               bookings={this.props.bookings}
+               style={{ width: '100%' }}/>
         </div>
       )
     }

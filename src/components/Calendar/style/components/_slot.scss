@@ -1,42 +1,39 @@
 .rbc-slot {
-  padding: 5px;
-    height: 100%;
-    text-align: center;
+  padding: 1px;
+  height: 100%;
+  text-align: center;
 
-    &.inactive {
-        background: lightgrey;
-        outline: 1px solid black;
-    }
+  &.inactive {
+      background: lightgrey;
+      outline: 1px solid black;
+  }
 
-    &:not(.inactive) {
-        box-sizing: border-box;
-        outline: 1px solid black;
-    }
+  &:not(.inactive) {
+      box-sizing: border-box;
+      outline: 1px solid black;
+  }
 
-    &:not(.booked):not(.inactive) {
-        cursor: pointer;
-        background: #81C784;
+  &:not(.booked):not(.inactive) {
+      cursor: pointer;
+      background: #81C784;
 
-        &:hover {
-          background: #4CAF50;
-        }
-    }
+      &:hover {
+        background: #4CAF50;
+      }
+  }
 
-    &.booked {
-      background: #E57373;
-    }
+  &.booked {
+    background: #E57373;
+  }
 }
 
 @media (max-width: 1024px) {
     .rbc-slot {
-        min-width: 100%!important;
-
-        & > span:first-child,
-        div:first-child > span {
-            margin: 5px 0px 5px 0px;
-            font-size: 16px;
-            font-weight: bold;
-        }
+      & > span:first-child
+       {
+        font-size: 15px;
+        font-weight: bold;
+      }
     }
 }
 
@@ -45,10 +42,8 @@
         text-align: center;
         vertical-align: middle;
 
-        & > span:first-child,
-        div:first-child > span {
-          margin: 10px 0px 20px 0px;
-          font-size: 20px;
+        & > span:first-child {
+          font-size: 15px;
           font-weight: bold;
         }
     }

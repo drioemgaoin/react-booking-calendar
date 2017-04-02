@@ -34,7 +34,8 @@ export default class Week extends React.Component {
               timeSlice={this.props.timeSlice}
               timeSlot={this.props.timeSlot}
               bookings={this.props.bookings}
-              header={<span>{date.format('DD')}</span>} />
+              header={<span>{date.format('DD')}</span>}
+              view='portrait' />
           </MediaQuery>
         </div>
       )

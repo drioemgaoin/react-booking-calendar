@@ -16,12 +16,13 @@ export default class Month extends React.Component {
       this.setState({ date: date })
   }
 
-  renderDay(date) {
+  renderDay(date, style) {
     return <Day onClick={this.props.onClick}
                 date={date}
                 timeSlice={this.props.timeSlice}
                 timeSlot={this.props.timeSlot}
-                bookings={this.props.bookings} />;
+                bookings={this.props.bookings}
+                style={style} />;
   }
 
   renderSlot(date) {
@@ -36,7 +37,7 @@ export default class Month extends React.Component {
     const daysInMonth = selectedDate.daysInMonth();
 
     if (this.state.date) {
-      return this.renderDay(this.state.date);
+      return this.renderDay(this.state.date, { width: '100%' });
     } else  {
       var days = [];
       for (var i = 1; i <= daysInMonth; i++) {

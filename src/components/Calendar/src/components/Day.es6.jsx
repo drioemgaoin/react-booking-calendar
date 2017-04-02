@@ -3,11 +3,31 @@ import moment from 'moment';
 import Slot from './Slot';
 
 export default class Day extends React.Component {
+  static defaultProps = {
+      view: 'landscape'
+  }
+
   getDate(isStart) {
     const dayName = this.props.date.format('dddd').toLowerCase();
     return isStart
       ? this.props.timeSlice[dayName].start
       : this.props.timeSlice[dayName].end;
+  }
+
+  getStyle(numberOfColumn, numberOfSlot) {
+    if (this.props.style) {
+      return this.props.style;
+    }
+
+    if (this.props.view === 'landscape') {
+      return {
+        width: 'calc((calc(100% - 100px) / ' + numberOfColumn + ') * ' + numberOfSlot + ')'
+      };
+    }
+
+    return {
+      height: 'calc(80px * ' + numberOfSlot + ')'
+    };
   }
 
   render() {
@@ -31,6 +51,8 @@ export default class Day extends React.Component {
 
       const booking = bookings.find(booking => { return booking.startDate.isSame(startDate); });
 
+      const numberOfColumn = spread /  this.props.timeSlot;
+
       if (booking) {
         const numberOfSlot = booking.endDate.diff(startDate, 'minutes') / this.props.timeSlot;
         slots.push(
@@ -38,20 +60,23 @@ export default class Day extends React.Component {
                 key={startDate}
                 startDate={startDate}
                 endDate={booking.endDate}
-                numberOfSlot={numberOfSlot} />
+                numberOfSlot={numberOfSlot}
+                style={this.getStyle(numberOfColumn, numberOfSlot)} />
         );
 
         if (booking.endDate.isBefore(endDate)) {
+          const numberOfSlot = endDate.diff(booking.endDate, 'minutes') / this.props.timeSlot;
           slots.push(
             <Slot onClick={this.props.onClick}
                   key={slots.length}
                   startDate={booking.endDate}
                   endDate={endDate}
-                  numberOfSlot={endDate.diff(booking.endDate, 'minutes') / this.props.timeSlot} />
+                  numberOfSlot={numberOfSlot}
+                  style={this.getStyle(numberOfColumn, numberOfSlot)} />
           );
         } else if (booking.endDate.isAfter(endDate)) {
           const difference = booking.endDate.diff(endDate, 'minutes') % this.props.timeSlot;
-          const timeSlot = difference / this.props.timeSlot;
+          const numberOfSlot = difference / this.props.timeSlot;
           const nextEndDate = booking.endDate.clone().add(difference, 'm');
 
           if (!nextEndDate.isSame(booking.endDate)) {
@@ -60,7 +85,8 @@ export default class Day extends React.Component {
                     key={slots.length}
                     startDate={booking.endDate}
                     endDate={nextEndDate}
-                    numberOfSlot={timeSlot} />
+                    numberOfSlot={numberOfSlot}
+                    style={this.getStyle(numberOfColumn, numberOfSlot)} />
             );
           }
 
@@ -71,7 +97,12 @@ export default class Day extends React.Component {
 
       } else {
         if (startDate < workStart || startDate >= workEnd) {
-          slots.push(<Slot key={slots.length}>{this.props.children}</Slot>);
+          slots.push(
+            <Slot key={slots.length}
+                  style={this.getStyle(numberOfColumn, 1)}>
+                {this.props.children}
+            </Slot>
+          );
         } else {
           const numberOfSlot = endDate.diff(startDate, 'minutes') / this.props.timeSlot;
           slots.push(
@@ -79,7 +110,8 @@ export default class Day extends React.Component {
                   key={slots.length}
                   startDate={startDate}
                   endDate={endDate}
-                  numberOfSlot={numberOfSlot}>
+                  numberOfSlot={numberOfSlot}
+                  style={this.getStyle(numberOfColumn, numberOfSlot)}>
                   {this.props.children}
             </Slot>
           );

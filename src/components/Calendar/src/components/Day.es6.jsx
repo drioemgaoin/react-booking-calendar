@@ -1,8 +1,16 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import moment from 'moment';
 import Slot from './Slot';
 
-export default class Day extends React.Component {
+let mapStateToProps = (state, ownProps) => {
+  return {
+    ...ownProps,
+    bookings: state.booking.bookings
+  };
+}
+
+class Day extends React.Component {
   static defaultProps = {
       view: 'landscape'
   }
@@ -58,10 +66,8 @@ export default class Day extends React.Component {
         slots.push(
           <Slot onClick={this.props.onClick}
                 key={startDate}
-                startDate={startDate}
-                endDate={booking.endDate}
-                numberOfSlot={numberOfSlot}
-                style={this.getStyle(numberOfColumn, numberOfSlot)} />
+                style={this.getStyle(numberOfColumn, numberOfSlot)}
+                {...booking} />
         );
 
         if (booking.endDate.isBefore(endDate)) {
@@ -69,10 +75,12 @@ export default class Day extends React.Component {
           slots.push(
             <Slot onClick={this.props.onClick}
                   key={slots.length}
-                  startDate={booking.endDate}
-                  endDate={endDate}
-                  numberOfSlot={numberOfSlot}
-                  style={this.getStyle(numberOfColumn, numberOfSlot)} />
+                  style={this.getStyle(numberOfColumn, numberOfSlot)}
+                  {...{
+                    isBooked: false,
+                    startDate: booking.endDate,
+                    endDate: endDate
+                  }} />
           );
         } else if (booking.endDate.isAfter(endDate)) {
           const difference = booking.endDate.diff(endDate, 'minutes') % this.props.timeSlot;
@@ -83,10 +91,12 @@ export default class Day extends React.Component {
             slots.push(
               <Slot onClick={this.props.onClick}
                     key={slots.length}
-                    startDate={booking.endDate}
-                    endDate={nextEndDate}
-                    numberOfSlot={numberOfSlot}
-                    style={this.getStyle(numberOfColumn, numberOfSlot)} />
+                    style={this.getStyle(numberOfColumn, numberOfSlot)}
+                    {...{
+                      isBooked: false,
+                      startDate: booking.endDate,
+                      endDate: nextEndDate
+                    }} />
             );
           }
 
@@ -99,7 +109,7 @@ export default class Day extends React.Component {
         if (startDate < workStart || startDate >= workEnd) {
           slots.push(
             <Slot key={slots.length}
-                  style={this.getStyle(numberOfColumn, 1)}>
+                  style={this.getStyle(numberOfColumn, 1)} >
                 {this.props.children}
             </Slot>
           );
@@ -110,8 +120,12 @@ export default class Day extends React.Component {
                   key={slots.length}
                   startDate={startDate}
                   endDate={endDate}
-                  numberOfSlot={numberOfSlot}
-                  style={this.getStyle(numberOfColumn, numberOfSlot)}>
+                  style={this.getStyle(numberOfColumn, numberOfSlot)}
+                  {...{
+                    isBooked: false,
+                    startDate: startDate,
+                    endDate: endDate
+                  }}>
                   {this.props.children}
             </Slot>
           );
@@ -136,3 +150,5 @@ export default class Day extends React.Component {
     );
   }
 }
+
+export default connect(mapStateToProps, null)(Day)

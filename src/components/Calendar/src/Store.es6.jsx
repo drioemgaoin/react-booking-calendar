@@ -2,13 +2,11 @@ import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import { reducer as reduxFormReducer } from 'redux-form'
 import thunk from 'redux-thunk';
 
-import modalReducer from './reducers/modalReducer';
 import viewReducer from './reducers/viewReducer';
 import dateReducer from './reducers/dateReducer';
 import bookingReducer from './reducers/bookingReducer';
 
 const reducers = combineReducers({
-  modal: modalReducer,
   view: viewReducer,
   date: dateReducer,
   booking: bookingReducer,

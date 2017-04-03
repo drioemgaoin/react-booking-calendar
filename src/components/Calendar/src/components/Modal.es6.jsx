@@ -3,29 +3,26 @@ import React from 'react';
 import BookingContainer from './BookingContainer';
 
 export default class Modal extends React.Component {
+  booking: any;
+
   constructor(props) {
     super(props);
 
     this.state = {
-      show: this.props.show,
-      booking: this.props.booking
+      show: false,
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.state.show !== nextProps.show) {
-      this.setState({ show: nextProps.show })
-    }
+  openModal(booking) {
+      this.booking = booking;
+      this.setState({ show: true });
 
-    if (this.state.booking !== nextProps.booking) {
-      this.setState({ booking: nextProps.booking })
-    }
+      const initial = document.body.className;
+      document.body.className = initial + (initial ? ' ' : '') + 'modal-open';
   }
 
   hideModal(e) {
-    if (e) {
-      e.preventDefault();
-    }
+    this.booking = {};
 
     this.setState({ show: false, booking: undefined });
     document.body.className = document.body.className.replace(/ ?modal-open/, '');
@@ -43,8 +40,8 @@ export default class Modal extends React.Component {
         <BookingContainer body={this.props.body}
                           bookings={this.props.bookings}
                           timeSlice={this.props.timeSlice}
-                          initialValues={this.state.booking}
-                          onClose={(e) => this.hideModal(e)} />
+                          initialValues={this.booking}
+                          onClose={() => this.hideModal()} />
       </div>
     );
   }

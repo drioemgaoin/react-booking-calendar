@@ -25,21 +25,13 @@ class Calendar extends React.Component {
     dispatch(initBookingsAction(this.props.bookings));
   }
 
-  openModal(booking) {
-    this.setState({ showModal: true, booking: booking });
-
-    const initial = document.body.className;
-    document.body.className = initial + (initial ? ' ' : '') + 'modal-open';
-  }
-
   render() {
     return (
         <div className='rbc-calendar'>
-          <Modal body={this.props.body}
-            show={this.state.showModal}
+          <Modal ref='modal'
+            body={this.props.body}
             timeSlice={this.props.timeSlice}
             bookings={this.props.bookings}
-            booking={this.state.booking}
             header='New Booking' />
 
           <CalendarHeader />
@@ -47,7 +39,7 @@ class Calendar extends React.Component {
                         timeSlot={this.props.timeSlot}
                         timeSlice={this.props.timeSlice}
                         isAdministrator={this.props.isAdministrator}
-                        onDayClick={(booking) => this.openModal(booking)} />
+                        onDayClick={(booking) => this.refs.modal.openModal(booking)} />
         </div>
     );
   }

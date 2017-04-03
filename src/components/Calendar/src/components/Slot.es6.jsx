@@ -1,38 +1,41 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
-
+import { Authorization } from '../authorization/Authorization';
 import { openBookingAction } from '../actions/bookingActions';
 
 let mapStateToProps = (state, ownProps) => {
-  const booking = state.booking.bookings.find(booking => {
-    if (booking.startDate && ownProps.startDate)
+  const booking = state.booking.bookings.find(item => {
+    if (item.startDate && ownProps.startDate)
     {
-        return booking.startDate.isSame(ownProps.startDate) ? booking : null;
+        return item.startDate.isSame(ownProps.startDate) ? item : undefined;
     }
 
-    return null;
+    return undefined;
   });
 
   return booking
     ? booking
     : {
-      booking: {
         isBooked: false,
         startDate: ownProps.startDate,
         endDate: ownProps.endDate
-    }
   };
 }
 
+@Authorization()
 class Slot extends React.Component {
   static defaultProps: any = {
     numberOfSlot: 1
   };
 
+  isClickable() {
+      return !this.props.isBooked || this.isPermitted('admin');
+  }
+
   handleClick(e) {
     e.preventDefault();
-    this.props.onClick(this.props.booking);
+    this.props.onClick(this.props);
   }
 
   renderBookingLink() {
@@ -51,7 +54,7 @@ class Slot extends React.Component {
       <div className={'rbc-slot ' + bookedClassName}
           style={this.props.style}
           colSpan={this.props.numberOfSlot}
-          onClick={(e) => !this.props.isBooked && this.handleClick(e)}>
+          onClick={(e) => this.isClickable() && this.handleClick(e)}>
         <span>{this.props.startDate.format('HH:mm')}</span>
         <div>{this.renderBookingLink()}</div>
       </div>
@@ -64,7 +67,7 @@ class Slot extends React.Component {
       <div className={'rbc-slot ' + bookedClassName}
           style={this.props.style}
           colSpan={this.props.numberOfSlot}
-          onClick={(e) => !this.props.isBooked && this.handleClick(e)}>
+          onClick={(e) => this.isClickable() && this.handleClick(e)}>
         {this.props.children}
       </div>
     );

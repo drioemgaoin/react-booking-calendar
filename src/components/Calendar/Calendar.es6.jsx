@@ -46,6 +46,7 @@ class Calendar extends React.Component {
           <CalendarBody bookings={this.props.bookings}
                         timeSlot={this.props.timeSlot}
                         timeSlice={this.props.timeSlice}
+                        isAdministrator={this.props.isAdministrator}
                         onDayClick={(booking) => this.openModal(booking)} />
         </div>
     );

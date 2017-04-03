@@ -27,9 +27,11 @@
   }
 
   .rbc-modal-dialog {
-      position: absolute;
+      position: fixed;
       left: 50%;
       top: 50%;
+      max-height: 100%;
+      overflow-y: auto;
       z-index: 99999;
       transform: translate(-50%, -50%);
       background: rgba(255, 255, 255, 1);
@@ -38,6 +40,11 @@
           background: #333A44;
           color: #ffffff;
           text-align: center;
+      }
+
+      .rbc-modal-body {
+        max-height: 90%;
+        overflow-y: auto;
       }
   }
 }

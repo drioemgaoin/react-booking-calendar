@@ -20,7 +20,7 @@ class Calendar extends React.Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const { dispatch } = this.props;
     dispatch(initBookingsAction(this.props.bookings));
   }

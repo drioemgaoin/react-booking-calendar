@@ -1,12 +1,10 @@
 import {
   ADD_BOOKING,
-  OPEN_BOOKING,
   INIT_BOOKINGS
 } from '../actions/bookingActions';
 
 const INITIAL_STATE = {
   bookings: [],
-  booking: {}
 };
 
 export default function bookingReducer(state = INITIAL_STATE, action) {
@@ -17,13 +15,6 @@ export default function bookingReducer(state = INITIAL_STATE, action) {
       action.data.isBooked = true;
       console.log(action.data);
       return Object.assign({}, state, { bookings: [...state.bookings, action.data] });
-    case OPEN_BOOKING:
-      const initBooking = {
-        startDate: action.data.startDate,
-        endDate: action.data.endDate,
-        isBooked: false
-      };
-      return Object.assign({}, state, { booking: initBooking });
     default:
       return state;
   }

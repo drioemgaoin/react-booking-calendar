@@ -88,6 +88,12 @@ module.exports = {
         inject: 'body'
     }),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin()
+    new webpack.NoEmitOnErrorsPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('development'),
+        'API_URL': JSON.stringify('http://localhost:3004')
+      }
+    })
   ],
 };

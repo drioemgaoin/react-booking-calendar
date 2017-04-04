@@ -6,7 +6,6 @@ import { Modal } from 'react-bootstrap';
 import CalendarHeader from './src/components/CalendarHeader';
 import CalendarBody from './src/components/CalendarBody';
 import BookingContainer from './src/components/BookingContainer';
-// import Modal from './src/components/Modal';
 
 import { initBookingsAction } from './src/actions/bookingActions';
 
@@ -33,7 +32,7 @@ class Calendar extends React.Component {
 
   hideModal(e) {
       if (e) {
-            e.preventDefault();
+        e.preventDefault();
       }
 
       this.setState({ showModal: false, booking: {}});

@@ -22,48 +22,12 @@ class BookingContainer extends React.Component {
     this.props.onClose();
   }
 
-  renderDefaultBooking() {
-    const { handleSubmit, submitting } = this.props;
-    return (
-      <form id='booking' onSubmit={handleSubmit((data) => this.handleSubmit(data))}>
-        <div>
-          <label>Start Date:</label>
-          <div>
-            <Field disabled='true'
-              name='startDate'
-              component='input'
-              type='text'
-              placeholder='Start Date'
-              format={value => value.format('DD/MM/YYYY HH:mm A')} />
-          </div>
-        </div>
-
-        <div>
-          <label>End Date:</label>
-          <div>
-            <Field disabled='true'
-              name='endDate'
-              component='input'
-              type='text'
-              placeholder='End Date'
-              format={value => value.format('DD/MM/YYYY HH:mm A')} />
-          </div>
-        </div>
-
-        <div>
-          <input type='submit' value='Ok' disabled={submitting} />
-          <input type='button' value='Cancel' onClick={this.props.onClose} />
-        </div>
-      </form>
-    )
-  }
-
   renderBooking() {
     const { handleSubmit, submitting } = this.props;
     return (
       <form id='booking' className='container-fuild' onSubmit={handleSubmit((data) => this.handleSubmit(data))}>
         { this.props.body }
-        <div className='text-center'>
+        <div className='modal-footer text-center'>
           <input className='btn btn-primary' type='submit' value='Ok' disabled={submitting} />
           <input className='btn btn-primary' type='button' value='Cancel' onClick={this.props.onClose} />
         </div>
@@ -74,9 +38,9 @@ class BookingContainer extends React.Component {
   render() {
     if (this.props.body) {
       return this.renderBooking();
-    } else {
-      return this.renderDefaultBooking();
     }
+
+    return null;
   }
 }
 

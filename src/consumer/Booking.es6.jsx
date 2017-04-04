@@ -6,6 +6,7 @@ import { required } from './BookingValidations'
 import { getServices } from './BookingApi'
 import _ from 'lodash';
 import moment from 'moment';
+import classnames from 'classnames';
 
 let mapDispatchToProps = (dispatch) => {
   return {
@@ -82,12 +83,22 @@ class Booking extends React.Component {
 
   renderField(fields) {
     const { input, label, type, className, meta: { touched, error, warning } } = fields;
+    const style = classnames(
+      'form-group',
+      'row',
+      {
+        'has-error': touched && error,
+        'has-warning': touched && warning,
+        '': !error
+      }
+    )
+
     return (
-      <div className='form-group row'>
+      <div className={style}>
         <label className='col-sm-2 col-form-label'>{label}</label>
         <div className='col-sm-10'>
           <input {...input} placeholder={label} type={type} className={className} />
-          {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
+          {touched && ((error && <span className='help-block'>{error}</span>) || (warning && <span className='help-block'>{warning}</span>))}
         </div>
       </div>
     );
@@ -103,7 +114,7 @@ class Booking extends React.Component {
         return this.renderPanel(values[0], values[1])
       })
       .value();
-      
+
     const styles = { padding: '10px 0px' }
     return (
       <div style={styles}>
@@ -115,18 +126,18 @@ class Booking extends React.Component {
           validate={required} />
 
         <Field name='lastName'
-            className='form-control'
-            component={this.renderField}
-            type='text'
-            label='Last Name'
-            validate={required} />
+          className='form-control'
+          component={this.renderField}
+          type='text'
+          label='Last Name'
+          validate={required} />
 
         <Field name='email'
-            className='form-control'
-            component={this.renderField}
-            type='email'
-            label='Email'
-            validate={required} />
+          className='form-control'
+          component={this.renderField}
+          type='email'
+          label='Email'
+          validate={required} />
 
         <Field name='phone'
           className='form-control'

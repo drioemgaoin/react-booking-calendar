@@ -68,6 +68,7 @@ class Booking extends React.Component {
         <ListGroup>
         {
           services.map((service) => {
+            console.log(service);
             return <ListGroupItem key={service.id} id={service.id} onClick={(e) => this.selectService(e, service.id)}>
                 <div>
                     {service.name} {this.renderTime(service)} {service.price + '£'}

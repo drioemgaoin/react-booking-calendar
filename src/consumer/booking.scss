@@ -47,3 +47,13 @@
     }
   }
 }
+
+@media (max-width: 720px) {
+  .booking {
+    .nav-tabs {
+      > li {
+        width: 80px;
+      }
+    }
+  }
+}

@@ -43,7 +43,7 @@ class Calendar extends React.Component {
         <div className='rbc-calendar modal-container'>
             <Modal
               show={this.state.showModal}
-              onHide={this.hideModal}
+              onHide={() => this.hideModal()}
               container={this}
               aria-labelledby='booking-modal'>
               <Modal.Header closeButton>

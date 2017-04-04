@@ -31,8 +31,9 @@
     .rbc-date {
         > button {
             height: 40px;
-            width: 90px;
-
+            width: 80px;
+            padding: 6px 8px;
+            
             &:first-child {
                 float: left;
             }
@@ -43,7 +44,7 @@
         }
 
         > span {
-            font-size: 15px;
+            font-size: 14px;
         }
     }
 }

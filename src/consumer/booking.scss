@@ -1,0 +1,49 @@
+.booking {
+  .nav-tabs {
+    border: none;
+
+    > li {
+      text-decoration: none;
+      outline: 0;
+
+      &.active {
+        > a,
+        > a:hover,
+        > a:focus {
+          color: black;
+          background-color: #FECD04;
+          border: 1px solid #ddd;
+          border-bottom-color: transparent;
+        }
+      }
+
+      > a:hover,
+      > a:focus {
+        color: black;
+        background-color: #FECD04;
+        border: 1px solid #ddd;
+        border-bottom-color: transparent;
+      }
+
+      > a {
+        background: #F8DD70;
+        color: black;
+        margin-right: 2px;
+        line-height: 1.428571429;
+        border: 1px solid transparent;
+        border-radius: 4px 4px 0 0;
+      }
+    }
+  }
+
+  button {
+    &.list-group-item {
+      outline: 0;
+
+      &.active {
+        background: #FBEFBC!important;
+        color: black;
+      }
+    }
+  }
+}

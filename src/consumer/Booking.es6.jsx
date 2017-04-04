@@ -8,6 +8,8 @@ import _ from 'lodash';
 import moment from 'moment';
 import classnames from 'classnames';
 
+import booking from './booking.scss';
+
 let mapDispatchToProps = (dispatch) => {
   return {
    changeFieldValue: function(field, value) {
@@ -45,6 +47,7 @@ class Booking extends React.Component {
       e.preventDefault();
 
       this.props.changeFieldValue('service', id);
+      this.setState({ service: id });
 
       const service = this.state.services.find(item => {
           return item.id === id;
@@ -69,7 +72,10 @@ class Booking extends React.Component {
         <ListGroup>
         {
           services.map((service) => {
-            return <ListGroupItem key={service.id} id={service.id} onClick={(e) => this.selectService(e, service.id)}>
+            return <ListGroupItem key={service.id}
+                                  id={service.id}
+                                  onClick={(e) => this.selectService(e, service.id)}
+                                  className={(this.state.service === service.id) ? 'active' : ''}>
                 <div>
                     {service.name} {this.renderTime(service)} {service.price + '£'}
                 </div>
@@ -117,7 +123,7 @@ class Booking extends React.Component {
 
     const styles = { padding: '10px 0px' }
     return (
-      <div style={styles}>
+      <div style={styles} className='booking'>
         <Field name='firstName'
           className='form-control'
           component={this.renderField}

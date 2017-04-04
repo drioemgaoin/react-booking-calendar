@@ -14,7 +14,7 @@ export function getServices() {
   return axios.get(process.env.API_URL + '/services')
     .then(checkStatus)
     .then(function(response) {
-      return isDevelopment ? response.data : response.data.services;
+      return process.env.NODE_ENV === 'development' ? response.data : response.data.services;
     })
     .catch(function(error) {
     });

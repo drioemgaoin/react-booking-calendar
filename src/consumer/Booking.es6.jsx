@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { Field, change } from 'redux-form'
-import { Accordion, Panel, ListGroup, ListGroupItem } from 'react-bootstrap'
+import { Tabs, Tab, ListGroup, ListGroupItem } from 'react-bootstrap'
 import { required } from './BookingValidations'
 import { getServices } from './BookingApi'
 import _ from 'lodash';
@@ -64,11 +64,10 @@ class Booking extends React.Component {
 
   renderPanel(category, services) {
     return (
-      <Panel key={category} header={category + ' Services'} eventKey={category}>
+      <Tab key={category} title={category + ' Services'} eventKey={category}>
         <ListGroup>
         {
           services.map((service) => {
-            console.log(service);
             return <ListGroupItem key={service.id} id={service.id} onClick={(e) => this.selectService(e, service.id)}>
                 <div>
                     {service.name} {this.renderTime(service)} {service.price + '£'}
@@ -77,7 +76,7 @@ class Booking extends React.Component {
           })
         }
         </ListGroup>
-      </Panel>
+      </Tab>
     )
   }
 
@@ -95,14 +94,16 @@ class Booking extends React.Component {
   }
 
   render() {
+    let firstCategory;
     const panels = _.chain(this.state.services)
       .groupBy('category')
       .toPairs()
       .map((values, key) => {
+        firstCategory = firstCategory ? firstCategory : key;
         return this.renderPanel(values[0], values[1])
       })
       .value();
-
+      
     const styles = { padding: '10px 0px' }
     return (
       <div style={styles}>
@@ -138,9 +139,9 @@ class Booking extends React.Component {
           component={this.renderField}
           type='hidden' />
 
-        <Accordion>
+        <Tabs id='services' animation={false} defaultActiveKey={firstCategory}>
             {panels}
-        </Accordion>
+        </Tabs>
       </div>
     );
   }

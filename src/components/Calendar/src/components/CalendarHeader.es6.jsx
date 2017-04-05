@@ -1,33 +1,27 @@
 import React from 'react';
 import { connect } from 'react-redux'
 
-import { dayViewAction, weekViewAction, monthViewAction } from '../actions/viewActions';
-import { nextDateAction, previousDateAction } from '../actions/dateActions';
+import { changeDateAction, changeViewAction } from '../actions/calendarActions';
 
 let mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    handleDayView: () => {
-    	dispatch(dayViewAction());
+    handleChangeView: (view) => {
+      dispatch(changeViewAction(view));
     },
-    handleWeekView: () => {
-    	dispatch(weekViewAction());
+    handlerNextDate: (props) => {
+      dispatch(changeDateAction(props.view, props.date, 1));
     },
-    handleMonthView: () => {
-    	dispatch(monthViewAction());
-    },
-    handlerNextDate: (view) => {
-      dispatch(nextDateAction(view));
-    },
-    handlerPreviousDate: (view) => {
-      dispatch(previousDateAction(view));
+    handlerPreviousDate: (props) => {
+      dispatch(changeDateAction(props.view, props.date, -1));
     }
   }
 }
 
-let mapStateToProps = (state) => {
+let mapStateToProps = (state, ownProps) => {
   return {
-    view: state.view,
-    date: state.date
+    ...ownProps,
+    view: state.calendar.view,
+    date: state.calendar.date
   };
 }
 
@@ -37,18 +31,18 @@ class CalendarHeader extends React.Component {
   }
 
   renderDate() {
-    if (this.props.view.type === 'day') {
-      return this.props.date.current.format('MMMM DD YYYY')
+    if (this.props.view === 'day') {
+      return this.props.date.format('MMMM DD YYYY')
     }
 
-    if (this.props.view.type === 'week') {
-      var startOfWeek = this.props.date.current.clone().startOf('isoweek');
-      var endOfWeek   = this.props.date.current.clone().endOf('isoweek');
+    if (this.props.view === 'week') {
+      var startOfWeek = this.props.date.clone().startOf('isoweek');
+      var endOfWeek   = this.props.date.clone().endOf('isoweek');
       return startOfWeek.format('DD MMM YYYY') + ' - ' + endOfWeek.format('DD MMM YYYY')
     }
 
-    if (this.props.view.type === 'month') {
-      return this.props.date.current.format('MMMM YYYY')
+    if (this.props.view === 'month') {
+      return this.props.date.format('MMMM YYYY')
     }
   }
 
@@ -56,15 +50,15 @@ class CalendarHeader extends React.Component {
     return (
       <div className='rbc-header'>
         <div className='rbc-date'>
-          <button className='btn primary' onClick={() => this.props.handlerPreviousDate(this.props.view.type)}>Previous</button>
+          <button className='btn primary' onClick={() => this.props.handlerPreviousDate(this.props)}>Previous</button>
           <span>{this.renderDate()}</span>
-          <button className='btn primary' onClick={() => this.props.handlerNextDate(this.props.view.type)}>Next</button>
+          <button className='btn primary' onClick={() => this.props.handlerNextDate(this.props)}>Next</button>
         </div>
 
         <div className='rbc-view'>
-          <button className='btn primary' onClick={this.props.handleDayView}>Day</button>
-          <button className='btn primary' onClick={this.props.handleWeekView}>Week</button>
-          <button className='btn primary' onClick={this.props.handleMonthView}>Month</button>
+          <button className='btn primary' onClick={() => this.props.handleChangeView('day')}>Day</button>
+          <button className='btn primary' onClick={() => this.props.handleChangeView('week')}>Week</button>
+          <button className='btn primary' onClick={() => this.props.handleChangeView('month')}>Month</button>
         </div>
       </div>
     );

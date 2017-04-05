@@ -1,17 +1,13 @@
-import viewActions from './src/actions/viewActions';
-import dateActions from './src/actions/dateActions';
-import viewReducer from './src/reducers/viewReducer'
-import dateReducer from './src/reducers/dateReducer'
+import calendarActions from './src/actions/calendarActions';
+import calendarReducer from './src/reducers/calendarReducer'
 import Calendar from './Calendar'
 
 export {
   // Constants
-  viewActions,
-  dateActions,
+  calendarActions,
 
   // Reducer
-  viewReducer,
-  dateReducer,
+  calendarReducer,
 
   // Component
   Calendar

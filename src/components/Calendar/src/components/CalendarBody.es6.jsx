@@ -7,8 +7,8 @@ import Week from "./Week";
 
 let mapStateToProps = (state) => {
   return {
-    view: state.view,
-    date: state.date,
+    view: state.calendar.view,
+    date: state.calendar.date,
     bookings: state.booking.bookings
   };
 }
@@ -19,18 +19,18 @@ class CalendarBody extends React.Component {
   }
 
   getDate(isStart) {
-    const currentDay = this.props.date.current.format('dddd').toLowerCase();
+    const currentDay = this.props.date.format('dddd').toLowerCase();
     return isStart
       ? this.props.timeSlice[currentDay].start
       : this.props.timeSlice[currentDay].end;
   }
 
   renderContent() {
-    if (this.props.view.type === 'day') {
+    if (this.props.view === 'day') {
       return (
         <div>
           <Day onClick={this.props.onDayClick}
-               date={this.props.date.current}
+               date={this.props.date}
                timeSlice={this.props.timeSlice}
                timeSlot={this.props.timeSlot}
                bookings={this.props.bookings}
@@ -39,17 +39,17 @@ class CalendarBody extends React.Component {
       )
     }
 
-    if (this.props.view.type === 'month') {
+    if (this.props.view === 'month') {
       return <Month onClick={this.props.onDayClick}
-                    date={this.props.date.current}
+                    date={this.props.date}
                     timeSlice={this.props.timeSlice}
                     timeSlot={this.props.timeSlot}
                     bookings={this.props.bookings} />
     }
 
-    if (this.props.view.type === 'week') {
+    if (this.props.view === 'week') {
       return <Week onClick={this.props.onDayClick}
-                   date={this.props.date.current}
+                   date={this.props.date}
                    timeSlice={this.props.timeSlice}
                    timeSlot={this.props.timeSlot}
                    bookings={this.props.bookings} />

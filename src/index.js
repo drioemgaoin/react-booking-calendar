@@ -32,7 +32,7 @@ const bookings = [
   }
 ];
 
-const booking = null;//<Booking />
+const booking = <Booking />
 ReactDOM.render(
     <Calendar bookings={bookings}
           timeSlot={timeSlot}

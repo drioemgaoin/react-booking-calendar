@@ -16,11 +16,30 @@ class Day extends React.Component {
       view: 'landscape'
   }
 
-  getDate(isStart) {
+  getWorkTime(isStart) {
     const dayName = this.props.date.format('dddd').toLowerCase();
     return isStart
       ? this.props.timeSlice[dayName].start
       : this.props.timeSlice[dayName].end;
+  }
+
+  createSlot(key, booking, numberOfColumn, numberOfSlot) {
+      const style = this.props.style
+          ? this.props.style
+          : getStyle(this.props.view, numberOfColumn, numberOfSlot);
+
+      return <Slot onClick={this.props.onClick}
+                   key={key}
+                   style={style}
+                   {...booking} />
+  }
+
+  createBooking(start, end) {
+      return {
+        isBooked: false,
+        startDate: start,
+        endDate: end
+      }
   }
 
   render() {
@@ -28,8 +47,10 @@ class Day extends React.Component {
     const end = moment(this.props.date).set({ hour: 20, minute: 0, second: 0 });
     const spread = moment.duration(end.diff(start)).asMinutes();
 
-    const workStart = moment(this.props.date).set({ hour: this.getDate(true), minute: 0, second: 0 })
-    const workEnd = moment(this.props.date).set({ hour: this.getDate(false), minute: 0, second: 0 })
+    const workStart = moment(this.props.date).set({ hour: this.getWorkTime(true), minute: 0, second: 0 })
+    const workEnd = moment(this.props.date).set({ hour: this.getWorkTime(false), minute: 0, second: 0 })
+
+    const numberOfColumn = spread /  this.props.timeSlot;
 
     const bookings = this.props.bookings.filter(booking => {
         return booking.startDate.format('L') === this.props.date.format('L');
@@ -42,83 +63,36 @@ class Day extends React.Component {
       const startDate = currentDate.clone();
       let endDate = startDate.clone().add(this.props.timeSlot, 'm');
 
-      const booking = bookings.find(booking => { return booking.startDate.isSame(startDate); });
-
-      const numberOfColumn = spread /  this.props.timeSlot;
+      let booking = bookings.find(booking => { return booking.startDate.isSame(startDate); });
 
       if (booking) {
+        // Booking slot
         const numberOfSlot = booking.endDate.diff(startDate, 'minutes') / this.props.timeSlot;
-        slots.push(
-          <Slot onClick={this.props.onClick}
-                key={startDate}
-                style={this.props.style ? this.props.style : getStyle(this.props.view, numberOfColumn, numberOfSlot)}
-                {...booking} />
-        );
+        slots.push(this.createSlot(slots.length, booking, numberOfColumn, numberOfSlot));
 
-        if (booking.endDate.isBefore(endDate)) {
+        const difference = booking.endDate.diff(endDate, 'minutes') % this.props.timeSlot;
+        if (difference !== 0) {
+            const numberOfSlot = (booking.endDate.isBefore(endDate)
+                ? endDate.diff(booking.endDate, 'minutes')
+                : difference
+            ) / this.props.timeSlot;
 
-          const numberOfSlot = endDate.diff(booking.endDate, 'minutes') / this.props.timeSlot;
-          slots.push(
-            <Slot onClick={this.props.onClick}
-                  key={slots.length}
-                  style={this.props.style ? this.props.style : getStyle(this.props.view, numberOfColumn, numberOfSlot)}
-                  {...{
-                    isBooked: false,
-                    startDate: booking.endDate,
-                    endDate: endDate
-                  }} />
-          );
+            const newEndDate = booking.endDate.isBefore(endDate)
+                ? endDate
+                : booking.endDate.clone().add(difference, 'm');
+            booking = this.createBooking(booking.endDate, newEndDate);
+            slots.push(this.createSlot(slots.length, booking, numberOfColumn, numberOfSlot));
 
-        } else if (booking.endDate.isAfter(endDate)) {
-
-          const difference = booking.endDate.diff(endDate, 'minutes') % this.props.timeSlot;
-          const numberOfSlot = difference / this.props.timeSlot;
-          const nextEndDate = booking.endDate.clone().add(difference, 'm');
-
-          if (!nextEndDate.isSame(booking.endDate)) {
-            slots.push(
-              <Slot onClick={this.props.onClick}
-                    key={slots.length}
-                    style={this.props.style ? this.props.style : getStyle(this.props.view, numberOfColumn, numberOfSlot)}
-                    {...{
-                      isBooked: false,
-                      startDate: booking.endDate,
-                      endDate: nextEndDate
-                    }} />
-            );
-          }
-
-          endDate = nextEndDate;
+            endDate = newEndDate
         } else {
-          endDate = booking.endDate;
+            endDate = booking.endDate;
         }
 
       } else {
-        if (startDate < workStart || startDate >= workEnd) {
-          slots.push(
-            <Slot key={slots.length}
-                  style={this.props.style ? this.props.style : getStyle(this.props.view, numberOfColumn, 1)} >
-                {this.props.children}
-            </Slot>
-          );
-        } else {
-          const numberOfSlot = endDate.diff(startDate, 'minutes') / this.props.timeSlot;
-          slots.push(
-            <Slot onClick={this.props.onClick}
-                  key={slots.length}
-                  startDate={startDate}
-                  endDate={endDate}
-                  style={this.props.style ? this.props.style : getStyle(this.props.view, numberOfColumn, numberOfSlot)}
-                  {...{
-                    isBooked: false,
-                    startDate: startDate,
-                    endDate: endDate
-                  }}>
-                  {this.props.children}
-            </Slot>
-          );
-        }
-
+        booking = (startDate < workStart || startDate >= workEnd)
+            ? {}                                        // inactive slot
+            : this.createBooking(startDate, endDate);   // unbooked slot
+        slots.push(this.createSlot(slots.length, booking, numberOfColumn, 1));
       }
 
       currentDate = endDate;

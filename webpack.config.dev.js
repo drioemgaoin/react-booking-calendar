@@ -95,5 +95,5 @@ module.exports = {
         'API_URL': JSON.stringify('http://localhost:3004')
       }
     })
-  ],
+  ]
 };

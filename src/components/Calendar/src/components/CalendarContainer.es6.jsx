@@ -9,8 +9,6 @@ import BookingContainer from './BookingContainer';
 
 import { initBookingsAction } from '../actions/bookingActions';
 
-import '../../style/main.scss';
-
 class CalendarContainer extends React.Component {
   constructor(props) {
     super(props);

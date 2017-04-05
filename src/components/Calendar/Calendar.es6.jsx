@@ -4,6 +4,8 @@ import { Provider } from 'react-redux';
 import CalendarContainer from './src/components/CalendarContainer';
 import store from './src/Store';
 
+import './style/main.scss';
+
 export default class Calendar extends React.Component {
   render() {
     return (

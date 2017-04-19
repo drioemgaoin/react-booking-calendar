@@ -17,15 +17,13 @@ const publicUrl = '';
 // Get environment variables to inject into our app.
 const env = getClientEnvironment(publicUrl);
 
-const packageName = 'react-pro-booking-calendar';
-
 module.exports = {
   devtool: 'cheap-module-source-map',
 
   context: path.join(__dirname),
 
   entry: [
-    paths.appIndexJs
+    paths.appLibIndexJs
   ],
 
   resolve: {
@@ -40,7 +38,7 @@ module.exports = {
 
   output: {
       path: paths.appLibrary,
-      filename: packageName + '.js',
+      filename: 'react-pro-booking-calendar.js',
       library: 'ReactProBookingCalendar',
       libraryTarget: 'umd'
   },
@@ -115,7 +113,7 @@ module.exports = {
   },
 
   plugins: [
-    new ExtractTextPlugin(packageName + '.css')
+    new ExtractTextPlugin('react-pro-booking-calendar.css')
   ],
 
   externals: [

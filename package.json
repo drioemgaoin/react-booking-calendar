@@ -1,21 +1,32 @@
 {
-  "name": "react-booking-calendar",
+  "name": "react-pro-booking-calendar",
   "version": "1.0.0",
   "description": "React component for booking appointment",
   "scripts": {
       "start": "node scripts/start.js",
       "build": "node scripts/build-prod.js",
       "build:npm": "rimraf dist && webpack -d --config webpack.npm.config.js --progress",
+      "prepublish": "npm run build:npm",
       "api": "json-server --watch db.json --port 3004"
   },
-  "author": "Romain Diegoni",
+  "author": {
+    "name": "Romain Diegoni",
+    "url": "romaindiegoni.com"
+  },
   "license": "MIT",
   "keywords": [
     "react",
     "reactjs",
     "react-component"
   ],
-  "main": "dist/react-booking-calendar.js",
+  "main": "dist/react-pro-booking-calendar.js",
+  "bugs": {
+    "url": "https://github.com/drioemgaoin/react-booking-calendar/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/drioemgaoin/react-booking-calendar.git"
+  },
   "devDependencies": {
     "autoprefixer": "^6.7.7",
     "babel-core": "6.24.1",

@@ -7,8 +7,6 @@ const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeM
 
 const path = require('path');
 
-const combineLoaders = require('webpack-combine-loaders');
-
 const paths = require('./config/paths');
 const getClientEnvironment = require('./config/env');
 

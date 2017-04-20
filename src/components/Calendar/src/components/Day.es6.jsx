@@ -18,9 +18,12 @@ class Day extends React.Component {
 
   getWorkTime(isStart) {
     const dayName = this.props.date.format('dddd').toLowerCase();
-    return isStart
-      ? this.props.timeSlice[dayName].start
-      : this.props.timeSlice[dayName].end;
+    if (this.props.timeSlice[dayName]) {
+        return isStart
+          ? this.props.timeSlice[dayName].start
+          : this.props.timeSlice[dayName].end;
+    }
+     return isStart ? 8 : 20;
   }
 
   createSlot(key, booking, numberOfColumn, numberOfSlot) {

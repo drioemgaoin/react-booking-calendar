@@ -7,6 +7,12 @@ import store from './src/Store';
 import './style/main.scss';
 
 export default class Calendar extends React.Component {
+  static defaultProps = {
+      bookings: [],
+      timeSlice: [],
+      timeSlot: 30
+  };
+
   render() {
     return (
       <Provider store={store}>

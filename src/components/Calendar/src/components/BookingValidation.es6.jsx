@@ -3,7 +3,11 @@ import moment from 'moment';
 function getEndOfWork(date, props) {
   const currentDay = date.format('dddd').toLowerCase();
   let endDate = moment(date.format('YYYY-MM-DD'));
-  return endDate.set('hour', props.timeSlice[currentDay].end);
+  if (props.timeSlice[currentDay]) {
+    return endDate.set('hour', props.timeSlice[currentDay].end);
+  }
+
+  return endDate;
 }
 
 export const required = value => value ? undefined : 'Required'

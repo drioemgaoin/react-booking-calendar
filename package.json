@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "React component for booking appointment",
   "scripts": {
-      "start": "node scripts/start.js",
-      "build": "node scripts/build-prod.js",
-      "build:npm": "rimraf dist && webpack -d --config webpack.npm.config.js --progress",
-      "prepublish": "npm run build:npm",
-      "api": "json-server --watch db.json --port 3004"
+    "start": "node scripts/start.js",
+    "build": "node scripts/build-prod.js",
+    "build:npm": "rimraf dist && webpack -d --config webpack.npm.config.js --progress",
+    "prepublish": "npm run build:npm",
+    "api": "json-server --watch db.json --port 3004"
   },
   "author": {
     "name": "Romain Diegoni",
@@ -68,11 +68,6 @@
     "postcss-loader": "^1.3.3",
     "prop-types": "15.5.6",
     "react-dev-utils": "^0.5.2",
-    "react-responsive": "1.2.7",
-    "react-router-dom": "4.1.1",
-    "redux": "^3.6.0",
-    "redux-form": "6.6.0",
-    "redux-thunk": "2.2.0",
     "resolve-url-loader": "2.0.2",
     "rimraf": "^2.6.1",
     "sass-loader": "^6.0.3",
@@ -97,14 +92,13 @@
     "react-bootstrap": "0.30.8",
     "react-dom": "^15.5.3",
     "react-redux": "^5.0.3",
-    "redux": "^3.6.0"
-  },
-  "peerDependencies": {
-    "react": "^15.4.2",
-    "react-dom": "15.4.2",
-    "react-redux": "5.0.3",
+    "react-responsive": "1.2.7",
     "redux": "^3.6.0",
     "redux-form": "6.6.0",
     "redux-thunk": "2.2.0"
+  },
+  "peerDependencies": {
+    "react": ">=0.14.0",
+    "react-dom": ">=0.14.0"
   }
 }

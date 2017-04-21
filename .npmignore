@@ -1,7 +1,6 @@
-.git
-examples
-node_modules
-.npmignore
-index.html
-*.tgz
-webpack*
+# Ignore all
+*
+
+# Except
+!dist/**/*
+!src/**/*

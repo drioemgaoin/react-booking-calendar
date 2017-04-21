@@ -41,3 +41,6 @@ lib
 
 # Ignore output directory
 public
+
+# Ignore output directory
+dist

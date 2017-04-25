@@ -1,14 +1,14 @@
 import React from 'react';
 import moment from 'moment';
 import { connect } from 'react-redux';
-import Container from 'react-responsive-container';
+import Container from 'react-responsive-ux-container';
 
 import CalendarHeader from './CalendarHeader';
 import CalendarBody from './CalendarBody';
 import BookingContainer from './BookingContainer';
 
 import { initBookingsAction } from '../actions/bookingActions';
-import '../../../../../node_modules/react-responsive-container/dist/react-responsive-container.css';
+import '../../../../../node_modules/react-responsive-ux-container/dist/react-responsive-container.css';
 
 class CalendarContainer extends React.Component {
   constructor(props) {

@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import moment from 'moment';
 
-import Booking from './consumer/Booking';
 import Calendar from './components/Calendar/Calendar';
 
 import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
@@ -32,12 +31,10 @@ const bookings = [
   }
 ];
 
-const booking = <Booking />
 ReactDOM.render(
     <Calendar bookings={bookings}
           timeSlot={timeSlot}
           timeSlice={timeSlice}>
-          {booking}
     </Calendar>,
   document.getElementById('root')
 );

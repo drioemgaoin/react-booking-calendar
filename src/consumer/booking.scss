@@ -5,6 +5,8 @@
     > li {
       text-decoration: none;
       outline: 0;
+      display: inline-block;
+      list-style: none;
 
       &.active {
         > a,

@@ -94,7 +94,7 @@
     "react-dom": "^15.5.3",
     "react-redux": "^5.0.3",
     "react-responsive": "1.2.7",
-    "react-responsive-container": "^1.0.0",
+    "react-responsive-container": "1.0.0",
     "redux": "^3.6.0",
     "redux-form": "6.6.0",
     "redux-thunk": "2.2.0"

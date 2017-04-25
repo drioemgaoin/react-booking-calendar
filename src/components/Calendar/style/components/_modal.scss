@@ -38,10 +38,32 @@
     }
 }
 
-@media (min-width: 320px) {
+@media (max-width: 320px) {
+  .Container__Modal__Dialog {
+      width: 90%;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 1024px) {
   .Container__Modal {
+    &__Dialog {
+        width: 90%;
+    }
+
     .Content {
-        width: 360px;
+        min-width: 320px;
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .Container__Modal {
+    &__Dialog {
+        width: auto;
+    }
+
+    .Content {
+        min-width: 320px;
     }
   }
 }

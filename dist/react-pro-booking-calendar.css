@@ -1,3 +1,70 @@
+.Container__Panel {
+  position: absolute;
+  overflow-y: scroll;
+  outline-style: solid;
+  outline-width: thin;
+  outline-color: #e5e5e5; }
+
+.Container__Panel--Right {
+  right: 0px;
+  top: 0px; }
+
+.Container__Panel--Left {
+  left: 0px;
+  top: 0px; }
+
+.Container__Panel--Top {
+  left: 0px;
+  top: 0px; }
+
+.Container__Panel--Bottom {
+  left: 0px;
+  bottom: 0px; }
+
+.Container__Modal:before {
+  content: '';
+  display: block;
+  background: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10; }
+
+.Container__Modal__Dialog {
+  overflow-y: scroll;
+  background: #fefefe;
+  border-radius: 4px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 11;
+  height: auto;
+  max-height: 100%; }
+
+@media (max-width: 320px) {
+  .Container__Panel {
+    width: 100%; }
+  .Container__Panel--Right,
+  .Container__Panel--Left {
+    height: 100%; }
+  .Container__Panel--Top,
+  .Container__Panel--Bottom {
+    height: auto; } }
+
+@media (min-width: 320px) {
+  .Container__Panel--Right,
+  .Container__Panel--Left {
+    height: 100%;
+    width: auto; }
+  .Container__Panel--Top,
+  .Container__Panel--Bottom {
+    width: 100%;
+    height: auto; } }
+
+/*# sourceMappingURL=react-responsive-container.css.map*/
 /**
  * Basic typography style for copy text
  */
@@ -53,84 +120,35 @@ a {
   margin: auto;
   padding: 10px; }
 
-.modal-open {
-  overflow: hidden;
-  position: absolute;
-  width: 100%;
-  height: 100%; }
+.Container__Modal .Content__Header {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px; }
 
-.rbc-modal {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 20;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  -webkit-transition: opacity 400ms ease-in;
-  -moz-transition: opacity 400ms ease-in;
-  transition: opacity 400ms ease-in;
-  pointer-events: none; }
-  .rbc-modal.in {
-    opacity: 1;
-    background: rgba(149, 165, 169, 0.5);
-    pointer-events: auto; }
-  .rbc-modal .rbc-modal-dialog {
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    max-height: 100%;
-    overflow-y: auto;
-    z-index: 99999;
-    transform: translate(-50%, -50%);
-    background: white; }
-    .rbc-modal .rbc-modal-dialog .rbc-modal-header {
-      background: #333A44;
-      color: #ffffff;
-      text-align: center; }
-    .rbc-modal .rbc-modal-dialog .rbc-modal-body {
-      max-height: 90%;
-      overflow-y: auto; }
+.Content__Header {
+  height: 35px;
+  line-height: 35px;
+  background: #4DB6AC;
+  border-top: 1px solid #4DB6AC;
+  padding: 5px; }
+  .Content__Header > button {
+    float: right;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1;
+    color: #00796B;
+    background: #4DB6AC;
+    border: 0;
+    outline: 0; }
+    .Content__Header > button:hover {
+      cursor: pointer;
+      color: #004D40; }
 
-@media (max-width: 320px) {
-  .rbc-modal .rbc-modal-dialog {
-    width: 95%;
-    margin: 10px 0px 10px 0px; }
-    .rbc-modal .rbc-modal-dialog .rbc-modal-header {
-      height: 40px;
-      line-height: 40px; }
-    .rbc-modal .rbc-modal-dialog .rbc-modal-body {
-      padding: 10px; }
-      .rbc-modal .rbc-modal-dialog .rbc-modal-body input:not(:first-child) {
-        margin-top: 10px; } }
+.Content__Body {
+  padding: 15px; }
 
-@media (min-width: 320px) and (max-width: 720px) {
-  .rbc-modal .rbc-modal-dialog {
-    width: 95%;
-    margin: 10px 0px 10px 0px; }
-    .rbc-modal .rbc-modal-dialog .rbc-modal-header {
-      height: 40px;
-      line-height: 40px; }
-    .rbc-modal .rbc-modal-dialog .rbc-modal-body {
-      padding: 10px; }
-      .rbc-modal .rbc-modal-dialog .rbc-modal-body input:not(:first-child) {
-        margin-left: 10px; } }
-
-@media (min-width: 720px) {
-  .rbc-modal .rbc-modal-dialog {
-    width: 500px;
-    margin: 10px 0px 10px 0px; }
-    .rbc-modal .rbc-modal-dialog .rbc-modal-header {
-      height: 60px;
-      line-height: 60px; }
-    .rbc-modal .rbc-modal-dialog .rbc-modal-body {
-      padding: 10px; }
-      .rbc-modal .rbc-modal-dialog .rbc-modal-body input {
-        display: inline-block; }
-        .rbc-modal .rbc-modal-dialog .rbc-modal-body input:not(:first-child) {
-          margin-left: 10px; } }
+@media (min-width: 320px) {
+  .Container__Modal .Content {
+    width: 360px; } }
 
 .rbc-slot {
   padding: 1px;

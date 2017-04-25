@@ -1,13 +1,14 @@
 import React from 'react';
 import moment from 'moment';
 import { connect } from 'react-redux';
-import { Modal } from 'react-bootstrap';
+import Container from 'react-responsive-container';
 
 import CalendarHeader from './CalendarHeader';
 import CalendarBody from './CalendarBody';
 import BookingContainer from './BookingContainer';
 
 import { initBookingsAction } from '../actions/bookingActions';
+import '../../../../../node_modules/react-responsive-container/dist/react-responsive-container.css';
 
 class CalendarContainer extends React.Component {
   constructor(props) {
@@ -39,22 +40,21 @@ class CalendarContainer extends React.Component {
   render() {
     return (
         <div className='rbc-calendar modal-container'>
-            <Modal
-              show={this.state.showModal}
-              onHide={() => this.hideModal()}
-              container={this}
-              aria-labelledby='booking-modal'>
-              <Modal.Header closeButton>
-                <Modal.Title id='booking-modal'>New Booking</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>
-                  <BookingContainer body={this.props.body}
-                                    bookings={this.props.bookings}
-                                    timeSlice={this.props.timeSlice}
-                                    initialValues={this.state.booking}
-                                    onClose={(e) => this.hideModal(e)} />
-              </Modal.Body>
-            </Modal>
+            <Container type='modal' visible={this.state.showModal}>
+                <div className='Content'>
+                    <div className='Content__Header'>
+                        New Booking
+                        <button type="button" onClick={(e) => this.state.showModal ? this.hideModal(e) : this.showModal(booking)}>×</button>
+                    </div>
+                    <div className='Content__Body'>
+                        <BookingContainer body={this.props.body}
+                                          bookings={this.props.bookings}
+                                          timeSlice={this.props.timeSlice}
+                                          initialValues={this.state.booking}
+                                          onClose={(e) => this.hideModal(e)} />
+                    </div>
+                  </div>
+            </Container>
 
           <CalendarHeader />
           <CalendarBody bookings={this.props.bookings}

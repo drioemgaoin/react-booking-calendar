@@ -7,7 +7,8 @@
     "build": "node scripts/build-prod.js",
     "build:npm": "rimraf dist && webpack -d --config webpack.npm.config.js --progress",
     "prepublish": "npm run build:npm",
-    "api": "json-server --watch db.json --port 3004"
+    "api": "json-server --watch db.json --port 3004",
+    "heroku-postbuild": "npm run build"
   },
   "author": {
     "name": "Romain Diegoni",
@@ -93,6 +94,7 @@
     "react-dom": "^15.5.3",
     "react-redux": "^5.0.3",
     "react-responsive": "1.2.7",
+    "react-responsive-container": "^1.0.0",
     "redux": "^3.6.0",
     "redux-form": "6.6.0",
     "redux-thunk": "2.2.0"

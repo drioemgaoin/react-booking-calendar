@@ -1,4 +1,4 @@
-# react-calendar
+# react-booking-calendar
 
 __COMPONENT DESCRIPTION GOES HERE__
 

@@ -34,6 +34,7 @@ class Day extends React.Component {
       return <Slot onClick={this.props.onClick}
                    key={key}
                    style={style}
+                   canViewBooking={this.props.canViewBooking}
                    {...booking} />
   }
 

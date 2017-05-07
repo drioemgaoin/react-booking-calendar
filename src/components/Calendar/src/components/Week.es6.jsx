@@ -23,6 +23,7 @@ export default class Week extends React.Component {
             <Day onClick={this.props.onClick}
               key={startOfWeek}
               date={date}
+              canViewBooking={this.props.canViewBooking}
               timeSlice={this.props.timeSlice}
               timeSlot={this.props.timeSlot}
               bookings={this.props.bookings} />
@@ -31,6 +32,7 @@ export default class Week extends React.Component {
             <Day onClick={this.props.onClick}
               key={startOfWeek}
               date={date}
+              canViewBooking={this.props.canViewBooking}
               timeSlice={this.props.timeSlice}
               timeSlot={this.props.timeSlot}
               bookings={this.props.bookings}

@@ -19,6 +19,7 @@ export default class Month extends React.Component {
   renderDay(date, style) {
     return <Day onClick={this.props.onClick}
                 date={date}
+                canViewBooking={this.props.canViewBooking}
                 timeSlice={this.props.timeSlice}
                 timeSlot={this.props.timeSlot}
                 bookings={this.props.bookings}
@@ -27,6 +28,7 @@ export default class Month extends React.Component {
 
   renderSlot(date) {
     return <Slot startDate={date}
+                 canViewBooking={this.props.canViewBooking}
                  onClick={(e) => this.handleClick(e, date)}>
              <span>{this.props.date.format('DD')}</span>
            </Slot>;

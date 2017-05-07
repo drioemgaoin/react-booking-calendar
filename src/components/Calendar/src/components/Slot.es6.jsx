@@ -1,12 +1,10 @@
 import React from 'react';
 import moment from 'moment';
-import { Authorization } from '../authorization/Authorization';
 import _ from 'lodash';
 
-@Authorization()
 export default class Slot extends React.Component {
   isClickable() {
-      return !this.props.isBooked || this.isPermitted('admin');
+      return !this.props.isBooked || this.props.canViewBooking;
   }
 
   handleClick(e) {
@@ -28,10 +26,11 @@ export default class Slot extends React.Component {
 
   renderDefaultContentSlot() {
     const bookedClassName = this.props.isBooked ? 'booked' : '';
+    const adminClassName = !this.isClickable() ? 'not-clickable' : '';
     return (
-      <div className={'rbc-slot ' + bookedClassName}
+      <div className={'rbc-slot ' + bookedClassName + ' ' + adminClassName}
           style={this.props.style}
-          onClick={(e) => this.isClickable() && this.handleClick(e)}>
+          onClick={(e) => this.handleClick(e)}>
         <span>{this.props.startDate.format('HH:mm')}</span>
         <div>{this.renderBookingLink()}</div>
       </div>
@@ -40,10 +39,11 @@ export default class Slot extends React.Component {
 
   renderCustomContentSlot() {
     const bookedClassName = this.props.isBooked ? 'booked' : '';
+    const adminClassName = !this.isClickable() ? 'not-clickable' : '';
     return (
-      <div className={'rbc-slot ' + bookedClassName}
+      <div className={'rbc-slot ' + bookedClassName + ' ' + adminClassName}
           style={this.props.style}
-          onClick={(e) => this.isClickable() && this.handleClick(e)}>
+          onClick={(e) => this.handleClick(e)}>
         {this.props.children}
       </div>
     );

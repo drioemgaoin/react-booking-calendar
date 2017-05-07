@@ -78,7 +78,8 @@ Booking = connect()(Booking);
 ReactDOM.render(
     <Calendar bookings={bookings}
           timeSlot={timeSlot}
-          timeSlice={timeSlice}>
+          timeSlice={timeSlice}
+          canViewBooking={true}>
       <Booking />
     </Calendar>,
   document.getElementById('root')

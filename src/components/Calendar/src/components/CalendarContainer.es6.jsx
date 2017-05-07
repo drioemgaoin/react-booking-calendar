@@ -5,7 +5,6 @@ import Container from 'react-responsive-ux-container';
 
 import CalendarHeader from './CalendarHeader';
 import CalendarBody from './CalendarBody';
-import BookingContainer from './BookingContainer';
 
 import { initBookingsAction, addBookingAction } from '../actions/bookingActions';
 import '../../../../../node_modules/react-responsive-ux-container/dist/react-responsive-container.css';
@@ -64,7 +63,7 @@ class CalendarContainer extends React.Component {
           <CalendarBody bookings={this.props.bookings}
                         timeSlot={this.props.timeSlot}
                         timeSlice={this.props.timeSlice}
-                        isAdministrator={this.props.isAdministrator}
+                        canViewBooking={this.props.canViewBooking}
                         onDayClick={(booking) => this.openModal(booking)} />
         </div>
     );

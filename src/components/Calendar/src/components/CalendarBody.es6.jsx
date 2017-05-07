@@ -31,6 +31,7 @@ class CalendarBody extends React.Component {
         <div>
           <Day onClick={this.props.onDayClick}
                date={this.props.date}
+               canOpenBookedSlot={this.props.canViewBooking}
                timeSlice={this.props.timeSlice}
                timeSlot={this.props.timeSlot}
                bookings={this.props.bookings}
@@ -42,6 +43,7 @@ class CalendarBody extends React.Component {
     if (this.props.view === 'month') {
       return <Month onClick={this.props.onDayClick}
                     date={this.props.date}
+                    canViewBooking={this.props.canViewBooking}
                     timeSlice={this.props.timeSlice}
                     timeSlot={this.props.timeSlot}
                     bookings={this.props.bookings} />
@@ -50,6 +52,7 @@ class CalendarBody extends React.Component {
     if (this.props.view === 'week') {
       return <Week onClick={this.props.onDayClick}
                    date={this.props.date}
+                   canViewBooking={this.props.canViewBooking}
                    timeSlice={this.props.timeSlice}
                    timeSlot={this.props.timeSlot}
                    bookings={this.props.bookings} />

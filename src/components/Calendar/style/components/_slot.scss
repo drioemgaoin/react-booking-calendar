@@ -2,6 +2,7 @@
   padding: 1px;
   height: 100%;
   text-align: center;
+  cursor: pointer;
 
   &.inactive {
       background: lightgrey;
@@ -13,8 +14,12 @@
       outline: 1px solid black;
   }
 
+  &.not-clickable {
+    pointer-events: none;
+    cursor: none;
+  }
+
   &:not(.booked):not(.inactive) {
-      cursor: pointer;
       background: #81C784;
 
       &:hover {
@@ -24,6 +29,10 @@
 
   &.booked {
     background: #E57373;
+
+    &:not(.not-clickable):hover {
+      background: #EF5350;
+    }
   }
 }
 

@@ -19,7 +19,8 @@ export default class Calendar extends React.Component {
         <CalendarContainer bookings={this.props.bookings}
                   timeSlot={this.props.timeSlot}
                   timeSlice={this.props.timeSlice}
-                  body={this.props.children} />
+                  body={this.props.children}
+                  canViewBooking={this.props.canViewBooking} />
       </Provider>
     );
   }

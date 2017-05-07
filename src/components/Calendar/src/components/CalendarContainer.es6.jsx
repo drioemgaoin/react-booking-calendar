@@ -7,7 +7,7 @@ import CalendarHeader from './CalendarHeader';
 import CalendarBody from './CalendarBody';
 import BookingContainer from './BookingContainer';
 
-import { initBookingsAction } from '../actions/bookingActions';
+import { initBookingsAction, addBookingAction } from '../actions/bookingActions';
 import '../../../../../node_modules/react-responsive-ux-container/dist/react-responsive-container.css';
 
 class CalendarContainer extends React.Component {
@@ -47,11 +47,15 @@ class CalendarContainer extends React.Component {
                         <button type="button" onClick={(e) => this.state.showModal ? this.hideModal(e) : this.showModal(booking)}>×</button>
                     </div>
                     <div className='Content__Body'>
-                        <BookingContainer body={this.props.body}
-                                          bookings={this.props.bookings}
-                                          timeSlice={this.props.timeSlice}
-                                          initialValues={this.state.booking}
-                                          onClose={(e) => this.hideModal(e)} />
+                        {
+                          React.createElement(
+                            this.props.body.type,
+                            Object.assign(...this.props, {
+                              booking: this.state.booking,
+                              onClose: this.hideModal.bind(this)
+                            })
+                          )
+                        }
                     </div>
                   </div>
             </Container>

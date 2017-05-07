@@ -1,3 +1,7 @@
 import Calendar from './components/Calendar/Calendar';
+import { addBookingAction } from './components/Calendar/src/actions/bookingActions';
 
-export default Calendar;
+module.exports = {
+    Calendar,
+    addBookingAction
+};

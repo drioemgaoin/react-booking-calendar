@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { connect } from 'react-redux';
 import moment from 'moment';
 
-import Calendar from './components/Calendar/Calendar';
+import {Calendar, addBookingAction} from './index';
 
 import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
 
@@ -31,10 +32,54 @@ const bookings = [
   }
 ];
 
+class Booking extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = props.booking;
+  }
+
+  handleChange(event) {
+    this.setState({ [event.target.name]: event.target.value});
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+
+    const { dispatch } = this.props;
+    dispatch(addBookingAction(this.state));
+
+    this.props.onClose();
+  }
+
+  render() {
+    return (
+      <form id='booking' className='container-fuild' onSubmit={event => this.handleSubmit(event)}>
+        <div className='form-group'>
+            <label htmlFor='firstname' className='control-label'>First Name</label>
+            <input ref='firstname'
+              className='form-control'
+              type='text'
+              name='firstname'
+              placeholder='First Name'
+              value={this.state.firstname}
+              onChange={this.handleChange.bind(this)} />
+        </div>
+        <div className='modal-footer text-center'>
+          <input className='btn btn-primary' type='submit' value='Ok' />
+          <input className='btn btn-primary' type='button' value='Cancel' onClick={(e) => this.props.onClose(e)} />
+        </div>
+      </form>
+    );
+  }
+}
+Booking = connect()(Booking);
+
 ReactDOM.render(
     <Calendar bookings={bookings}
           timeSlot={timeSlot}
           timeSlice={timeSlice}>
+      <Booking />
     </Calendar>,
   document.getElementById('root')
 );

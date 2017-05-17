@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import moment from 'moment';
 
 import Month from "./Month";
 import Day from "./Day";
@@ -9,7 +10,12 @@ let mapStateToProps = (state) => {
   return {
     view: state.calendar.view,
     date: state.calendar.date,
-    bookings: state.booking.bookings
+    bookings: state.booking.bookings.map(x => {
+      x.startDate = moment.isMoment(x.startDate) ? x.startDate : moment(x.startDate);
+      x.endDate = moment.isMoment(x.endDate) ? x.endDate : moment(x.endDate);
+      x.isBooked = true;
+      return x;
+    })
   };
 }
 

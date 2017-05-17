@@ -1,3 +1,5 @@
+Don't use it until the version 1.1.0
+
 [Live Demo](https://react-booking-calendar.herokuapp.com/)
 
 ___

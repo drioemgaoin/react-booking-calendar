@@ -80,7 +80,7 @@ ReactDOM.render(
           timeSlot={timeSlot}
           timeSlice={timeSlice}
           canViewBooking={true}>
-      <Booking />
+      <Booking services={[{id: 1, name: 'Pouet'}]}/>
     </Calendar>,
   document.getElementById('root')
 );

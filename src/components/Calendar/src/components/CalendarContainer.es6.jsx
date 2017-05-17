@@ -49,7 +49,8 @@ class CalendarContainer extends React.Component {
                         {
                           React.createElement(
                             this.props.body.type,
-                            Object.assign(...this.props, {
+                            Object.assign({}, {
+                              ...this.props.body.props,
                               booking: this.state.booking,
                               onClose: this.hideModal.bind(this)
                             })

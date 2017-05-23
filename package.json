@@ -1,6 +1,6 @@
 {
   "name": "react-pro-booking-calendar",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "React component for booking appointment",
   "scripts": {
     "start": "node scripts/start.js",
@@ -87,6 +87,7 @@
     "child_process": "^1.0.2",
     "extract-text-webpack-plugin": "1.0.1",
     "json-server": "0.9.6",
+    "lodash": "4.17.4",
     "moment": "2.18.1",
     "node-sass": "^4.5.2",
     "react": "^15.5.3",

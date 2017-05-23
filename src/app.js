@@ -9,15 +9,19 @@ import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
 
 const timeSlot = 30;
 
-const timeSlice = {
-  monday: { start: 9, end: 16 },
-  tuesday: { start: 10, end: 15 },
-  wednesday: { start: 9, end: 16 },
-  thursday: { start: 9, end: 16 },
-  friday: { start: 9, end: 18 },
-  saturday: { start: 10, end: 19 },
-  sunday: { start: 9, end: 14 }
-};
+function getTime(hour, minute) {
+  return moment().startOf('day').hour(hour).minute(minute).format('HH:mm');
+}
+
+const timeSlice = [
+  { day: 'Monday', start: getTime(10, 30), end: getTime(16, 30) },
+  { day: 'Tuesday', start: getTime(9, 0), end: getTime(16, 0) },
+  { day: 'Wednesday', start: getTime(9, 30), end: getTime(17, 0) },
+  { day: 'Thursday', start: getTime(10, 30), end: getTime(16, 30) },
+  { day: 'Friday', start: getTime(8, 30), end: getTime(17, 30) },
+  { day: 'Saturday', start: getTime(10, 30), end: getTime(16, 30) },
+  { day: 'Sunday', start: getTime(10, 45), end: getTime(15, 30) }
+];
 
 const bookings = [
   {

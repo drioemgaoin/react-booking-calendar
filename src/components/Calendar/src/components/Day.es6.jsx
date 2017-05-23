@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 import Slot from './Slot';
 import { getStyle } from '../Style';
+import {find} from 'lodash';
 
 let mapStateToProps = (state, ownProps) => {
   return {
@@ -18,12 +19,13 @@ class Day extends React.Component {
 
   getWorkTime(isStart) {
     const dayName = this.props.date.format('dddd').toLowerCase();
-    if (this.props.timeSlice[dayName]) {
-        return isStart
-          ? this.props.timeSlice[dayName].start
-          : this.props.timeSlice[dayName].end;
+    const time = find(this.props.timeSlice, x => x.day.toLowerCase() === dayName.toLowerCase());
+    if (time) {
+        const values = (isStart ? time.start : time.end).split(':');
+        return moment(this.props.date).set({ hour: +values[0], minute: +values[1], second: 0 });
     }
-     return isStart ? 8 : 20;
+
+    return moment(this.props.date).set({ hour: (isStart ? 8 : 20), minute: 0, second: 0 });
   }
 
   createSlot(key, booking, numberOfColumn, numberOfSlot) {
@@ -51,8 +53,8 @@ class Day extends React.Component {
     const end = moment(this.props.date).set({ hour: 20, minute: 0, second: 0 });
     const spread = moment.duration(end.diff(start)).asMinutes();
 
-    const workStart = moment(this.props.date).set({ hour: this.getWorkTime(true), minute: 0, second: 0 })
-    const workEnd = moment(this.props.date).set({ hour: this.getWorkTime(false), minute: 0, second: 0 })
+    const workStart = this.getWorkTime(true);
+    const workEnd = this.getWorkTime(false);
 
     const numberOfColumn = spread /  this.props.timeSlot;
 

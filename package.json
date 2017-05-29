@@ -1,6 +1,6 @@
 {
   "name": "react-pro-booking-calendar",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "React component for booking appointment",
   "scripts": {
     "start": "node scripts/start.js",

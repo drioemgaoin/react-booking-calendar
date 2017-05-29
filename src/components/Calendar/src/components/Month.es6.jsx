@@ -1,6 +1,8 @@
 import React from 'react';
 import moment from 'moment';
 import MediaQuery from 'react-responsive';
+import {find} from 'lodash';
+import {getBookingsForDay} from '../util';
 
 import Day from "./Day";
 import Slot from "./Slot";
@@ -17,12 +19,15 @@ export default class Month extends React.Component {
   }
 
   renderDay(date, style) {
+    const timeSlice = find(this.props.timeSlice, x => x.day === date.format('dddd'));
+    const bookings = getBookingsForDay(this.props.bookings, date);
+
     return <Day onClick={this.props.onClick}
                 date={date}
                 canViewBooking={this.props.canViewBooking}
-                timeSlice={this.props.timeSlice}
+                timeSlice={timeSlice}
                 timeSlot={this.props.timeSlot}
-                bookings={this.props.bookings}
+                bookings={bookings}
                 style={style} />;
   }
 

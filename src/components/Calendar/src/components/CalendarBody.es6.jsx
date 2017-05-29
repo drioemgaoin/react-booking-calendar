@@ -1,10 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import moment from 'moment';
+import {find} from 'lodash';
 
 import Month from "./Month";
 import Day from "./Day";
 import Week from "./Week";
+import {getBookingsForDay} from '../util';
 
 let mapStateToProps = (state) => {
   return {
@@ -33,14 +35,19 @@ class CalendarBody extends React.Component {
 
   renderContent() {
     if (this.props.view === 'day') {
+      console.log(this.props.date.format('dddd'));
+      const timeSlice = find(this.props.timeSlice, x => x.day === this.props.date.format('dddd'));
+      const bookings = getBookingsForDay(this.props.bookings, this.props.date);
+      console.log(timeSlice);
+      console.log(bookings);
       return (
         <div>
           <Day onClick={this.props.onDayClick}
                date={this.props.date}
                canOpenBookedSlot={this.props.canViewBooking}
-               timeSlice={this.props.timeSlice}
+               timeSlice={timeSlice}
                timeSlot={this.props.timeSlot}
-               bookings={this.props.bookings}
+               bookings={bookings}
                style={{ width: '100%' }}/>
         </div>
       )

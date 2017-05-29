@@ -9,28 +9,31 @@ import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
 
 const timeSlot = 30;
 
+// Simulate exinsting booking in paris
+const localDatTime = moment().utc().zone(-120);
+
 function getTime(hour, minute) {
-  return moment().startOf('day').hour(hour).minute(minute).format('HH:mm');
+  return localDatTime.clone().startOf('day').hour(hour).minute(minute).format('HH:mm');
 }
 
 const timeSlice = [
-  { day: 'Monday', start: getTime(10, 15), end: getTime(16, 30) },
-  { day: 'Tuesday', start: getTime(9, 0), end: getTime(16, 0) },
+  { day: 'Monday', start: getTime(8, 30), end: getTime(16, 30) },
+  { day: 'Tuesday', start: getTime(9, 30), end: getTime(16, 0) },
   { day: 'Wednesday', start: getTime(9, 30), end: getTime(17, 0) },
   { day: 'Thursday', start: getTime(10, 30), end: getTime(16, 30) },
   { day: 'Friday', start: getTime(8, 30), end: getTime(17, 30) },
   { day: 'Saturday', start: getTime(10, 30), end: getTime(16, 30) },
-  { day: 'Sunday', start: getTime(10, 45), end: getTime(15, 30) }
+  { day: 'Sunday', start: getTime(10, 30), end: getTime(15, 30) }
 ];
 
 const bookings = [
   {
-    startDate: moment().utc().seconds(0).milliseconds(0).hours(10).minutes(0).zone(+120).format(),
-    endDate: moment().utc().seconds(0).milliseconds(0).hours(10).minutes(30).zone(+120).format()
+    startDate: localDatTime.clone().seconds(0).milliseconds(0).hours(10).minutes(0),
+    endDate: localDatTime.clone().seconds(0).milliseconds(0).hours(10).minutes(30)
   },
   {
-    startDate: moment().utc().seconds(0).milliseconds(0).hours(12).minutes(0).zone(+120).format(),
-    endDate: moment().utc().seconds(0).milliseconds(0).hours(13).minutes(30).zone(+120).format()
+    startDate: localDatTime.clone().seconds(0).milliseconds(0).hours(12).minutes(0),
+    endDate: localDatTime.clone().seconds(0).milliseconds(0).hours(13).minutes(30)
   }
 ];
 

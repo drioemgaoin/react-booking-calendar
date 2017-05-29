@@ -1,6 +1,8 @@
 import React from 'react';
 import moment from 'moment';
 import MediaQuery from 'react-responsive';
+import {find} from 'lodash';
+import {getBookingsForDay} from '../util';
 
 import Day from "./Day";
 
@@ -16,7 +18,10 @@ export default class Week extends React.Component {
     var days = [];
     do
     {
-      var date = startOfWeek.clone()
+      const date = startOfWeek.clone()
+      const timeSlice = find(this.props.timeSlice, x => x.day === date.format('dddd'));
+      const bookings = getBookingsForDay(this.props.bookings, date);
+
       days.push(
         <div key={date}>
           <MediaQuery minWidth={1024}>
@@ -24,18 +29,18 @@ export default class Week extends React.Component {
               key={startOfWeek}
               date={date}
               canViewBooking={this.props.canViewBooking}
-              timeSlice={this.props.timeSlice}
+              timeSlice={timeSlice}
               timeSlot={this.props.timeSlot}
-              bookings={this.props.bookings} />
+              bookings={bookings} />
           </MediaQuery>
           <MediaQuery maxWidth={1024}>
             <Day onClick={this.props.onClick}
               key={startOfWeek}
               date={date}
               canViewBooking={this.props.canViewBooking}
-              timeSlice={this.props.timeSlice}
+              timeSlice={timeSlice}
               timeSlot={this.props.timeSlot}
-              bookings={this.props.bookings}
+              bookings={bookings}
               header={<span>{date.format('DD')}</span>}
               view='portrait' />
           </MediaQuery>

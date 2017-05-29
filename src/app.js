@@ -14,7 +14,7 @@ function getTime(hour, minute) {
 }
 
 const timeSlice = [
-  { day: 'Monday', start: getTime(10, 30), end: getTime(16, 30) },
+  { day: 'Monday', start: getTime(10, 15), end: getTime(16, 30) },
   { day: 'Tuesday', start: getTime(9, 0), end: getTime(16, 0) },
   { day: 'Wednesday', start: getTime(9, 30), end: getTime(17, 0) },
   { day: 'Thursday', start: getTime(10, 30), end: getTime(16, 30) },
@@ -25,12 +25,12 @@ const timeSlice = [
 
 const bookings = [
   {
-    startDate: moment().seconds(0).milliseconds(0).hours(10).minutes(0),
-    endDate: moment().seconds(0).milliseconds(0).hours(10).minutes(30)
+    startDate: moment().utc().seconds(0).milliseconds(0).hours(10).minutes(0).zone(+120).format(),
+    endDate: moment().utc().seconds(0).milliseconds(0).hours(10).minutes(30).zone(+120).format()
   },
   {
-    startDate: moment().seconds(0).milliseconds(0).hours(12).minutes(0),
-    endDate: moment().seconds(0).milliseconds(0).hours(13).minutes(30)
+    startDate: moment().utc().seconds(0).milliseconds(0).hours(12).minutes(0).zone(+120).format(),
+    endDate: moment().utc().seconds(0).milliseconds(0).hours(13).minutes(30).zone(+120).format()
   }
 ];
 

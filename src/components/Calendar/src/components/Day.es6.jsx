@@ -59,7 +59,7 @@ class Day extends React.Component {
     const numberOfColumn = spread /  this.props.timeSlot;
 
     const bookings = this.props.bookings.filter(booking => {
-        return booking.startDate.format('L') === this.props.date.format('L');
+        return booking.startDate.local().format('L') === this.props.date.format('L');
     });
 
     let slots = [];
@@ -69,29 +69,31 @@ class Day extends React.Component {
       const startDate = currentDate.clone();
       let endDate = startDate.clone().add(this.props.timeSlot, 'm');
 
-      let booking = bookings.find(booking => { return booking.startDate.isSame(startDate); });
+      let booking = bookings.find(booking => { return booking.startDate.local().isSame(startDate); });
 
       if (booking) {
+        const bookingEndDate = booking.endDate.local();
+
         // Booking slot
-        const numberOfSlot = booking.endDate.diff(startDate, 'minutes') / this.props.timeSlot;
+        const numberOfSlot = bookingEndDate.diff(startDate, 'minutes') / this.props.timeSlot;
         slots.push(this.createSlot(slots.length, booking, numberOfColumn, numberOfSlot));
 
-        const difference = booking.endDate.diff(endDate, 'minutes') % this.props.timeSlot;
+        const difference = bookingEndDate.diff(endDate, 'minutes') % this.props.timeSlot;
         if (difference !== 0) {
-            const numberOfSlot = (booking.endDate.isBefore(endDate)
-                ? endDate.diff(booking.endDate, 'minutes')
+            const numberOfSlot = (bookingEndDate.isBefore(endDate)
+                ? endDate.diff(bookingEndDate, 'minutes')
                 : difference
             ) / this.props.timeSlot;
 
-            const newEndDate = booking.endDate.isBefore(endDate)
+            const newEndDate = bookingEndDate.isBefore(endDate)
                 ? endDate
-                : booking.endDate.clone().add(difference, 'm');
-            booking = this.createBooking(booking.endDate, newEndDate);
+                : bookingEndDate.clone().add(difference, 'm');
+            booking = this.createBooking(bookingEndDate, newEndDate);
             slots.push(this.createSlot(slots.length, booking, numberOfColumn, numberOfSlot));
 
             endDate = newEndDate
         } else {
-            endDate = booking.endDate;
+            endDate = bookingEndDate;
         }
 
       } else {

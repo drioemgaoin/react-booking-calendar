@@ -46,18 +46,19 @@ class CalendarContainer extends React.Component {
                         <button type="button" onClick={(e) => this.state.showModal ? this.hideModal(e) : this.showModal(booking)}>×</button>
                     </div>
                     <div className='Content__Body'>
-                        {
-                          React.createElement(
-                            this.props.body.type,
-                            Object.assign({}, {
-                              ...this.props.body.props,
-                              booking: this.state.booking,
-                              bookings: this.props.body.props.bookings ? this.props.body.props.bookings : this.props.bookings,
-                              timeSlice: this.props.body.props.timeSlice ? this.props.body.props.timeSlice : this.props.timeSlice,
-                              onClose: this.hideModal.bind(this)
-                            })
-                          )
-                        }
+                      {
+                        this.props.body &&
+                        React.createElement(
+                          this.props.body.type,
+                          Object.assign({}, {
+                            ...this.props.body.props,
+                            booking: this.state.booking,
+                            bookings: this.props.body.props.bookings ? this.props.body.props.bookings : this.props.bookings,
+                            timeSlice: this.props.body.props.timeSlice ? this.props.body.props.timeSlice : this.props.timeSlice,
+                            onClose: this.hideModal.bind(this)
+                          })
+                        )
+                      }
                     </div>
                   </div>
             </Container>

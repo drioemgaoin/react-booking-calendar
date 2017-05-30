@@ -1,6 +1,6 @@
-import React from 'react/addons';
-import ReactTestUtils from 'react-addons-test-utils';
-import Calendar from '../src/components/Calendar';
+import React from 'react';
+import ReactTestUtils from 'react-dom/test-utils';
+import Calendar from '../src/components/Calendar/Calendar';
 
 describe('Calendar', function() {
   var element;
@@ -12,7 +12,7 @@ describe('Calendar', function() {
     );
   });
 
-  it('should render', function() {
+  it('should render without any error(s)', function() {
     expect(function() {
       ReactTestUtils.renderIntoDocument(element);
     }).not.toThrow();

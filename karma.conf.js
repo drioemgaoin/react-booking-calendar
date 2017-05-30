@@ -1,44 +1,91 @@
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
 module.exports = function(config) {
   config.set({
     basePath: '.',
 
     frameworks: ['jasmine'],
+
     browsers: ['PhantomJS'],
 
     files: [
-      // shim to workaroud PhantomJS 1.x lack of `bind` support
-      // see: https://github.com/ariya/phantomjs/issues/10522
-      'node_modules/es5-shim/es5-shim.js',
-
-      // React is an external dependency of the component
-      'node_modules/react/dist/react-with-addons.js',
-
-      'spec/spec-helper.js',
-      'spec/**/*.spec.*',
-      { pattern: 'src/**/*', watched: true, included: false }
+      { pattern: 'node_modules/babel-polyfill/browser.js', instrument: false},
+      'test-context.js'
     ],
 
     preprocessors: {
-      // add webpack as preprocessor
-      'spec/**/*.spec.*': ['webpack', 'sourcemap']
+      'test-context.js': ['webpack']
     },
 
-    webpack: loadWebpackConfig(),
+    webpack: {
+      devtool: 'inline-source-map',
+      module: {
+        loaders: [
+          {
+            test: /(\.js)|(\.jsx)$/,
+            loader: 'babel-loader',
+            exclude: /node_modules/,
+            query: {
+                plugins: ['transform-decorators-legacy' ],
+                presets: ['react', 'es2015', 'stage-0'],
+                cacheDirectory: true
+            }
+          },
+          {
+            test: /(\.css)|(.scss)$/,
+            loader:'style!css!sass'
+          },
+          {
+            test: /\.png$/,
+            loader: 'url-loader?limit=100000'
+          },
+          {
+            test: /\.jpg$/,
+            loader: 'file-loader'
+          },
+          {
+            test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+            loader: 'url-loader?limit=10000&mimetype=image/svg+xml'
+          },
+          {
+            test: /\.png$/,
+            loader: 'url-loader?limit=100000'
+          },
+          {
+            test: /\.jpg$/,
+            loader: 'file-loader'
+          },
+          {
+            test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
+            loader: 'url-loader?limit=10000&mimetype=application/font-woff'
+          },
+          {
+            test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+            loader: 'url-loader?limit=10000&mimetype=application/octet-stream'
+          },
+          {
+            test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+            loader: 'file-loader'
+          },
+          {
+            test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+            loader: 'url-loader?limit=10000&mimetype=image/svg+xml'
+          }
+        ]
+      },
+      resolve: {
+        extensions: ['', '.js', '.jsx', '.es6.jsx', '.scss', '.css']
+      }
+    },
 
     webpackServer: {
-      noInfo: true
+      noInfo: false
     },
 
-    singleRun: true
+    singleRun: true,
+
+    colors: true,
+
+    logLevel: config.LOG_INFO
   });
 };
-
-
-/**
-  Loads configuration while ensuring sounce-map is enabled
- */
-function loadWebpackConfig () {
-  var webpackConfig = require('./webpack.config.js');
-  webpackConfig.devtool = 'inline-source-map';
-  return webpackConfig;
-}

@@ -35,11 +35,9 @@ class CalendarBody extends React.Component {
 
   renderContent() {
     if (this.props.view === 'day') {
-      console.log(this.props.date.format('dddd'));
       const timeSlice = find(this.props.timeSlice, x => x.day === this.props.date.format('dddd'));
       const bookings = getBookingsForDay(this.props.bookings, this.props.date);
-      console.log(timeSlice);
-      console.log(bookings);
+
       return (
         <div>
           <Day onClick={this.props.onDayClick}

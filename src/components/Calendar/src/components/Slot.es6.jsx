@@ -21,7 +21,7 @@ export default class Slot extends React.Component {
   }
 
   renderEmptySlot() {
-      return (<div style={this.props.style} className={'rbc-slot inactive'}><div></div></div>)
+      return (<div style={this.props.style} className={'rbc-slot inactive'}></div>)
   }
 
   renderDefaultContentSlot() {

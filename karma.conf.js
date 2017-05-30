@@ -74,7 +74,18 @@ module.exports = function(config) {
         ]
       },
       resolve: {
-        extensions: ['', '.js', '.jsx', '.es6.jsx', '.scss', '.css']
+        extensions: ['', '.js', '.jsx', '.es6.jsx', '.scss', '.css'],
+        alias: {
+            'sinon': 'sinon/pkg/sinon'
+        }
+      },
+      noParse: [
+          /node_modules\/sinon\//,
+      ],
+      externals: {
+          'jsdom': 'window',
+          'cheerio': 'window',
+          'react/lib/ExecutionEnvironment': true
       }
     },
 

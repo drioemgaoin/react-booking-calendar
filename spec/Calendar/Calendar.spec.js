@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
-import Calendar from '../src/components/Calendar/Calendar';
+import Calendar from '../../src/components/Calendar/Calendar';
 
 describe('Calendar', function() {
   var element;

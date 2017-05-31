@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import Slot from './Slot';
-import { getStyle } from '../style';
+import Slot from './slot/Slot';
+import { getStyle } from '../Style';
 import {find, times} from 'lodash';
 import {getDateTime} from '../util';
 

@@ -5,7 +5,7 @@ import {find} from 'lodash';
 import {getBookingsForDay} from '../util';
 
 import Day from "./Day";
-import Slot from "./Slot";
+import Slot from "./slot/Slot";
 
 export default class Month extends React.Component {
   constructor(props) {

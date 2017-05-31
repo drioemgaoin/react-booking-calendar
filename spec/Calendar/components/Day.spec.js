@@ -124,4 +124,19 @@ describe('Day', function() {
     expectSlots(wrapper, 6, 19, 'slot--free');
     expectSlots(wrapper, 19, 23, 'slot--inactive');
   });
+
+  it('should not render a booking if it is out of the range of work time', function() {
+    const date = moment('2017-05-31');
+    const startDate = moment('2017-05-31 08:00:00');
+    const endDate = moment('2017-05-31 08:30:00');
+    const store = createMockStore({ booking: { bookings: [{ startDate, endDate, isBooked: true }] } });
+
+    const wrapper = mount(<Day store={store} date={date} timeSlice={{ day: 'Wednesday', start: '10:00', end: '18:00' }} />);
+
+    // |I|I|I|I|F|F|F|F|F|F|F|F|F|F|F|F|F|F|F|F|I|I|I|I|
+    expect(wrapper.find('.slot')).to.have.length(24);
+    expectSlots(wrapper, 0, 4, 'slot--inactive');
+    expectSlots(wrapper, 4, 20, 'slot--free');
+    expectSlots(wrapper, 20, 24, 'slot--inactive');
+  });
 });

@@ -17,7 +17,7 @@ function getTime(hour, minute) {
 }
 
 const timeSlice = [
-  { day: 'Monday', start: getTime(8, 30), end: getTime(16, 30) },
+  { day: 'Monday', start: getTime(10, 0), end: getTime(18, 0) },
   { day: 'Tuesday', start: getTime(9, 30), end: getTime(16, 0) },
   { day: 'Wednesday', start: getTime(9, 30), end: getTime(17, 0) },
   { day: 'Thursday', start: getTime(10, 30), end: getTime(16, 30) },

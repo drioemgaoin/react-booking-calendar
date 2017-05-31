@@ -10,7 +10,7 @@
         clear: left;
       }
 
-      .rbc-slot {
+      .slot {
         > span {
           line-height: 50px;
         }
@@ -23,7 +23,7 @@
   .rbc-month {
     height: 100px;
 
-    .rbc-day {
+    .day {
       > * {
           display: inline-block;
       }

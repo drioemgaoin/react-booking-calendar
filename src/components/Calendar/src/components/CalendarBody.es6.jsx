@@ -4,7 +4,7 @@ import moment from 'moment';
 import {find} from 'lodash';
 
 import Month from "./Month";
-import Day from "./Day";
+import Day from "./day/Day";
 import Week from "./Week";
 import {getBookingsForDay} from '../util';
 

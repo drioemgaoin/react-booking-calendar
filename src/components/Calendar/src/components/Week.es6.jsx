@@ -4,7 +4,7 @@ import MediaQuery from 'react-responsive';
 import {find} from 'lodash';
 import {getBookingsForDay} from '../util';
 
-import Day from "./Day";
+import Day from "./day/Day";
 
 export default class Week extends React.Component {
   constructor(props) {

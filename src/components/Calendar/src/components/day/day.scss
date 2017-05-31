@@ -1,0 +1,15 @@
+.day {
+  margin: auto 0;
+  white-space : nowrap;
+  height: 100px;
+
+  > div:first-child {
+    padding: 10px;
+
+    > span {
+      display: block;
+      text-align: center;
+      font-weight: bold;
+    }
+  }
+}

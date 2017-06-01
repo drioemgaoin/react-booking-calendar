@@ -5,7 +5,7 @@ import {find} from 'lodash';
 
 import Month from "./Month";
 import Day from "./day/Day";
-import Week from "./Week";
+import Week from "./week/Week";
 import {getBookingsForDay} from '../util';
 
 let mapStateToProps = (state) => {

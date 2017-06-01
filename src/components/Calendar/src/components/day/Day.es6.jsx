@@ -11,6 +11,7 @@ import {getDateTime} from '../../util';
 import './day.scss';
 
 let mapStateToProps = (state, ownProps) => {
+  // console.log(state.booking.bookings.length);
   return {
     ...ownProps,
     bookings: state.booking.bookings
@@ -53,7 +54,7 @@ class Day extends React.Component {
   getBooking(currentSlot) {
     const booking = find(this.props.bookings, x => {
       const bookingStartDate = x.startDate.local();
-      return bookingStartDate.isBetween(currentSlot.startDate, currentSlot.endDate, null, '[]');
+      return bookingStartDate.isBetween(currentSlot.startDate, currentSlot.endDate, null, '[)');
     });
 
     return booking ? Object.assign({}, booking, {

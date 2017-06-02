@@ -9,10 +9,6 @@ import Day from "../day/Day";
 import './week.scss';
 
 export default class Week extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     var days = [];
 
@@ -23,8 +19,13 @@ export default class Week extends React.Component {
       do
       {
         const date = startOfWeek.clone();
-        const timeSlice = find(this.props.timeSlice, x => x.day === date.format('dddd'));
-        const bookings = getBookingsForDay(this.props.bookings, date);
+        const timeSlice = this.props.timeSlice
+          ? find(this.props.timeSlice, x => x.day === date.format('dddd'))
+          : {};
+
+        const bookings = this.props.bookings
+          ? getBookingsForDay(this.props.bookings, date)
+          : [];
 
         days.push(
           <div key={date}>

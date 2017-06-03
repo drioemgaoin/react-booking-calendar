@@ -20,4 +20,29 @@ describe('Week', function() {
 
     expect(wrapper.find('.week').children()).to.have.length(7);
   });
+
+  it('should render week as portrait view if viewport is less than 1024', function() {
+    const date = moment('2017-05-24');
+    const wrapper = shallow(<Week date={date} />);
+
+    expect(wrapper.find('[maxWidth=1024]')).to.have.length(7);
+
+    const startDay = 22;
+    wrapper.find('[maxWidth=1024]').forEach(function(node, index) {
+      const props = node.children().at(0).props();
+      expect(props.view).to.be.equal('portrait');
+      expect(shallow(props.header).html()).to.be.equal('<span>' + (startDay + index) + '</span>');
+    });
+  });
+
+  it('should render week as landscape view if viewport is more than 1024', function() {
+    const date = moment('2017-05-24');
+    const wrapper = shallow(<Week date={date} />);
+
+    expect(wrapper.find('[minWidth=1024]')).to.have.length(7);
+    wrapper.find('[minWidth=1024]').forEach(function(node, index) {
+      const props = node.children().at(0).props();
+      expect(props.view).to.be.undefined;
+    });
+  });
 });

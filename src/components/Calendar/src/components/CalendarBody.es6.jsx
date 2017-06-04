@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import moment from 'moment';
 import {find} from 'lodash';
 
-import Month from "./Month";
+import Month from "./month/Month";
 import Day from "./day/Day";
 import Week from "./week/Week";
 import {getBookingsForDay} from '../util';

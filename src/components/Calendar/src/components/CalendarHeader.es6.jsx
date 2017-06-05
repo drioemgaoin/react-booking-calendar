@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import moment from 'moment';
 
 import { changeDateAction, changeViewAction } from '../actions/calendarActions';
 
@@ -26,10 +27,6 @@ let mapStateToProps = (state, ownProps) => {
 }
 
 class CalendarHeader extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   renderDate() {
     if (this.props.view === 'day') {
       return this.props.date.format('MMMM DD YYYY')

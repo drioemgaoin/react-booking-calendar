@@ -29,7 +29,7 @@ let mapStateToProps = (state, ownProps) => {
 class CalendarHeader extends React.Component {
   renderDate() {
     if (this.props.view === 'day') {
-      return this.props.date.format('MMMM DD YYYY')
+      return this.props.date.format('DD MMM YYYY')
     }
 
     if (this.props.view === 'week') {

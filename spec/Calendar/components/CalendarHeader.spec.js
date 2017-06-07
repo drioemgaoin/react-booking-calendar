@@ -38,4 +38,18 @@ describe('Calendar Header', function() {
 
     expect(wrapper.find('.rbc-date').children().at(1).html()).to.be.equal('<span>May 2017</span>');
   });
+
+  it('should change the previous day when user clicks on the previous button while the day view is currently selected', function() {
+    const dispatchSpy = sinon.spy();
+
+    const store = createMockStore({ calendar: { view: 'day', date: moment('2017-05-31') } });
+    store.dispatch = dispatchSpy;
+
+    const wrapper = mount(<CalendarHeader store={store} />);
+
+    wrapper.find('.rbc-date').children().at(0).simulate('click');
+
+    const changeDateActionSpy = dispatchSpy.args[0][0];
+    expect(changeDateActionSpy.type).to.be.equal('CHANGE_DATE');
+  });
 });

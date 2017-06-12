@@ -51,5 +51,21 @@ describe('Calendar Header', function() {
 
     const changeDateActionSpy = dispatchSpy.args[0][0];
     expect(changeDateActionSpy.type).to.be.equal('CHANGE_DATE');
+    expect(changeDateActionSpy.date.format('DD/MM/YYYY')).to.be.equal('30/05/2017');
+  });
+
+  it('should change the next day when user clicks on the next button while the day view is currently selected', function() {
+    const dispatchSpy = sinon.spy();
+
+    const store = createMockStore({ calendar: { view: 'day', date: moment('2017-05-31') } });
+    store.dispatch = dispatchSpy;
+
+    const wrapper = mount(<CalendarHeader store={store} />);
+
+    wrapper.find('.rbc-date').children().at(2).simulate('click');
+
+    const changeDateActionSpy = dispatchSpy.args[0][0];
+    expect(changeDateActionSpy.type).to.be.equal('CHANGE_DATE');
+    expect(changeDateActionSpy.date.format('DD/MM/YYYY')).to.be.equal('01/06/2017');
   });
 });

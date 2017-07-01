@@ -1,6 +1,6 @@
 {
   "name": "react-pro-booking-calendar",
-  "version": "1.0.6",
+  "version": "1.0.8",
   "description": "React responsive booking calendar",
   "scripts": {
     "start": "node scripts/start.js",
@@ -20,7 +20,7 @@
     "reactjs",
     "react-component"
   ],
-  "main": "dist/react-responsive-comments.js",
+  "main": "dist/react-pro-booking-calendar.js",
   "bugs": {
     "url": "https://github.com/drioemgaoin/react-comments/issues"
   },

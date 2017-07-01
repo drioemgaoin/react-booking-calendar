@@ -28,8 +28,8 @@ const timeSlices = [
 
 const timeExceptions = [
     {
-        startDate: localDatTime.clone().add(3, 'd').seconds(0).milliseconds(0).hours(0).minutes(0),
-        endDate: localDatTime.clone().add(7, 'd').seconds(0).milliseconds(0).hours(0).minutes(0),
+        startDate: localDatTime.clone().add(3, 'd').format('L'),
+        endDate: localDatTime.clone().add(7, 'd').format('L'),
         startTime: getTime(8, 0),
         endTime: getTime(19, 0)
     }
@@ -92,7 +92,6 @@ Booking = connect()(Booking);
 ReactDOM.render(
     <Calendar bookings={bookings}
           timeSlot={timeSlot}
-          timeSlices={timeSlices}
           timeExceptions={timeExceptions}
           canViewBooking={true}>
       <Booking services={[{id: 1, name: 'Pouet'}]}/>

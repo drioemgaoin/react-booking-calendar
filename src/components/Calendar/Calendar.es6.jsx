@@ -9,8 +9,9 @@ import './style/main.scss';
 export default class Calendar extends React.Component {
   static defaultProps = {
       bookings: [],
-      timeSlice: [],
-      timeSlot: 30
+      timeSlices: [],
+      timeSlot: 30,
+      timeExceptions: []
   };
 
   render() {
@@ -18,7 +19,8 @@ export default class Calendar extends React.Component {
       <Provider store={store}>
         <CalendarContainer bookings={this.props.bookings}
                   timeSlot={this.props.timeSlot}
-                  timeSlice={this.props.timeSlice}
+                  timeSlices={this.props.timeSlices}
+                  timeExceptions={this.props.timeExceptions}
                   body={this.props.children}
                   canViewBooking={this.props.canViewBooking} />
       </Provider>

@@ -2,12 +2,44 @@ import React from 'react';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import Container from 'react-responsive-ux-container';
+import {omit} from 'lodash';
 
 import CalendarHeader from './CalendarHeader';
 import CalendarBody from './CalendarBody';
 
 import { initBookingsAction, addBookingAction } from '../actions/bookingActions';
 import '../../../../../node_modules/react-responsive-ux-container/dist/react-responsive-container.css';
+import {getBookingsForDay, getBookingsForWeek, getBookingsForMonth, getTimesliceForDay, getTimesliceForWeek, getTimesliceForMonth} from '../util';
+
+let mapStateToProps = (state, props) => {
+    const view = state.calendar.view;
+    const date = state.calendar.date;
+
+    const bookings = view === 'day'
+        ? getBookingsForDay(state.booking.bookings, date)
+        : view === 'week'
+            ? getBookingsForWeek(state.booking.bookings, date)
+            : getBookingsForMonth(state.booking.bookings, date);
+
+    const timeSlices = view === 'day'
+        ? getTimesliceForDay(props.timeSlices, props.timeExceptions, date)
+        : view === 'week'
+            ? getTimesliceForWeek(props.timeSlices, props.timeExceptions, date)
+            : getTimesliceForMonth(props.timeSlices, props.timeExceptions, date);
+
+    return {
+        view,
+        date,
+        bookings: bookings.map(x => {
+            x.startDate = moment.isMoment(x.startDate) ? x.startDate : moment(x.startDate);
+            x.endDate = moment.isMoment(x.endDate) ? x.endDate : moment(x.endDate);
+            x.isBooked = true;
+            return x;
+        }),
+        ...omit(props, ['timeExceptions', 'timeSlices']),
+        timeSlices
+    };
+}
 
 class CalendarContainer extends React.Component {
   constructor(props) {
@@ -54,7 +86,7 @@ class CalendarContainer extends React.Component {
                             ...this.props.body.props,
                             booking: this.state.booking,
                             bookings: this.props.body.props.bookings ? this.props.body.props.bookings : this.props.bookings,
-                            timeSlice: this.props.body.props.timeSlice ? this.props.body.props.timeSlice : this.props.timeSlice,
+                            timeSlices: this.props.body.props.timeSlices ? this.props.body.props.timeSlices : this.props.timeSlices,
                             onClose: this.hideModal.bind(this)
                           })
                         )
@@ -66,7 +98,9 @@ class CalendarContainer extends React.Component {
           <CalendarHeader />
           <CalendarBody bookings={this.props.bookings}
                         timeSlot={this.props.timeSlot}
-                        timeSlice={this.props.timeSlice}
+                        timeSlices={this.props.timeSlices}
+                        view={this.props.view}
+                        date={this.props.date}
                         canViewBooking={this.props.canViewBooking}
                         onDayClick={(booking) => this.openModal(booking)} />
         </div>
@@ -74,4 +108,4 @@ class CalendarContainer extends React.Component {
   }
 }
 
-export default connect()(CalendarContainer);
+export default connect(mapStateToProps, null)(CalendarContainer)

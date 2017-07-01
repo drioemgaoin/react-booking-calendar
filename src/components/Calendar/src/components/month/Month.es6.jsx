@@ -21,8 +21,8 @@ export default class Month extends React.Component {
   }
 
   renderDay(date, style) {
-    const timeSlice = this.props.timeSlice
-      ? find(this.props.timeSlice, x => x.day === date.format('dddd'))
+    const timeSlice = this.props.timeSlices
+      ? find(this.props.timeSlices, x => x.date.format('L') === date.format('L'))
       : {};
 
     const bookings = this.props.bookings

@@ -16,7 +16,7 @@ function getTime(hour, minute) {
   return localDatTime.clone().startOf('day').hour(hour).minute(minute).format('HH:mm');
 }
 
-const timeSlice = [
+const timeSlices = [
   { day: 'Monday', start: getTime(10, 0), end: getTime(18, 0) },
   { day: 'Tuesday', start: getTime(9, 30), end: getTime(16, 0) },
   { day: 'Wednesday', start: getTime(9, 30), end: getTime(17, 0) },
@@ -24,6 +24,15 @@ const timeSlice = [
   { day: 'Friday', start: getTime(8, 30), end: getTime(17, 30) },
   { day: 'Saturday', start: getTime(10, 30), end: getTime(16, 30) },
   { day: 'Sunday', start: getTime(10, 30), end: getTime(15, 30) }
+];
+
+const timeExceptions = [
+    {
+        startDate: localDatTime.clone().add(3, 'd').seconds(0).milliseconds(0).hours(0).minutes(0),
+        endDate: localDatTime.clone().add(7, 'd').seconds(0).milliseconds(0).hours(0).minutes(0),
+        startTime: getTime(8, 0),
+        endTime: getTime(19, 0)
+    }
 ];
 
 const bookings = [
@@ -83,7 +92,8 @@ Booking = connect()(Booking);
 ReactDOM.render(
     <Calendar bookings={bookings}
           timeSlot={timeSlot}
-          timeSlice={timeSlice}
+          timeSlices={timeSlices}
+          timeExceptions={timeExceptions}
           canViewBooking={true}>
       <Booking services={[{id: 1, name: 'Pouet'}]}/>
     </Calendar>,

@@ -11,7 +11,6 @@ import {getDateTime} from '../../util';
 import './day.scss';
 
 let mapStateToProps = (state, ownProps) => {
-  // console.log(state.booking.bookings.length);
   return {
     ...ownProps,
     bookings: state.booking.bookings

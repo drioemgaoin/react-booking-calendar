@@ -1,7 +1,7 @@
 {
-  "name": "react-responsive-comments",
-  "version": "0.0.11",
-  "description": "react responsive comments",
+  "name": "react-pro-booking-calendar",
+  "version": "1.0.6",
+  "description": "React responsive booking calendar",
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build-prod.js",

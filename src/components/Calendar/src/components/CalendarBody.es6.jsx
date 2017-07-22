@@ -36,7 +36,8 @@ export default class CalendarBody extends React.Component {
                     timeSlice={timeSlice}
                     timeSlot={this.props.timeSlot}
                     bookings={bookings}
-                    style={{ width: '100%' }}/>
+                    style={{ width: '100%' }}
+                    displayPast={this.props.displayPast} />
             )
         }
 
@@ -47,7 +48,8 @@ export default class CalendarBody extends React.Component {
                 canViewBooking={this.props.canViewBooking}
                 timeSlices={this.props.timeSlices}
                 timeSlot={this.props.timeSlot}
-                bookings={this.props.bookings} />
+                bookings={this.props.bookings}
+                displayPast={this.props.displayPast} />
         }
 
         if (this.props.view === 'week') {
@@ -56,7 +58,8 @@ export default class CalendarBody extends React.Component {
                 canViewBooking={this.props.canViewBooking}
                 timeSlices={this.props.timeSlices}
                 timeSlot={this.props.timeSlot}
-                bookings={this.props.bookings} />
+                bookings={this.props.bookings}
+                displayPast={this.props.displayPast} />
         }
     }
 

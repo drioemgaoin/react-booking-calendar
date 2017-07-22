@@ -11,7 +11,8 @@ export default class Calendar extends React.Component {
       bookings: [],
       timeSlices: [],
       timeSlot: 30,
-      timeExceptions: []
+      timeExceptions: [],
+      displayPast: false
   };
 
   render() {
@@ -22,7 +23,8 @@ export default class Calendar extends React.Component {
                   timeSlices={this.props.timeSlices}
                   timeExceptions={this.props.timeExceptions}
                   body={this.props.children}
-                  canViewBooking={this.props.canViewBooking} />
+                  canViewBooking={this.props.canViewBooking}
+                  displayPast={this.props.displayPast} />
       </Provider>
     );
   }

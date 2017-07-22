@@ -41,7 +41,8 @@ export default class Month extends React.Component {
                 timeSlice={timeSlice}
                 timeSlot={this.props.timeSlot}
                 bookings={bookings}
-                style={style} />;
+                style={style}
+                displayPast={this.props.displayPast} />;
   }
 
   renderSlot(date) {

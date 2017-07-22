@@ -15,7 +15,7 @@ import {getBookingsForDay, getBookingsForWeek, getBookingsForMonth, getTimeslice
 let mapStateToProps = (state, ownProps) => {
     const view = state.calendar.view;
     const date = state.calendar.date;
-    
+
     const bookings = view === 'day'
     ? getBookingsForDay(state.booking.bookings, date)
     : view === 'week'
@@ -107,12 +107,13 @@ class CalendarContainer extends React.Component {
                     </div>
                 </Container>
 
-                <CalendarHeader />
+                <CalendarHeader displayPast={this.props.displayPast} />
                 <CalendarBody bookings={this.props.bookings}
                     timeSlot={this.props.timeSlot}
                     timeSlices={this.props.timeSlices}
                     view={this.props.view}
                     date={this.props.date}
+                    displayPast={this.props.displayPast}
                     canViewBooking={this.props.canViewBooking}
                     displayDayView={this.props.displayDayView}
                     onDayClick={(booking) => this.openModal(booking)} />

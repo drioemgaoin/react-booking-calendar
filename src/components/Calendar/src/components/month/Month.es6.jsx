@@ -20,6 +20,12 @@ export default class Month extends React.Component {
       this.setState({ date: date })
   }
 
+  componentWillUpdate(nextProps, nextState) {
+      if (nextProps.date.isSame(nextState.date)) {
+          this.setState({ date: undefined });
+      }
+  }
+
   renderDay(date, style) {
     const timeSlice = this.props.timeSlices
       ? find(this.props.timeSlices, x => x.date.format('L') === date.format('L'))
@@ -29,7 +35,7 @@ export default class Month extends React.Component {
       ? getBookingsForDay(this.props.bookings, date)
       : [];
 
-    return <Day onClick={this.props.onClick}
+    return <Day onClick={this.props.onDayClick}
                 date={date}
                 canViewBooking={this.props.canViewBooking}
                 timeSlice={timeSlice}
@@ -41,7 +47,7 @@ export default class Month extends React.Component {
   renderSlot(date) {
     return <Slot startDate={date}
                  canViewBooking={this.props.canViewBooking}
-                 onClick={(e) => this.handleClick(e, date)}>
+                 onClick={this.props.onSlotClick}>
              <span>{this.props.date.format('DD')}</span>
            </Slot>;
   }

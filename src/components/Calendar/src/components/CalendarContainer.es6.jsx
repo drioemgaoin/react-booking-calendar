@@ -7,25 +7,26 @@ import {omit} from 'lodash';
 import CalendarHeader from './CalendarHeader';
 import CalendarBody from './CalendarBody';
 
+import { displayDayAction } from '../actions/calendarActions';
 import { initBookingsAction, addBookingAction } from '../actions/bookingActions';
 import '../../../../../node_modules/react-responsive-ux-container/dist/react-responsive-container.css';
 import {getBookingsForDay, getBookingsForWeek, getBookingsForMonth, getTimesliceForDay, getTimesliceForWeek, getTimesliceForMonth} from '../util';
 
-let mapStateToProps = (state, props) => {
+let mapStateToProps = (state, ownProps) => {
     const view = state.calendar.view;
     const date = state.calendar.date;
-
+    
     const bookings = view === 'day'
-        ? getBookingsForDay(state.booking.bookings, date)
-        : view === 'week'
-            ? getBookingsForWeek(state.booking.bookings, date)
-            : getBookingsForMonth(state.booking.bookings, date);
+    ? getBookingsForDay(state.booking.bookings, date)
+    : view === 'week'
+    ? getBookingsForWeek(state.booking.bookings, date)
+    : getBookingsForMonth(state.booking.bookings, date);
 
     const timeSlices = view === 'day'
-        ? getTimesliceForDay(props.timeSlices, props.timeExceptions, date)
-        : view === 'week'
-            ? getTimesliceForWeek(props.timeSlices, props.timeExceptions, date)
-            : getTimesliceForMonth(props.timeSlices, props.timeExceptions, date);
+    ? getTimesliceForDay(ownProps.timeSlices, ownProps.timeExceptions, date)
+    : view === 'week'
+    ? getTimesliceForWeek(ownProps.timeSlices, ownProps.timeExceptions, date)
+    : getTimesliceForMonth(ownProps.timeSlices, ownProps.timeExceptions, date);
 
     return {
         view,
@@ -36,76 +37,88 @@ let mapStateToProps = (state, props) => {
             x.isBooked = true;
             return x;
         }),
-        ...omit(props, ['timeExceptions', 'timeSlices']),
+        ...omit(ownProps, ['timeExceptions', 'timeSlices']),
         timeSlices
     };
 }
 
-class CalendarContainer extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      showModal: false,
-      booking: {}
+let mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        displayDayView: (date) => {
+            dispatch(displayDayAction('day', date));
+        },
+        initBookings: (bookings) => {
+            dispatch(initBookingsAction(bookings));
+        }
     }
-  }
-
-  componentDidMount() {
-    const { dispatch } = this.props;
-    dispatch(initBookingsAction(this.props.bookings));
-  }
-
-  openModal(booking) {
-      this.setState({ showModal: true, booking: booking });
-  }
-
-  hideModal(e) {
-      if (e) {
-        e.preventDefault();
-      }
-
-      this.setState({ showModal: false, booking: {}});
-  }
-
-  render() {
-    return (
-        <div className='rbc-calendar modal-container'>
-            <Container type='modal' visible={this.state.showModal}>
-                <div className='Content'>
-                    <div className='Content__Header'>
-                        New Booking
-                        <button type="button" onClick={(e) => this.state.showModal ? this.hideModal(e) : this.showModal(booking)}>×</button>
-                    </div>
-                    <div className='Content__Body'>
-                      {
-                        this.props.body &&
-                        React.createElement(
-                          this.props.body.type,
-                          Object.assign({}, {
-                            ...this.props.body.props,
-                            booking: this.state.booking,
-                            bookings: this.props.body.props.bookings ? this.props.body.props.bookings : this.props.bookings,
-                            timeSlices: this.props.body.props.timeSlices ? this.props.body.props.timeSlices : this.props.timeSlices,
-                            onClose: this.hideModal.bind(this)
-                          })
-                        )
-                      }
-                    </div>
-                  </div>
-            </Container>
-
-          <CalendarHeader />
-          <CalendarBody bookings={this.props.bookings}
-                        timeSlot={this.props.timeSlot}
-                        timeSlices={this.props.timeSlices}
-                        view={this.props.view}
-                        date={this.props.date}
-                        canViewBooking={this.props.canViewBooking}
-                        onDayClick={(booking) => this.openModal(booking)} />
-        </div>
-    );
-  }
 }
 
-export default connect(mapStateToProps, null)(CalendarContainer)
+class CalendarContainer extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            showModal: false,
+            booking: {}
+        }
+    }
+
+    componentDidMount() {
+        this.props.initBookings(this.props.bookings);
+    }
+
+    openModal(booking) {
+        this.setState({ showModal: true, booking: booking });
+    }
+
+    hideModal(e) {
+        if (e) {
+            e.preventDefault();
+        }
+
+        this.setState({ showModal: false, booking: {}});
+    }
+
+    render() {
+        return (
+            <div className='rbc-calendar modal-container'>
+                <Container type='modal' visible={this.state.showModal}>
+                    <div className='Content'>
+                        <div className='Content__Header'>
+                            New Booking
+                            <button type="button" onClick={(e) => this.state.showModal ? this.hideModal(e) : this.showModal(booking)}>×</button>
+                        </div>
+                        <div className='Content__Body'>
+                            {
+                                this.props.body &&
+                                React.createElement(
+                                    this.props.body.type,
+                                    Object.assign({}, {
+                                        ...this.props.body.props,
+                                        booking: this.state.booking,
+                                        bookings: this.props.body.props.bookings ? this.props.body.props.bookings : this.props.bookings,
+                                        timeSlices: this.props.body.props.timeSlices ? this.props.body.props.timeSlices : this.props.timeSlices,
+                                        onClose: this.hideModal.bind(this)
+                                    }
+                                )
+                            )
+                        }
+                        </div>
+                    </div>
+                </Container>
+
+                <CalendarHeader />
+                <CalendarBody bookings={this.props.bookings}
+                    timeSlot={this.props.timeSlot}
+                    timeSlices={this.props.timeSlices}
+                    view={this.props.view}
+                    date={this.props.date}
+                    canViewBooking={this.props.canViewBooking}
+                    displayDayView={this.props.displayDayView}
+                    onDayClick={(booking) => this.openModal(booking)} />
+            </div>
+        );
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CalendarContainer)

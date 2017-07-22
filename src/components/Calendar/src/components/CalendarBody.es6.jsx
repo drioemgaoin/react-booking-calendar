@@ -9,11 +9,19 @@ import Week from "./week/Week";
 import {getBookingsForDay} from '../util';
 
 export default class CalendarBody extends React.Component {
+    onSlotClickedBound = this.onSlotClicked.bind(this);
+
     getDate(isStart) {
         const currentDay = this.props.date.format('dddd').toLowerCase();
         return isStart
         ? this.props.timeSlices[currentDay].start
         : this.props.timeSlices[currentDay].end;
+    }
+
+    onSlotClicked(date) {
+        if (this.props.displayDayView) {
+            this.props.displayDayView(date);
+        }
     }
 
     renderContent() {
@@ -22,20 +30,19 @@ export default class CalendarBody extends React.Component {
             const bookings = getBookingsForDay(this.props.bookings, this.props.date);
 
             return (
-                <div>
-                    <Day onClick={this.props.onDayClick}
-                        date={this.props.date}
-                        canOpenBookedSlot={this.props.canViewBooking}
-                        timeSlice={timeSlice}
-                        timeSlot={this.props.timeSlot}
-                        bookings={bookings}
-                        style={{ width: '100%' }}/>
-                </div>
+                <Day onClick={this.props.onDayClick}
+                    date={this.props.date}
+                    canOpenBookedSlot={this.props.canViewBooking}
+                    timeSlice={timeSlice}
+                    timeSlot={this.props.timeSlot}
+                    bookings={bookings}
+                    style={{ width: '100%' }}/>
             )
         }
 
         if (this.props.view === 'month') {
-            return <Month onClick={this.props.onDayClick}
+            return <Month onDayClick={this.props.onDayClick}
+                onSlotClick={this.onSlotClickedBound}
                 date={this.props.date}
                 canViewBooking={this.props.canViewBooking}
                 timeSlices={this.props.timeSlices}

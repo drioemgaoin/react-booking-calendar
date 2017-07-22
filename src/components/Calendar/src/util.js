@@ -8,7 +8,7 @@ export function getDateTime(date, time) {
 
 export function getBookingsForDay(bookings, date) {
     return bookings.filter(x => {
-        return x.startDate.local().format('L') === date.format('L');
+        return moment(x.startDate).local().format('L') === date.format('L');
     });
 }
 
@@ -16,13 +16,13 @@ export function getBookingsForWeek(bookings, date) {
     const startOfWeek = date.clone().startOf('isoweek');
     const endOfWeek = date.clone().endOf('isoweek');
     return bookings.filter(x => {
-        return x.startDate.local().isBetween(startOfWeek, endOfWeek);
+        return moment(x.startDate).local().isBetween(startOfWeek, endOfWeek);
     });
 }
 
 export function getBookingsForMonth(bookings, date) {
     return bookings.filter(x => {
-        return x.startDate.local().format('MM') === date.format('MM');
+        return moment(x.startDate).local().format('MM') === date.format('MM');
     });
 }
 

@@ -1,5 +1,6 @@
 export const CHANGE_DATE = 'CHANGE_DATE';
 export const CHANGE_VIEW = 'CHANGE_VIEW';
+export const DISPLAY_DAY = 'DISPLAY_DAY';
 
 function computeDate(view, date, number) {
   if (view === 'day') {
@@ -13,6 +14,14 @@ function computeDate(view, date, number) {
   if (view === 'month') {
     return date.clone().add(number, 'M');
   }
+}
+
+export function displayDayAction(view, date, number) {
+  return {
+    type: DISPLAY_DAY,
+    date: computeDate(view, date, number),
+    view
+  };
 }
 
 export function changeDateAction(view, date, number) {

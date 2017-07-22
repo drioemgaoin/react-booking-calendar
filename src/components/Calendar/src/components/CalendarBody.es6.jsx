@@ -18,9 +18,9 @@ export default class CalendarBody extends React.Component {
         : this.props.timeSlices[currentDay].end;
     }
 
-    onSlotClicked(date) {
+    onSlotClicked(datas) {
         if (this.props.displayDayView) {
-            this.props.displayDayView(date);
+            this.props.displayDayView(datas.startDate);
         }
     }
 

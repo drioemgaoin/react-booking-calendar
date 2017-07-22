@@ -14,7 +14,8 @@ export default class Slot extends React.Component {
     e.preventDefault();
 
     if (this.props.onClick) {
-      this.props.onClick(this.props.startDate);
+      const values = _.omit(this.props, ['className', 'style', 'onClick']);
+      this.props.onClick(values);
     }
   }
 

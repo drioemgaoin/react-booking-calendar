@@ -29,9 +29,16 @@ const timeSlices = [
 const timeExceptions = [
     {
         startDate: localDatTime.clone().add(3, 'd').format('L'),
+        endDate: localDatTime.clone().add(5, 'd').format('L'),
+        startTime: getTime(9, 0),
+        endTime: getTime(17, 0)
+    },
+    {
+        startDate: localDatTime.clone().add(6, 'd').format('L'),
         endDate: localDatTime.clone().add(7, 'd').format('L'),
-        startTime: getTime(8, 0),
-        endTime: getTime(19, 0)
+        startTime: getTime(11, 0),
+        endTime: getTime(14, 0),
+        off: true
     }
 ];
 

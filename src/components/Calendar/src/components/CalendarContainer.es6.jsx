@@ -27,7 +27,7 @@ let mapStateToProps = (state, ownProps) => {
     : view === 'week'
     ? getTimesliceForWeek(ownProps.timeSlices, ownProps.timeExceptions, date)
     : getTimesliceForMonth(ownProps.timeSlices, ownProps.timeExceptions, date);
-
+    
     return {
         view,
         date,

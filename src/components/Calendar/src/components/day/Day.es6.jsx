@@ -62,6 +62,24 @@ class Day extends React.Component {
         }) : undefined;
     }
 
+    isDayOff() {
+        return this.props.timeSlice &&
+            this.props.timeSlice.off &&
+            this.props.timeSlice.start === '08:00' &&
+            this.props.timeSlice.end === '20:00';
+    }
+
+    isOff(slot) {
+        if (this.props.timeSlice && this.props.timeSlice.off) {
+            const startOff = getDateTime(this.props.date, this.props.timeSlice.start);
+            const endOff = getDateTime(this.props.date, this.props.timeSlice.end);
+
+            return slot.startDate.isBetween(startOff, endOff, null, '[)');
+        }
+
+        return false;
+    }
+
     render() {
         let slots = [];
 
@@ -71,12 +89,12 @@ class Day extends React.Component {
             const numberOfColumn = endDiary.diff(startDiary, 'minutes') / this.props.timeSlot;
             let currentSlot = this.nextSlot(startDiary);
 
-            if (!this.props.displayPast && this.props.date.isBefore(moment(), 'day')) {
+            if (this.isDayOff() || (!this.props.displayPast && this.props.date.isBefore(moment(), 'day'))) {
                 return null;
             } else {
                 let workStart = startDiary;
                 let workEnd = endDiary;
-                if (this.props.timeSlice) {
+                if (this.props.timeSlice && !this.props.timeSlice.off) {
                     workStart = getDateTime(this.props.date, this.props.timeSlice.start);
                     workEnd = getDateTime(this.props.date, this.props.timeSlice.end);
                 }
@@ -93,7 +111,15 @@ class Day extends React.Component {
                 while (currentSlot.startDate.isBefore(workEnd)) {
                     let booking = this.getBooking(currentSlot);
 
+                    // Check if slot match a past time
                     if (!this.props.displayPast && currentSlot.startDate.isBefore(moment())) {
+                        slots.push(this.createSlot(slots.length, {}, numberOfColumn, 1));
+                        currentSlot = this.nextSlot(currentSlot.endDate);
+                        continue;
+                    }
+
+                    // Check if slot match a off period
+                    if (this.isOff(currentSlot)) {
                         slots.push(this.createSlot(slots.length, {}, numberOfColumn, 1));
                         currentSlot = this.nextSlot(currentSlot.endDate);
                         continue;

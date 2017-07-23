@@ -30,7 +30,7 @@ export function getTimesliceForDay(timeSlices, timeExceptions, date) {
     const current = moment(date.format('L'));
     const exception = find(timeExceptions, x => current.isBetween(moment(x.startDate), moment(x.endDate), null, '[]'));
     if (exception) {
-        return [{ date: current.clone(), start: exception.startTime, end: exception.endTime }];
+        return [{ date: current.clone(), start: exception.startTime, end: exception.endTime, off: exception.off }];
     } else {
         const timeSlice = find(timeSlices, x => x.day === date.format('dddd'));
         return timeSlice ? [{ date: current.clone(), start: timeSlice.start, end: timeSlice.end }] : [];
@@ -47,7 +47,7 @@ export function getTimesliceForWeek(timeSlices, timeExceptions, date) {
     while (current <= endOfWeek) {
         const exception = find(timeExceptions, x => current.isBetween(moment(x.startDate), moment(x.endDate), null, '[]'));
         if (exception) {
-            result.push({ date: current.clone(), start: exception.startTime, end: exception.endTime });
+            result.push({ date: current.clone(), start: exception.startTime, end: exception.endTime, off: exception.off });
         } else {
             const timeSlice = find(timeSlices, x => x.day === current.format('dddd'));
             if (timeSlice) {
@@ -70,7 +70,7 @@ export function getTimesliceForMonth(timeSlices, timeExceptions, date) {
 
         const exception = find(timeExceptions, x => current.isBetween(moment(x.startDate), moment(x.endDate), null, '[]'));
         if (exception) {
-            result.push({ date: current.clone(), start: exception.startTime, end: exception.endTime });
+            result.push({ date: current.clone(), start: exception.startTime, end: exception.endTime, off: exception.off });
         } else {
             const timeSlice = find(timeSlices, x => x.day === current.format('dddd'));
             if (timeSlice) {

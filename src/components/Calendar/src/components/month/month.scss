@@ -1,38 +1,36 @@
 @media (max-width: 1024px) {
-  .month {
-    height: 50px;
+    .month {
+        height: 50px;
 
-    > div {
-      float: left;
-      width: calc(100% / 7);
+        > div {
+            display: inline-block;
+            width: calc(100% / 7);
 
-      &:nth-child(7n + 1) {
-        clear: left;
-      }
+            &:nth-child(7n + 1) {
+                clear: left;
+            }
 
-      .slot {
-        > span {
-          line-height: 50px;
+            .slot {
+                > span {
+                    line-height: 50px;
+                }
+            }
         }
-      }
     }
-  }
 }
 
 @media (min-width: 1024px) {
-  .month {
-    height: 100px;
+    .month {
+        .day {
+            > * {
+                display: inline-block;
+            }
 
-    .day {
-      > * {
-          display: inline-block;
-      }
-
-      > :first-child {
-          text-align: center;
-          width: 100px;
-          vertical-align: middle;
-      }
+            > :first-child {
+                text-align: center;
+                width: 100px;
+                vertical-align: middle;
+            }
+        }
     }
-  }
 }

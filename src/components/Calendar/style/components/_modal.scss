@@ -1,15 +1,5 @@
-.Container__Modal {
-
-  .Content {
-    &__Header {
-      border-top-left-radius: 4px;
-      border-top-right-radius: 4px;
-    }
-  }
-}
-
-.Content {
-    &__Header {
+.content {
+    &__header {
         height: 35px;
         line-height: 35px;
         background: #4DB6AC;
@@ -33,37 +23,39 @@
         }
     }
 
-    &__Body {
+    &__body {
         padding: 15px;
     }
 }
 
 @media (max-width: 320px) {
-  .Container__Modal__Dialog {
-      width: 90%;
+  .container__modal__dialog {
+      width: calc(100% - 10px);
   }
 }
 
 @media (min-width: 320px) and (max-width: 1024px) {
-  .Container__Modal {
-    &__Dialog {
-        width: 90%;
+  .container__modal {
+    &__dialog {
+        width: calc(100% - 10px);
     }
 
     .Content {
         min-width: 320px;
+        max-width: 500px;
     }
   }
 }
 
 @media (min-width: 1024px) {
-  .Container__Modal {
-    &__Dialog {
+  .container__modal {
+    &__dialog {
         width: auto;
     }
 
     .Content {
         min-width: 320px;
+        max-width: 500px;
     }
   }
 }

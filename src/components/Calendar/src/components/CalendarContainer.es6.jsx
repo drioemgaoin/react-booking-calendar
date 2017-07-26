@@ -27,7 +27,7 @@ let mapStateToProps = (state, ownProps) => {
     : view === 'week'
     ? getTimesliceForWeek(ownProps.timeSlices, ownProps.timeExceptions, date)
     : getTimesliceForMonth(ownProps.timeSlices, ownProps.timeExceptions, date);
-    
+
     return {
         view,
         date,
@@ -84,11 +84,11 @@ class CalendarContainer extends React.Component {
             <div className='rbc-calendar modal-container'>
                 <Container type='modal' visible={this.state.showModal}>
                     <div className='Content'>
-                        <div className='Content__Header'>
+                        <div className='content__header'>
                             New Booking
                             <button type="button" onClick={(e) => this.state.showModal ? this.hideModal(e) : this.showModal(booking)}>×</button>
                         </div>
-                        <div className='Content__Body'>
+                        <div className='content__body'>
                             {
                                 this.props.body &&
                                 React.createElement(

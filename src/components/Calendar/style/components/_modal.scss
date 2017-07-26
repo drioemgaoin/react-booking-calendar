@@ -28,34 +28,14 @@
     }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 1024px) {
   .container__modal__dialog {
       width: calc(100% - 10px);
   }
 }
 
-@media (min-width: 320px) and (max-width: 1024px) {
-  .container__modal {
-    &__dialog {
-        width: calc(100% - 10px);
-    }
-
-    .Content {
-        min-width: 320px;
-        max-width: 500px;
-    }
-  }
-}
-
 @media (min-width: 1024px) {
-  .container__modal {
-    &__dialog {
-        width: auto;
-    }
-
-    .Content {
-        min-width: 320px;
-        max-width: 500px;
-    }
+  .container__modal__dialog {
+      width: auto;
   }
 }

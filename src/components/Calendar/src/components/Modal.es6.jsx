@@ -3,7 +3,7 @@ import React from 'react';
 import BookingContainer from './BookingContainer';
 
 export default class Modal extends React.Component {
-  booking: any;
+  booking;
 
   constructor(props) {
     super(props);

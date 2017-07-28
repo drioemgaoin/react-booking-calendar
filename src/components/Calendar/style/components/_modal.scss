@@ -29,13 +29,14 @@
 }
 
 @media (max-width: 1024px) {
-  .container__modal__dialog {
+  .responsive-container__modal__dialog {
       width: calc(100% - 10px);
   }
 }
 
 @media (min-width: 1024px) {
-  .container__modal__dialog {
+  .responsive-container__modal__dialog {
       width: auto;
+      max-width: 500px; 
   }
 }

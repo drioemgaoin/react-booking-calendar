@@ -82,7 +82,7 @@ class CalendarContainer extends React.Component {
     render() {
         return (
             <div className='rbc-calendar modal-container'>
-                <Container type='modal' visible={this.state.showModal}>
+                <Container type='Modal' visible={this.state.showModal}>
                     <div className='Content'>
                         <div className='content__header'>
                             New Booking
@@ -99,10 +99,9 @@ class CalendarContainer extends React.Component {
                                         bookings: this.props.body.props.bookings ? this.props.body.props.bookings : this.props.bookings,
                                         timeSlices: this.props.body.props.timeSlices ? this.props.body.props.timeSlices : this.props.timeSlices,
                                         onClose: this.hideModal.bind(this)
-                                    }
+                                    })
                                 )
-                            )
-                        }
+                            }
                         </div>
                     </div>
                 </Container>

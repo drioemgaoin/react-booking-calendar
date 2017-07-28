@@ -1,6 +1,6 @@
 {
   "name": "react-pro-booking-calendar",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "React responsive booking calendar",
   "scripts": {
     "start": "node scripts/start.js",
@@ -88,7 +88,7 @@
     "react": "^15.5.3",
     "react-bootstrap": "0.30.8",
     "react-dom": "^15.5.3",
-    "react-responsive-ux-container": "1.0.2"
+    "react-responsive-ux-container": "^1.0.7"
   },
   "peerDependencies": {
     "react": "^15.4.2",

@@ -4,7 +4,7 @@ import moment from 'moment';
 import bem from 'bem-classname';
 
 import Slot from '../slot/Slot';
-import { getStyle } from '../../style';
+import { getStyle } from '../../styles';
 import {find, times} from 'lodash';
 import {getDateTime} from '../../util';
 

@@ -1,5 +1,4 @@
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
-import { reducer as reduxFormReducer } from 'redux-form'
 import thunk from 'redux-thunk';
 
 import calendarReducer from './reducers/calendarReducer';
@@ -7,8 +6,7 @@ import bookingReducer from './reducers/bookingReducer';
 
 const reducers = combineReducers({
   calendar: calendarReducer,
-  booking: bookingReducer,
-  form: reduxFormReducer
+  booking: bookingReducer
 })
 
 export function configureStore(initialState) {

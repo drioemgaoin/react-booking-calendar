@@ -5,6 +5,7 @@
         > div {
             display: inline-block;
             width: calc(100% / 7);
+            vertical-align: top;
 
             &:nth-child(7n + 1) {
                 clear: left;

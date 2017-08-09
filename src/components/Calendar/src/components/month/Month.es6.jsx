@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import MediaQuery from 'react-responsive';
-import {find} from 'lodash';
+import {find, times} from 'lodash';
 import {getBookingsForDay} from '../../util';
 
 import Day from "../day/Day";
@@ -60,11 +60,24 @@ export default class Month extends React.Component {
       var days = [];
 
       if (this.props.date) {
-        const selectedDate = this.props.date;
+        const selectedDate = this.props.date.set('date', 1);
         const daysInMonth = selectedDate.daysInMonth();
 
         for (var i = 1; i <= daysInMonth; i++) {
           var date = selectedDate.set('date', i).clone();
+
+          if (date.date() === 1) {
+            for (var j = 1; j < (date.day() > 1 ? date.day() : 7); j++) {
+              days.push(
+                <div key={'empty-'+ j}>
+                  <MediaQuery maxWidth={1024}>
+                    {this.renderSlot()}
+                  </MediaQuery>
+                </div>
+              )
+            }
+          }
+
           days.push(
             <div key={date}>
               <MediaQuery minWidth={1024}>

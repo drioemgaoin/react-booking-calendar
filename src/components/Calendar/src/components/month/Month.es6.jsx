@@ -62,7 +62,7 @@ export default class Month extends React.Component {
       if (this.props.date) {
         const selectedDate = this.props.date.set('date', 1);
         const daysInMonth = selectedDate.daysInMonth();
-        
+
         for (var i = 1; i <= daysInMonth; i++) {
           var date = selectedDate.set('date', i).clone();
 
@@ -94,7 +94,7 @@ export default class Month extends React.Component {
       return (
         <div className='month'>
           <MediaQuery maxWidth={1024}>
-            {times(7, String).map(x => <div className='month__header'><span>{moment().day((x + 1) % 7).format('dd')}</span></div>)}
+            {times(7, x => (x + 1) % 7).map(x => <div className='month__header'><span>{moment().day(x).format('dd')}</span></div>)}
           </MediaQuery>
           {days}
         </div>

@@ -1,6 +1,6 @@
 {
   "name": "react-pro-booking-calendar",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "React responsive booking calendar",
   "scripts": {
     "start": "node scripts/start.js",

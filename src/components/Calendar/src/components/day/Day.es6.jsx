@@ -180,7 +180,7 @@ class Day extends React.Component {
             <div className='day'>
                 {
                     this.props.header && (
-                        <div className={headerClassName}>{this.props.header}</div>
+                        <div>{this.props.header}</div>
                     )
                 }
                 {

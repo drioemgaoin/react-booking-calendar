@@ -15,16 +15,12 @@ export default class Week extends React.Component {
     if (this.props.date) {
       var startOfWeek = this.props.date.clone().startOf('isoweek');
       var endOfWeek = this.props.date.clone().endOf('isoweek');
-    //   console.log(this.props.timeSlices);
+    
       do
       {
         const date = startOfWeek.clone();
         const timeSlice = this.props.timeSlices
           ? find(this.props.timeSlices, x => {
-            //   console.log('START');
-            //   console.log(x.date.format('L'))
-            //   console.log(date.format('L'))
-            //   console.log('END');
               return x.date.format('L') === date.format('L');
           })
           : {};

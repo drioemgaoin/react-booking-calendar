@@ -2,7 +2,7 @@
     .month {
         height: 50px;
 
-        > div {
+        > div:not(:first-child) {
             display: inline-block;
             width: calc(100% / 7);
             vertical-align: top;
@@ -16,6 +16,15 @@
                     line-height: 50px;
                 }
             }
+        }
+
+        &__header {
+            display: inline-block;
+            width: calc(100% / 7);
+            vertical-align: top;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
         }
     }
 }

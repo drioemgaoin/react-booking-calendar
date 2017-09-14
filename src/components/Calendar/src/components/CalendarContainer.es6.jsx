@@ -82,29 +82,33 @@ class CalendarContainer extends React.Component {
     render() {
         return (
             <div className='rbc-calendar modal-container'>
-                <Container type='Modal' visible={this.state.showModal}>
-                    <div className='Content'>
-                        <div className='content__header'>
-                            New Booking
-                            <button type="button" onClick={(e) => this.state.showModal ? this.hideModal(e) : this.showModal(booking)}>×</button>
-                        </div>
-                        <div className='content__body'>
-                            {
-                                this.props.body &&
-                                React.createElement(
-                                    this.props.body.type,
-                                    Object.assign({}, {
-                                        ...this.props.body.props,
-                                        booking: this.state.booking,
-                                        bookings: this.props.body.props.bookings ? this.props.body.props.bookings : this.props.bookings,
-                                        timeSlices: this.props.body.props.timeSlices ? this.props.body.props.timeSlices : this.props.timeSlices,
-                                        onClose: this.hideModal.bind(this)
-                                    })
-                                )
-                            }
-                        </div>
-                    </div>
-                </Container>
+                {
+                    this.state.showModal && (
+                        <Container type='Modal' visible={this.state.showModal}>
+                            <div className='Content'>
+                                <div className='content__header'>
+                                    New Booking
+                                    <button type="button" onClick={(e) => this.state.showModal ? this.hideModal(e) : this.showModal(booking)}>×</button>
+                                </div>
+                                <div className='content__body'>
+                                    {
+                                        this.props.body &&
+                                        React.createElement(
+                                            this.props.body.type,
+                                            Object.assign({}, {
+                                                ...this.props.body.props,
+                                                booking: this.state.booking,
+                                                bookings: this.props.body.props.bookings ? this.props.body.props.bookings : this.props.bookings,
+                                                timeSlices: this.props.body.props.timeSlices ? this.props.body.props.timeSlices : this.props.timeSlices,
+                                                onClose: this.hideModal.bind(this)
+                                            })
+                                        )
+                                    }
+                                </div>
+                            </div>
+                        </Container>
+                    )
+                }
 
                 <CalendarHeader displayPast={this.props.displayPast} />
                 <CalendarBody bookings={this.props.bookings}

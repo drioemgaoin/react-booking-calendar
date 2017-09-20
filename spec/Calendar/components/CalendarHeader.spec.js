@@ -5,7 +5,7 @@ import { expect } from 'chai';
 import moment from 'moment';
 import sinon from 'sinon';
 
-import CalendarHeader from '../../../src/components/Calendar/src/components/CalendarHeader';
+import CalendarHeader from '../../../src/components/header/CalendarHeader';
 
 function createMockStore(state) {
   return {

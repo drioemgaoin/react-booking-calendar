@@ -5,7 +5,7 @@ import { expect } from 'chai';
 import moment from 'moment';
 import sinon from 'sinon';
 
-import Day from '../../../src/components/Calendar/src/components/day/Day';
+import Day from '../../../src/components/body/Day';
 
 function createMockStore(state) {
   return {

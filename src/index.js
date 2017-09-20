@@ -1,7 +1,7 @@
-import Calendar from './components/Calendar/Calendar';
-import { addBookingAction } from './components/Calendar/src/actions/bookingActions';
+import Calendar from './components/Calendar';
+import { ViewType } from './components/constant';
 
 module.exports = {
     Calendar,
-    addBookingAction
+    ViewType
 };

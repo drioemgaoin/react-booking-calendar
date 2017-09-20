@@ -1,0 +1,50 @@
+.rbc-view {
+    width: 100%;
+    background: $main-bg-color;
+    color: $main-color;
+
+    &__button {
+        background: $main-bg-color;
+        color: $main-color;
+        width: calc(100% / 3);
+        border: none;
+        outline: none;
+        font-size: 18px;
+        text-transform: uppercase;
+
+        &:not(:first-child) {
+            border-left: 1px solid $main-border-color;
+        }
+
+        &:hover {
+            color: $header-hover-color;
+        }
+
+        &--active {
+            background: $header-active-bg-color;
+
+            &:hover {
+                color: $header-active-hover-bg-color;
+            }
+        }
+    }
+}
+
+@media (max-width: 1024px) {
+    .rbc-view {
+        &__button {
+            width: 100%;
+            height: 50px;
+        }
+    }
+}
+
+@media (min-width: 1024px) {
+    .rbc-view {
+        height: 50px;
+
+        &__button {
+            height: 100%;
+        }
+    }
+}

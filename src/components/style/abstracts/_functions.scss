@@ -1,0 +1,7 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass functions.
+// -----------------------------------------------------------------------------
+
+@function calc-height($height) {
+  @return $number_of_slot * $height;
+}

@@ -5,7 +5,7 @@ import { expect } from 'chai';
 import moment from 'moment';
 import sinon from 'sinon';
 
-import Slot from '../../../src/components/Calendar/src/components/slot/Slot';
+import Slot from '../../../src/components/body/Slot';
 
 describe('Slot', function() {
   it('should render an empty slot if not date is provided', function() {

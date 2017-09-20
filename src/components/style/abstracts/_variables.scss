@@ -1,0 +1,32 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass variables.
+// -----------------------------------------------------------------------------
+
+$number_of_slot: 24;
+
+$header-bg-color: #000;
+$header-color: #fff;
+
+$body-bg-color: #3E3F40;
+$body-color: #fff;
+
+$main-bg-color: #000;
+$main-color: #fff;
+$main-border-color: rgba(255, 255, 255, 0.3);
+
+$day-header-bg-color: #3E3F40;
+$day-header-color: #fff;
+
+$header-active-bg-color: rgba(245, 122, 163, 0.8);
+$header-active-hover-bg-color: #fff;
+$header-hover-color: rgba(245, 122, 163, 0.8);
+
+$details-bg-color: #3E3F40;
+$details-color: #fff;
+
+$slot-bg-color: #3E3F40;
+$slot-color: #fff;
+$slot-border-color: rgba(255, 255, 255, 0.1);
+$slot-booked-bg-color: #F57AA3;
+$slot-free-bg-color: #47B8D1;
+$slot-inactive-bg-color: #3E3F40;

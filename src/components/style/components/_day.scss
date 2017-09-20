@@ -1,0 +1,60 @@
+.day {
+    &__header {
+        background: $day-header-bg-color;
+        color: $day-header-color;
+        border-right: 1px solid $main-border-color;
+
+        > span {
+            display: block;
+            text-align: center;
+        }
+
+        &--important {
+            font-size: 30px;
+        }
+    }
+}
+
+@media (max-width: 1024px) {
+    .day {
+        &__header {
+            height: 100px;
+        }
+
+        &__details {
+            height: 100px;
+
+            .slot {
+                &:not(.slot--inactive) {
+                    height: 100px;
+                }
+
+                &__title {
+                    font-size: 25px;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 1024px) {
+    .day {
+        &__header {
+            height: 100px;
+        }
+
+        &__details {
+            height: 100px;
+
+            .slot {
+                &:not(.slot--inactive) {
+                    height: 100px;
+                }
+
+                &__title {
+                    font-size: 25px;
+                }
+            }
+        }
+    }
+}

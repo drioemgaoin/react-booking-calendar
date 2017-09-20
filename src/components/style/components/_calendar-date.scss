@@ -1,0 +1,80 @@
+.rbc-date {
+    position: relative;
+
+    > * {
+        display: inline-block;
+    }
+
+    &__date {
+        display: inline-block;
+        font-weight: bold;
+    }
+
+    &__previous,
+    &__next {
+        font-family: FontAwesome;
+        font-style: normal;
+        font-weight: normal;
+        text-decoration: inherit;
+        color: $main-color;
+        font-size: 40px;
+        padding-right: 0.5em;
+        position: absolute;
+        height: 100%;
+        padding: 0px 15px;
+
+        &:before  {
+            cursor: pointer;
+            position: absolute;
+            padding: 10px;
+            top: 50%;
+            -webkit-transform: translateX(50%) translateY(-50%);
+            -ms-transform: translateX(50%) translateY(-50%);
+            transform: translateX(50%) translateY(-50%);
+        }
+    }
+
+    &__previous {
+        left: 0px;
+
+        &:before {
+            right: calc(50% - 5px);
+            content: '\f104';
+        }
+    }
+
+    &__next {
+        right: 0px;
+
+        &:before {
+            right: calc(50% + 5px);
+            content: '\f105';
+        }
+    }
+}
+
+@media (max-width: 1024px) {
+    .rbc-date {
+        height: 100px;
+
+        &__date {
+            line-height: 100px;
+            font-size: 20px;
+            width: 100%;
+        }
+    }
+}
+
+@media (min-width: 1024px) {
+    .rbc-date {
+        height: 150px;
+        display: inline-block;
+
+        &__date {
+            line-height: 150px;
+            font-size: 30px;
+            margin: 0px 20px;
+            width: 500px;
+        }
+    }
+}

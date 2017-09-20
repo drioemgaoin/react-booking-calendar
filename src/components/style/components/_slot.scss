@@ -1,0 +1,47 @@
+.slot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+    pointer-events: none;
+    cursor: none;
+    background: $slot-bg-color;
+    color: $slot-color;
+
+    &--inactive {
+        background: $slot-inactive-bg-color;
+    }
+
+    &:not(--inactive) {
+        box-sizing: border-box;
+    }
+
+    &--clickable {
+        pointer-events: visible;
+        cursor: pointer;
+    }
+
+    &--free {
+        color: $slot-free-bg-color;
+    }
+
+    &--booked {
+        color: $slot-booked-bg-color;
+    }
+}
+
+@media (max-width: 320px) {
+    .slot {
+        height: 100%;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 1024px) {
+    .slot {
+        height: 100%;
+    }
+}
+
+@media (min-width: 1024px) {
+}

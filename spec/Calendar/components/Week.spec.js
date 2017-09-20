@@ -5,7 +5,7 @@ import { expect } from 'chai';
 import moment from 'moment';
 import sinon from 'sinon';
 
-import Week from '../../../src/components/Calendar/src/components/week/Week';
+import Week from '../../../src/components/body/Week';
 
 describe('Week', function() {
   it('should render no days if no date is setted', function() {
@@ -25,10 +25,10 @@ describe('Week', function() {
     const date = moment('2017-05-24');
     const wrapper = shallow(<Week date={date} />);
 
-    expect(wrapper.find('[maxWidth=1024]')).to.have.length(7);
+    expect(wrapper.find('[maxWidth=1400]')).to.have.length(7);
 
     const startDay = 22;
-    wrapper.find('[maxWidth=1024]').forEach(function(node, index) {
+    wrapper.find('[maxWidth=1400]').forEach(function(node, index) {
       const props = node.children().at(0).props();
       expect(props.view).to.be.equal('portrait');
       expect(shallow(props.header).html()).to.be.equal('<span>' + (startDay + index) + '</span>');
@@ -39,8 +39,8 @@ describe('Week', function() {
     const date = moment('2017-05-24');
     const wrapper = shallow(<Week date={date} />);
 
-    expect(wrapper.find('[minWidth=1024]')).to.have.length(7);
-    wrapper.find('[minWidth=1024]').forEach(function(node, index) {
+    expect(wrapper.find('[minWidth=1400]')).to.have.length(7);
+    wrapper.find('[minWidth=1400]').forEach(function(node, index) {
       const props = node.children().at(0).props();
       expect(props.view).to.be.undefined;
     });

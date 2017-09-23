@@ -33,11 +33,11 @@ export default class Slot extends React.Component {
     }
 
     renderSlot() {
-        const sizeTypeModifier = bem('rbc-slot' + getSizeType(this.props.size));
+        const sizeTypeModifier = bem('rbc-slot--' + getSizeType(this.props.size));
         const isBookedModifier = bem('rbc-slot', [this.props.isBooked ? 'booked' : 'free']);
         const isClickableModifier = bem('rbc-slot', [this.isClickable() ? 'clickable' : '']);
         return (
-            <div className={isBookedModifier + ' ' + isClickableModifier + sizeTypeModifier}
+            <div className={isBookedModifier + ' ' + isClickableModifier + ' ' + sizeTypeModifier}
                 style={this.props.style}
                 onClick={this.onClickBound}>
                 {

@@ -34,6 +34,10 @@
                 .slot {
                     height: 100%;
 
+                    > div {
+                        align-self: flex-start;
+                    }
+
                     &__title {
                         font-size: 20px;
                     }
@@ -45,8 +49,6 @@
 
 @media (min-width: 1400px) {
     // ROW VIEW
-    // @include flex;
-
     .month {
         .day {
             display: flex;
@@ -64,12 +66,12 @@
 
             &__details {
                 display: flex;
-                justify-content: space-between;
+                flex-direction: row;
                 width: 100%;
+                padding: 0px 5px;
 
                 .slot {
-                    padding: 3px;
-                    width: 0;
+                    justify-content: flex-start;
 
                     &__title {
                         font-size: 20px;
@@ -79,17 +81,3 @@
         }
     }
 }
-
-// @media (min-width: 1400px) {
-//     .month {
-//         .day {
-//             &__details {
-//                 .slot {
-//                     &__title {
-//                         font-size: 20px;
-//                     }
-//                 }
-//             }
-//         }
-//     }
-// }

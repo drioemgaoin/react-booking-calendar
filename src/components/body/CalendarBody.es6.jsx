@@ -23,7 +23,6 @@ export default class CalendarBody extends React.Component {
                 timeSlice={this.props.timeSlices}
                 timeSlot={this.props.timeSlot}
                 bookings={this.props.bookings}
-                style={{ width: '100%' }}
                 displayPast={this.props.displayPast}
                 view={this.props.view} />
         )

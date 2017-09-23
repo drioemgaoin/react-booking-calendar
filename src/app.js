@@ -11,6 +11,6 @@ ReactDOM.render(
         timeSlot={timeSlot}
         timeSlices={timeSlices}
         timeExceptions={timeExceptions}
-        canViewBooking={true} />,
+        canViewBooking={false} />,
     document.getElementById('root')
 );

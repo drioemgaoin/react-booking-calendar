@@ -7,7 +7,7 @@ export default class Slot extends React.Component {
     onClickBound = this.onClick.bind(this);
 
     isClickable() {
-        return !this.props.isBooked || this.props.canViewBooking;
+        return this.props.onClick && (!this.props.isBooked || this.props.canViewBooking);
     }
 
     onClick(e) {
@@ -41,8 +41,10 @@ export default class Slot extends React.Component {
                     this.props.children ? this.props.children
                     : (
                         <div>
-                            <span className='slot__title'>{this.props.startDate.format('HH:mm')}</span>
-                            <div className='slot__message'>{this.renderBookingLink()}</div>
+                            <div>
+                                <span className='slot__title'>{this.props.startDate.format('HH:mm')}</span>
+                                <div className='slot__message'>{this.renderBookingLink()}</div>
+                            </div>
                         </div>
                     )
                 }

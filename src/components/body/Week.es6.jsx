@@ -30,7 +30,8 @@ export default class Week extends React.Component {
                                     canViewBooking={this.props.canViewBooking}
                                     timeSlice={timeSlice}
                                     timeSlot={this.props.timeSlot}
-                                    bookings={bookings} />
+                                    bookings={bookings}
+                                    displayPast={this.props.displayPast} />
                             </MediaQuery>
                             <MediaQuery maxWidth={1400}>
                                 <Day onClick={this.props.onClick}
@@ -41,6 +42,7 @@ export default class Week extends React.Component {
                                     timeSlot={this.props.timeSlot}
                                     bookings={bookings}
                                     header={<div>{date.format('DD')}</div>}
+                                    displayPast={this.props.displayPast}
                                     view='portrait' />
                             </MediaQuery>
                         </div>

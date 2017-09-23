@@ -86,7 +86,7 @@ export default class Month extends React.Component {
             return (
                 <div className='month'>
                     <MediaQuery maxWidth={1400} className='month__header'>
-                        {times(7, x => (x + 1) % 7).map(x => <div>{moment().day(x).format('dd')}</div>)}
+                        {times(7, x => (x + 1) % 7).map(x => <div key={'month__header--' + x}>{moment().day(x).format('dd')}</div>)}
                     </MediaQuery>
                     <div className='month__details'>
                         {days}

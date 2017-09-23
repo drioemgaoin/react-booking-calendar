@@ -36,12 +36,20 @@
                 &__details {
                     display: flex;
                     flex-direction: column;
-                    justify-content: space-between;
-                    height: calc(100% - 40px);
+                    height: 100%;
 
                     .slot {
-                        align-self: center;
-                        height: 0;
+                        height: 100px;
+
+                        > div {
+                            display: flex;
+                            height: 100px;
+                            align-self: flex-start;
+
+                            > div {
+                                align-self: center;
+                            }
+                        }
                     }
                 }
             }
@@ -80,11 +88,11 @@
             &__details {
                 display: flex;
                 flex-direction: row;
-                justify-content: space-between;
                 width: 100%;
+                padding: 0px 5px;
 
                 .slot {
-                    width: 0;
+                    justify-content: flex-start;
 
                     &__title {
                         font-size: 20px;

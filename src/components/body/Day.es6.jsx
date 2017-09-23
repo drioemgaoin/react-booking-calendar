@@ -22,6 +22,7 @@ export default class Day extends React.Component {
         return <Slot key={key}
             onClick={clickable ? this.props.onClick : undefined}
             canViewBooking={this.props.canViewBooking}
+            size={this.props.size}
             style={style}
             {...booking} />
     }

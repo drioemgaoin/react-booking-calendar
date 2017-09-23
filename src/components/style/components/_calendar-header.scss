@@ -2,16 +2,8 @@
     text-align: center;
     background: $header-bg-color;
     color: $header-color;
-}
 
-@media (max-width: 1024px) {
-    .rbc-header {
-
-    }
-}
-
-@media (min-width: 1024px) {
-    .rbc-header {
+    &--big {
         height: 200px;
     }
 }

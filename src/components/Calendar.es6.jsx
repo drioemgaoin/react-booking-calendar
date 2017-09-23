@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import {omit, isEqual} from 'lodash';
+import sizeMe from 'react-sizeme';
 
 import CalendarHeader from './header/CalendarHeader';
 import CalendarBody from './body/CalendarBody';
@@ -17,7 +18,7 @@ import {
     getTimesliceForMonth
 } from './util';
 
-export default class Calendar extends React.Component {
+class Calendar extends React.Component {
     onDateChangedBound = this.onDateChanged.bind(this);
     onViewChangedBound = this.onViewChanged.bind(this);
     onDayChoosenBound = this.onDayChoosen.bind(this);
@@ -104,7 +105,8 @@ export default class Calendar extends React.Component {
                     view={this.state.view}
                     viewChanged={this.onViewChangedBound}
                     dateChanged={this.onDateChangedBound}
-                    resources={this.props.resources} />
+                    resources={this.props.resources}
+                    size={this.props.size} />
 
                 <CalendarBody bookings={this.getBookings()}
                     timeSlot={this.props.timeSlot}
@@ -115,7 +117,8 @@ export default class Calendar extends React.Component {
                     canViewBooking={this.props.canViewBooking}
                     displayDayView={this.props.displayDayView}
                     dayClicked={this.onDayChoosenBound}
-                    slotClicked={this.props.onSlotChoosen} />
+                    slotClicked={this.props.onSlotChoosen}
+                    size={this.props.size} />
             </div>
         );
     }
@@ -132,3 +135,5 @@ export default class Calendar extends React.Component {
         this.setState({ view: ViewType.Day, date: booking.startDate });
     }
 }
+
+export default sizeMe()(Calendar);

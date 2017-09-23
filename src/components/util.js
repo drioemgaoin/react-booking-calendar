@@ -87,3 +87,23 @@ export function getStyle(view, numberOfColumn, numberOfSlot) {
     height: 'calc(100px * ' + numberOfSlot + ')'
   };
 }
+
+export function getSizeType(size) {
+    if (size.width < 480) {
+        return 'small';
+    } else if (size.width < 1024) {
+        return 'medium';
+    }
+
+    return 'big';
+}
+
+export function getSizeModifier(size) {
+    if (size.width < 480) {
+        return '--small';
+    } else if (size.width < 1024) {
+        return '--medium';
+    }
+
+    return '--big';
+}

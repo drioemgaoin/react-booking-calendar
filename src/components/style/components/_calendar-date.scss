@@ -51,30 +51,31 @@
             content: '\f105';
         }
     }
-}
 
-@media (max-width: 1024px) {
-    .rbc-date {
+    &--small,
+    &--medium {
         height: 100px;
 
-        &__date {
-            line-height: 100px;
-            font-size: 20px;
-            width: 100%;
+        .rbc-date {
+            &__date {
+                line-height: 100px;
+                font-size: 20px;
+                width: 100%;
+            }
         }
     }
-}
 
-@media (min-width: 1024px) {
-    .rbc-date {
+    &--big {
         height: 150px;
         display: inline-block;
 
-        &__date {
-            line-height: 150px;
-            font-size: 30px;
-            margin: 0px 20px;
-            width: 500px;
+        .rbc-date {
+            &__date {
+                line-height: 150px;
+                font-size: 30px;
+                margin: 0px 20px;
+                width: 500px;
+            }
         }
     }
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {ViewType} from '../constant';
+import {getSizeModifier} from '../util';
 
 export default class ViewSelector extends React.Component{
     onClickBound = this.onClick.bind(this);
@@ -10,8 +11,9 @@ export default class ViewSelector extends React.Component{
     }
 
     render() {
+        const sizeModifier = 'rbc-view' + getSizeModifier(this.props.size);
         return (
-            <div className='rbc-view'>
+            <div className={'rbc-view ' + sizeModifier}>
                 {
                     Object.keys(ViewType).map(key => {
                         const modifier = this.getModifier(ViewType[key]);

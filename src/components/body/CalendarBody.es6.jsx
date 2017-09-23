@@ -24,7 +24,8 @@ export default class CalendarBody extends React.Component {
                 timeSlot={this.props.timeSlot}
                 bookings={this.props.bookings}
                 displayPast={this.props.displayPast}
-                view={this.props.view} />
+                view={this.props.view}
+                size={this.props.size} />
         )
     }
 
@@ -36,7 +37,8 @@ export default class CalendarBody extends React.Component {
             timeSlot={this.props.timeSlot}
             bookings={this.props.bookings}
             displayPast={this.props.displayPast}
-            view={this.props.view} />
+            view={this.props.view}
+            size={this.props.size} />
     }
 
     renderMonthView() {
@@ -49,7 +51,8 @@ export default class CalendarBody extends React.Component {
             timeSlot={this.props.timeSlot}
             bookings={this.props.bookings}
             displayPast={this.props.displayPast}
-            view={this.props.view} />
+            view={this.props.view}
+            size={this.props.size} />
     }
 
     render() {

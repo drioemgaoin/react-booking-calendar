@@ -2,6 +2,7 @@ import React from 'react';
 import moment from 'moment';
 
 import {ViewType} from '../constant';
+import {getSizeModifier} from '../util';
 
 export default class DateSelector extends React.Component{
     onPreviousBound = this.onPrevious.bind(this);
@@ -50,8 +51,9 @@ export default class DateSelector extends React.Component{
     }
 
     render() {
+        const sizeModifier = 'rbc-date' + getSizeModifier(this.props.size);
         return (
-            <div className='rbc-date'>
+            <div className={'rbc-date ' + sizeModifier}>
                 {(this.props.pastAvailable || this.isPastAvailable()) && <span className='rbc-date__previous' onClick={this.onPreviousBound}></span>}
                 <div className='rbc-date__date'>{this.renderDate()}</div>
                 <span className='rbc-date__next' onClick={this.onNextBound}></span>

@@ -1,4 +1,4 @@
-.slot {
+.rbc-slot {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -29,19 +29,9 @@
     &--booked {
         color: $slot-booked-bg-color;
     }
-}
 
-@media (max-width: 320px) {
-    .slot {
+    &--small,
+    &--medium {
         height: 100%;
     }
-}
-
-@media (min-width: 320px) and (max-width: 1024px) {
-    .slot {
-        height: 100%;
-    }
-}
-
-@media (min-width: 1024px) {
 }

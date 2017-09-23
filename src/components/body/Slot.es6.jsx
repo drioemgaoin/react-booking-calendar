@@ -3,6 +3,8 @@ import moment from 'moment';
 import bem from 'bem-classname';
 import _ from 'lodash';
 
+import {getSizeType} from '../util';
+
 export default class Slot extends React.Component {
     onClickBound = this.onClick.bind(this);
 
@@ -26,15 +28,16 @@ export default class Slot extends React.Component {
     }
 
     renderEmptySlot() {
-        const className = bem('slot', ['inactive']);
+        const className = bem('rbc-slot', ['inactive']);
         return <div className={className} style={this.props.style}></div>;
     }
 
     renderSlot() {
-        const isBookedModifier = bem('slot', [this.props.isBooked ? 'booked' : 'free']);
-        const isClickableModifier = bem('slot', [this.isClickable() ? 'clickable' : '']);
+        const sizeTypeModifier = bem('rbc-slot' + getSizeType(this.props.size));
+        const isBookedModifier = bem('rbc-slot', [this.props.isBooked ? 'booked' : 'free']);
+        const isClickableModifier = bem('rbc-slot', [this.isClickable() ? 'clickable' : '']);
         return (
-            <div className={isBookedModifier + ' ' + isClickableModifier}
+            <div className={isBookedModifier + ' ' + isClickableModifier + sizeTypeModifier}
                 style={this.props.style}
                 onClick={this.onClickBound}>
                 {
@@ -42,8 +45,8 @@ export default class Slot extends React.Component {
                     : (
                         <div>
                             <div>
-                                <span className='slot__title'>{this.props.startDate.format('HH:mm')}</span>
-                                <div className='slot__message'>{this.renderBookingLink()}</div>
+                                <span className='rbc-slot__title'>{this.props.startDate.format('HH:mm')}</span>
+                                <div className='rbc-slot__message'>{this.renderBookingLink()}</div>
                             </div>
                         </div>
                     )

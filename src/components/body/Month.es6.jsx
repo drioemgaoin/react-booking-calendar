@@ -1,12 +1,11 @@
 import React from 'react';
 import moment from 'moment';
-import MediaQuery from 'react-responsive';
 import {find, times, forEach, filter} from 'lodash';
 
 import Day from "./Day";
 import Slot from "./Slot";
 import {ViewType} from '../constant';
-import {getBookingsForDay} from '../util';
+import {getBookingsForDay, getSizeType} from '../util';
 
 export default class Month extends React.Component {
     renderDay(date, style) {
@@ -21,7 +20,8 @@ export default class Month extends React.Component {
                 timeSlot={this.props.timeSlot}
                 bookings={bookings}
                 style={style}
-                displayPast={this.props.displayPast} />
+                displayPast={this.props.displayPast}
+                size={this.props.size} />
         );
     }
 
@@ -29,23 +29,26 @@ export default class Month extends React.Component {
         return (
             <Slot startDate={date}
                 canViewBooking={this.props.canViewBooking}
-                onClick={this.props.onSlotClick}>
+                onClick={this.props.onSlotClick}
+                size={this.props.size}>
                 <div>{date && date.format('DD')}</div>
             </Slot>
         );
     }
 
     renderEmptySlot(time, index) {
+        const sizeType = getSizeType(this.props.size);
         return times(time, x => {
-            return <div key={'empty-slot-' + index + '-' + x}>
-                <MediaQuery maxWidth={1024}>
-                    {this.renderSlot()}
-                </MediaQuery>
-            </div>
+            return (
+                <div key={'empty-slot-' + index + '-' + x}>
+                    {sizeType !== 'big' && this.renderSlot()}
+                </div>
+            );
         });
     }
 
     render() {
+        const sizeType = getSizeType(this.props.size);
 
         if (this.props.view === ViewType.Day) {
             return this.renderDay(this.props.date, { width: '100%' });
@@ -65,12 +68,7 @@ export default class Month extends React.Component {
                     if (this.props.displayPast || date.isSameOrAfter(moment(), 'day')) {
                         days.push(
                             <div key={date}>
-                                <MediaQuery minWidth={1400}>
-                                    {this.renderDay(date)}
-                                </MediaQuery>
-                                <MediaQuery maxWidth={1400}>
-                                    {this.renderSlot(date)}
-                                </MediaQuery>
+                                { sizeType !== 'big' ? this.renderSlot(date) : this.renderDay(date)}
                             </div>
                         )
                     } else {
@@ -84,13 +82,11 @@ export default class Month extends React.Component {
             }
 
             return (
-                <div className='month'>
-                    <MediaQuery maxWidth={1400} className='month__header'>
-                        {times(7, x => (x + 1) % 7).map(x => <div key={'month__header--' + x}>{moment().day(x).format('dd')}</div>)}
-                    </MediaQuery>
-                    <div className='month__details'>
-                        {days}
+                <div className={'rbc-month rbc-month--' + sizeType}>
+                    <div className={'rbc-month__header'}>
+                        {sizeType !== 'big' && times(7, x => (x + 1) % 7).map(x => <div key={'rbc-month__header__item--' + x}>{moment().day(x).format('dd')}</div>)}
                     </div>
+                    <div className='rbc-month__details'>{days}</div>
                 </div>
             )
         }
